@@ -1,0 +1,1 @@
+-- SELECT * FROM Parts WHERE category LIKE"%$1%";

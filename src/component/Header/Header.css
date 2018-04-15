@@ -1,0 +1,138 @@
+/* Header */
+
+.header {
+  height: 10vh;
+  width: 100%;
+  background-color: #666;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo-container {
+  height: 8vh;
+  width: 90%;
+  /* background-image: url(http://www.bugstuffonline.com/templates/fallback/images/tiretracks.jpg); */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* border: 1px solid #ff0000; */
+}
+
+.car-image {
+  height: 8vh;
+  width: 20%;
+  display: none;
+}
+
+.logo {
+  height: 8vh;
+  width: 150px;
+}
+
+.cart {
+  width: 30px;
+}
+
+.hamburgerBtn {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.hamburgerSvg {
+  width: 20px;
+}
+
+.bubble {
+  transform: rotate(90deg);
+  width: 25px;
+}
+
+/* Menu */
+
+.menu {
+  position: fixed;
+  width: 40%;
+  height: 100%;
+  background-color: whitesmoke;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.menu-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.links {
+  text-decoration: none;
+}
+
+.list {
+  list-style-type: none;
+  padding: 15px;
+}
+
+.list-lis {
+  margin-top: 10px;
+  color: black;
+}
+
+.categoryBtn,
+.shopText {
+  display: inline-block;
+}
+
+.shopText {
+  margin-right: 15px;
+}
+
+.categoryBtn {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.extraSpace {
+  margin-top: 25px;
+  color: black;
+}
+
+.boldShop {
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .header {
+    background-image: url(http://www.bugstuffonline.com/templates/fallback/images/tiretracks.jpg);
+  }
+
+  .hamburgerBtn {
+    display: none;
+  }
+
+  .logo-container {
+    border: 1px solid #ff0000;
+  }
+  .car-image {
+    display: flex;
+  }
+}
+
+/* .menu {
+  height: 90vh;
+  width: 42%;
+  background: #000;
+  color: #fff;
+  position: absolute;
+} */
