@@ -14,7 +14,7 @@ export function getParts() {
   };
 }
 
-export default function reducer(state = initialState, action) {
+export default function partReducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_PARTS}_PENDING`:
       return {
@@ -22,7 +22,6 @@ export default function reducer(state = initialState, action) {
         loading: true
       };
     case `${GET_PARTS}_FULFILLED`:
-      // console.log(action.payload.data);
       return {
         ...state,
         loading: false,

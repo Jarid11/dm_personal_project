@@ -125,33 +125,34 @@ class Header extends Component {
               </div>
             </header>
             <div className="menu">
-              <div className="menu-btns">
+              <div className="menu-btns-container">
                 <Link to="/Account">
-                  <button>Account</button>
+                  <button className="menu-btns">Account</button>
                 </Link>
                 <Link to="/Contact">
-                  <button>Contact</button>
+                  <button className="menu-btns">Contact</button>
                 </Link>
               </div>
-              <ul className="list">
+              <div className="list">
                 <Link to="/" className="links">
-                  <li className="list-lis">Home</li>
+                  <div className="list-lis">Home</div>
                 </Link>
-                <Link to="/shop" className="links">
+                <div className="links">
                   {!showCategories ? (
                     <div className="list-lis">
-                      <button
-                        className="categoryBtn"
-                        onClick={() => this.showCategories()}
-                      >
-                        <p className="shopText">Shop</p>
-                        {dropdown}
-                      </button>
+                      <Link to="/shop">
+                        <button
+                          className="categoryBtn"
+                          onClick={() => this.showCategories()}
+                        >
+                          <p className="shopText">Shop</p>
+                          {dropdown}
+                        </button>
+                      </Link>
                     </div>
                   ) : (
                     <div>
                       <div className="list-lis">
-                        {/* <p className="shopText">Shop</p> */}
                         <button
                           className="categoryBtn"
                           onClick={() => this.hideCategories()}
@@ -160,33 +161,33 @@ class Header extends Component {
                           {dropdown}
                         </button>
                       </div>
-                      <ul className="list">
-                        <Link to="/engine">
-                          <li className="list-lis">Engine</li>
+                      <div className="list">
+                        <Link to="/product/Engine" className="list-lis">
+                          <div className="shopList">Engine</div>
                         </Link>
-                        <Link to="/interior">
-                          <li className="list-lis">Interior</li>
+                        <Link to="/product/Interior" className="list-lis">
+                          <div className="shopList">Interior</div>
                         </Link>
-                        <Link to="/exterior">
-                          <li className="list-lis">Exterior</li>
+                        <Link to="/product/Exterior" className="list-lis">
+                          <div className="shopList">Exterior</div>
                         </Link>
-                        <Link to="/electrical">
-                          <li className="list-lis">Electrical</li>
+                        <Link to="/product/Electrical" className="list-lis">
+                          <div className="shopList">Electrical</div>
                         </Link>
-                        <Link to="/brakes">
-                          <li className="list-lis">Brakes</li>
+                        <Link to="/product/Brakes" className="list-lis">
+                          <div className="shopList">Brakes</div>
                         </Link>
-                      </ul>
+                      </div>
                     </div>
                   )}
-                </Link>
+                </div>
                 <Link to="/events" className="links">
-                  <li className="list-lis">Events</li>
+                  <div className="list-lis">Events</div>
                 </Link>
                 <Link to="/about" className="links">
-                  <li className="extraSpace">About</li>
+                  <div className="extraSpace">About</div>
                 </Link>
-              </ul>
+              </div>
             </div>
           </div>
         )}

@@ -63,10 +63,23 @@
   cursor: pointer;
 }
 
-.menu-btns {
+.menu-btns-container {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.menu-btns {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.menu-btns:hover {
+  background: #5bff0a;
 }
 
 .links {
@@ -81,6 +94,11 @@
 .list-lis {
   margin-top: 10px;
   color: black;
+  text-decoration: none;
+}
+
+.shopList {
+  margin-bottom: 5px;
 }
 
 .categoryBtn,
@@ -89,7 +107,8 @@
 }
 
 .shopText {
-  margin-right: 15px;
+  margin-right: 5px;
+  margin-bottom: 8px;
 }
 
 .categoryBtn {

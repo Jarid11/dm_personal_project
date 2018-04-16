@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import "./Shop.css";
 
 import { connect } from "react-redux";
-import { getParts } from "../../ducks/reducer";
+import { getParts } from "../../ducks/partReducer";
 
 import Header from "../Header/Header";
 
@@ -15,21 +16,21 @@ class Shop extends Component {
   }
 
   render() {
-    console.log(this.props.reducer.parts);
-    const { parts } = this.props.reducer;
+    const { parts } = this.props.partReducer;
     const partList = parts.filter(e => e.specials === 1).map(e => {
       return (
-        <div key={e.partid}>
-          <h3>{e.name}</h3>
-          <h4>{e.model}</h4>
-          <img src={e.img} alt="part" />
-          <h3>{e.price}</h3>
+        <div className="partContainer" key={e.partid}>
+          <h3 className="partName">{e.name}</h3>
+          <h5 className="modelNum">Part Number: {e.model}</h5>
+          <img className="partImg" src={e.img} alt="part" />
+          <h3>${e.price}</h3>
         </div>
       );
     });
     return (
-      <div>
+      <div className="shopContainer">
         <Header />
+        <h2>Parts on Sale</h2>
         {partList}
       </div>
     );
