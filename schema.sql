@@ -1,8 +1,24 @@
+-- CREATE TABLE users (
+--   UserId SERIAL Primary Key,
+--   name varchar(512),
+--   authId varchar(50),
+--   img text
+-- )
+
 CREATE TABLE users (
   UserId SERIAL Primary Key,
   name varchar(512),
   authId varchar(50),
-  img text
+  img text,
+  firstName varchar(200),
+  lastName varchar(200),
+  phoneNumber varchar(100),
+  email text,
+  streetAddress varchar(250),
+  extraAddressInfo varchar(250),
+  city varchar(100),
+  state varchar(50),
+  zip Int
 )
 
 

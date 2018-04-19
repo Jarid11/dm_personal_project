@@ -1,0 +1,1 @@
+UPDATE users SET firstname = $2, lastname = $3, phonenumber = $4, email = $5, streetaddress = $6, extraaddressinfo = $7, city = $8, state = $9, zip = $10 WHERE userid = $1

@@ -23,7 +23,7 @@ const {
   deleteFromCart,
   updateCart
 } = require(`${__dirname}/controllers/cartCtrl`);
-
+const { addShippingInfo } = require(`${__dirname}/controllers/userCtrl`);
 const app = express();
 
 massive(process.env.CONNECTION_STRING)
@@ -94,6 +94,9 @@ app.get("/api/cartImgs", getCartImgs);
 app.post("/api/cart", addToCart);
 app.delete("/api/cart/:id", deleteFromCart);
 app.put("/api/cart", updateCart);
+
+//User Endpoints
+app.post("/api/addShipInfo", addShippingInfo);
 
 app.listen(port, () => {
   console.log(`Port is running on: ${port}`);

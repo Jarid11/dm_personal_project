@@ -1,14 +1,17 @@
 .checkoutContainer,
-.totalContainer {
+.totalContainer,
+.shrinkedStepContainer,
+.step2Container {
   padding: 10px;
 }
 
 .checkoutContainer {
-  height: 100vh;
+  height: 92vh;
 }
 
-.step1Container {
-  width: 90%;
+.step1Box,
+.step2Box {
+  width: 95%;
   height: 10vh;
   display: flex;
   align-items: center;
@@ -17,11 +20,16 @@
 
 .stepNumBox {
   width: 25px;
+  background-color: #239afc;
+  padding: 5px;
+  color: white;
   height: 25px;
-  border: 2px solid black;
   border-radius: 50%;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -71,10 +79,10 @@
 }
 
 .cartImgContainer {
-  height: 24vh;
+  height: 20vh;
   width: 95%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
 }
 
@@ -89,6 +97,7 @@
 }
 
 .totalContainer {
+  background-color: #fff;
   border: 1px solid lightgray;
   margin-top: 10px;
 }
@@ -106,6 +115,146 @@
 
 .taxesBox {
   border-bottom: 1px solid lightgray;
+}
+
+.disabledStep2Container,
+.disabledStep3Container {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 2px solid #e9e9e9;
+  padding: 5px;
+}
+
+.disabledStepTitles {
+  color: lightgray;
+}
+
+.disabledStep3Container {
+  margin-bottom: 80px;
+}
+
+.disabledStepNumBox {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgrey;
+}
+
+.disabledStepNumBox p {
+  color: white;
+}
+
+.shrinkedStepContainer {
+  height: 30vh;
+  width: 100%;
+}
+
+.checkMarkContainer {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkAndShipContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkMarkIcon {
+  width: 15px;
+  background-color: green;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.truckIcon {
+  width: 25px;
+}
+
+.shrinkedEditBtnContainer {
+  width: 35%;
+}
+
+.shrinkedEditBtn {
+  color: blue;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  border: 2px solid lightgray;
+  padding: 10px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+}
+
+.shrinkedCartImgContainer {
+  height: 15vh;
+  width: 95%;
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+}
+
+.shrinkedArrivalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.shrinkedDate {
+  margin-left: 5px;
+  font-weight: 800;
+}
+
+.step2Container {
+  background-color: #eaeaea;
+  border-top: 2px solid lightgray;
+}
+
+.inputTitles {
+  text-align: left;
+  margin: 0;
+}
+
+.step2Inputs {
+  width: 100%;
+}
+
+.inputBoxes {
+  margin-top: 15px;
+}
+
+.stateInputBox {
+  width: 50%;
+}
+
+.zipInputBox {
+  width: 40%;
+}
+
+.stateInput {
+  height: 25px;
+}
+
+.zipInput {
+  height: 18px;
+}
+
+.stateAndZipContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .checkoutFooter {
