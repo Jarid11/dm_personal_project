@@ -3,7 +3,7 @@ module.exports = {
   getParts: (req, res, next) => {
     const dbInstance = req.app.set("db");
     if (!products.length) {
-      dbInstance
+      dbInstance.parts
         .get_parts()
         .then(parts => {
           products = parts;

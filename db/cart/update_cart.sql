@@ -1,0 +1,1 @@
+UPDATE cart SET quantity = $3 WHERE user_id = $1 AND part_id = $2;

@@ -1,0 +1,1 @@
+SELECT SUM(quantity) FROM cart JOIN users on userid = cart.user_id WHERE user_id = $1

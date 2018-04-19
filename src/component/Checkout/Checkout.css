@@ -1,0 +1,149 @@
+.checkoutContainer,
+.totalContainer {
+  padding: 10px;
+}
+
+.checkoutContainer {
+  height: 100vh;
+}
+
+.step1Container {
+  width: 90%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stepNumBox {
+  width: 25px;
+  height: 25px;
+  border: 2px solid black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shippingOptsContainer {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shippingBtns {
+  width: 49%;
+  height: 5vh;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  border: 2px solid lightgray;
+}
+
+.shippingBtns:active,
+.shippingBtns:hover {
+  border: 2px solid black;
+  background-color: lightgray;
+  color: black;
+}
+
+.arrivalContainer {
+  height: 15vh;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.arrivalBox {
+  height: 4vh;
+  width: 66.66%;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.cartImgContainer {
+  height: 24vh;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.itemImgContainer {
+  height: 7vh;
+}
+
+.imgBoxes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.totalContainer {
+  border: 1px solid lightgray;
+  margin-top: 10px;
+}
+
+.subtotalBox,
+.shippingBox,
+.taxesBox,
+.totalBox {
+  width: 90%;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taxesBox {
+  border-bottom: 1px solid lightgray;
+}
+
+.checkoutFooter {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  padding: 10px;
+  line-height: 38px;
+  background: #fff;
+  border-top: 2px solid #e9e9e9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerTotText,
+.footerTotAmount {
+  margin: 0;
+}
+
+.footerTotText {
+  height: 25px;
+}
+
+.contBtn {
+  height: 25px;
+  width: 150px;
+  background-color: #239afc;
+  color: #e9e9e9;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.footerTotBox {
+  height: 50px;
+  width: 25%;
+  padding: 10px;
+}

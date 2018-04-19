@@ -21,3 +21,13 @@
 .productImg {
   width: 250px;
 }
+
+/* for cart */
+
+.costContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  width: 80%;
+}

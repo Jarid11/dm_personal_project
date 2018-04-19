@@ -1,0 +1,1 @@
+SELECT SUM(quantity * price) FROM cart JOIN users on userid = cart.user_id JOIN parts on parts.partid = cart.part_id WHERE user_id = $1

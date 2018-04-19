@@ -1,0 +1,1 @@
+SELECT * FROM cart JOIN parts on partid = cart.part_id WHERE user_id = $1;

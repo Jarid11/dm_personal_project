@@ -1,19 +1,30 @@
 import React, { Component } from "react";
 import "./Header.css";
 
+import accountIcon from "./HeaderSvgs/account.svg";
+import phoneIcon from "./HeaderSvgs/phone.svg";
+import hamburgerBtnIcon from "./HeaderSvgs/hamburger-btn.svg";
+import cartIcon from "./HeaderSvgs/shopping-cart.svg";
+
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getUser } from "../../ducks/userReducer";
+import { getCart, getTotalItems } from "../../ducks/cartReducer";
 
 class Header extends Component {
   constructor() {
     super();
     this.state = {
       showMenu: false,
-      showCategories: false,
-      dropdown: ""
+      showCategories: false
     };
   }
 
-  //takeout state.dropdown if sticking with bolded shop dropdown
+  componentDidMount() {
+    this.props.getUser();
+    this.props.getCart();
+    this.props.getTotalItems();
+  }
 
   showMenu() {
     this.setState({
@@ -22,35 +33,31 @@ class Header extends Component {
   }
 
   showCategories() {
-    console.log("test");
     this.setState({
-      showCategories: !this.state.showCategories,
-      dropdown: ""
+      showCategories: !this.state.showCategories
     });
   }
 
   hideCategories() {
     this.setState({
-      showCategories: !this.state.showCategories,
-      dropdown: ""
+      showCategories: !this.state.showCategories
     });
   }
 
   render() {
     const { showMenu, showCategories, dropdown } = this.state;
+    const { cart, totalItems } = this.props;
     return (
       <div>
         {!showMenu ? (
           <header className="header">
             <div className="logo-container">
               <button className="hamburgerBtn" onClick={() => this.showMenu()}>
-                <svg
+                <img
                   className="hamburgerSvg"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
-                </svg>
+                  src={hamburgerBtnIcon}
+                  alt="hamburger button"
+                />
               </button>
               <img
                 className="car-image"
@@ -62,21 +69,13 @@ class Header extends Component {
                 src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
                 alt="logo"
               />
-              <div>
-                <svg
-                  className="cart"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512"
-                >
-                  <path d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z" />
-                </svg>
-                <svg
-                  className="bubble"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <path d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64z" />
-                </svg>
+              <div className="cartContainer">
+                <Link to="/cart" className="links">
+                  <img className="cart" src={cartIcon} alt="cart button" />
+                  <div className="bubble">
+                    <p className="cartCountText">{totalItems}</p>
+                  </div>
+                </Link>
               </div>
             </div>
           </header>
@@ -88,13 +87,11 @@ class Header extends Component {
                   className="hamburgerBtn"
                   onClick={() => this.showMenu()}
                 >
-                  <svg
+                  <img
                     className="hamburgerSvg"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 448 512"
-                  >
-                    <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
-                  </svg>
+                    src={hamburgerBtnIcon}
+                    alt="hamburger button"
+                  />
                 </button>
                 <img
                   className="car-image"
@@ -106,31 +103,37 @@ class Header extends Component {
                   src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
                   alt="logo"
                 />
-                <div>
-                  <svg
-                    className="cart"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 576 512"
-                  >
-                    <path d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z" />
-                  </svg>
-                  <svg
-                    className="bubble"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                  >
-                    <path d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64z" />
-                  </svg>
+                <div className="cartContainer">
+                  <Link to="/cart" className="links">
+                    <img className="cart" src={cartIcon} alt="cart button" />
+                    <div className="bubble">
+                      <p className="cartCountText">{totalItems}</p>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </header>
             <div className="menu">
               <div className="menu-btns-container">
                 <Link to="/Account">
-                  <button className="menu-btns">Account</button>
+                  <div>
+                    <img
+                      className="accountIcon"
+                      src={accountIcon}
+                      alt="account icon"
+                    />
+                    <button className="menu-btns">Account</button>
+                  </div>
                 </Link>
                 <Link to="/Contact">
-                  <button className="menu-btns">Contact</button>
+                  <div>
+                    <img
+                      className="phoneIcon"
+                      src={phoneIcon}
+                      alt="phone icon"
+                    />
+                    <button className="menu-btns">Contact</button>
+                  </div>
                 </Link>
               </div>
               <div className="list">
@@ -140,7 +143,7 @@ class Header extends Component {
                 <div className="links">
                   {!showCategories ? (
                     <div className="list-lis">
-                      <Link to="/shop">
+                      <Link to="/product">
                         <button
                           className="categoryBtn"
                           onClick={() => this.showCategories()}
@@ -196,4 +199,11 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  ...state.userReducer,
+  ...state.cartReducer
+});
+
+export default connect(mapStateToProps, { getUser, getCart, getTotalItems })(
+  Header
+);

@@ -8,8 +8,21 @@ const passport = require("passport");
 
 const port = process.env.PORT || 3001;
 
-const { strat, getUser } = require(`${__dirname}/controllers/authCtrl`);
+const {
+  strat,
+  getUser,
+  logoutUser
+} = require(`${__dirname}/controllers/authCtrl`);
 const { getParts } = require(`${__dirname}/controllers/productCtrl`);
+const {
+  getCart,
+  getTotalItems,
+  getGrandTotal,
+  getCartImgs,
+  addToCart,
+  deleteFromCart,
+  updateCart
+} = require(`${__dirname}/controllers/cartCtrl`);
 
 const app = express();
 
@@ -36,16 +49,14 @@ app.use(passport.session());
 passport.use(strat);
 
 passport.serializeUser((user, done) => {
-  console.log(user);
-
   app
     .get("db")
-    .getUserByAuthid(user.id)
+    .auth.getUserByAuthid(user.id)
     .then(response => {
       if (!response[0]) {
         app
           .get("db")
-          .addUserByAuthid([user.displayName, user.id])
+          .auth.addUserByAuthid([user.displayName, user.id, user.picture])
           .then(res => {
             return done(null, res[0]);
           })
@@ -60,6 +71,7 @@ passport.deserializeUser((user, done) => {
   return done(null, user);
 });
 
+//Auth Endpoints
 app.get(
   "/auth",
   passport.authenticate("auth0", {
@@ -69,8 +81,19 @@ app.get(
 );
 
 app.get("/api/user", getUser);
+app.get("/logout", logoutUser);
 
+//Part Endpoints
 app.get("/api/parts", getParts);
+
+//Cart Endpoints
+app.get("/api/cart", getCart);
+app.get("/api/cartItems", getTotalItems);
+app.get("/api/grandTotal", getGrandTotal);
+app.get("/api/cartImgs", getCartImgs);
+app.post("/api/cart", addToCart);
+app.delete("/api/cart/:id", deleteFromCart);
+app.put("/api/cart", updateCart);
 
 app.listen(port, () => {
   console.log(`Port is running on: ${port}`);

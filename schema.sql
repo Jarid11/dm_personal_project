@@ -24,3 +24,11 @@ CREATE TABLE Orders (
   UserId Int REFERENCES Users(UserId),
   PartId Int REFERENCES Parts(PartId)
 )
+
+CREATE TABLE cart (
+  OrderNum SERIAL PRIMARY KEY,
+  user_Id Int REFERENCES Users(UserId),
+  part_Id Int REFERENCES Parts(PartId),
+  quantity Int
+)
+

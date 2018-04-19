@@ -1,0 +1,1 @@
+DELETE FROM cart WHERE user_id = $1 AND part_id = $2;

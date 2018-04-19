@@ -11,13 +11,11 @@ const strat = new Auth0Strategy(
     callbackURL: "/auth"
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
-    // console.log(profile);
     return done(null, profile);
   }
 );
 
 const getUser = (req, res) => {
-  cosole.log("HIT");
   if (!req.user) {
     res.status(401).json({ message: "Unauthorized" });
   } else {
@@ -25,7 +23,15 @@ const getUser = (req, res) => {
   }
 };
 
+const logoutUser = (req, res) => {
+  console.log(req);
+  req.session.destroy(() => {
+    res.redirect("http://localhost:3000/#/");
+  });
+};
+
 module.exports = {
   strat,
-  getUser
+  getUser,
+  logoutUser
 };

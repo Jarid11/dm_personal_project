@@ -47,9 +47,27 @@
   width: 20px;
 }
 
+.cartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .bubble {
   transform: rotate(90deg);
   width: 25px;
+  background-image: url("./HeaderSvgs/comment-bubble.svg");
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartCountText {
+  transform: rotate(-90deg);
+  font-size: 20px;
+  margin-top: auto;
 }
 
 /* Menu */

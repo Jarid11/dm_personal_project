@@ -1,0 +1,11 @@
+.accImgContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.accImg {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
