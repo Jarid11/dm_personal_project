@@ -1,0 +1,32 @@
+.contactChevronBtn {
+  width: 20px;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.contactInfoBox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: lightgray;
+}
+
+.contactDropdownInfoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.contactStreetAddress {
+  margin-bottom: 0;
+}
+
+.contactCityStateZip {
+  margin-top: 0;
+}

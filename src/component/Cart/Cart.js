@@ -10,6 +10,7 @@ import {
 } from "../../ducks/cartReducer";
 
 import Header from "../Header/Header";
+import "./Cart.css";
 
 class Cart extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Cart extends Component {
   }
 
   handleUpdate(id, selected) {
-    this.props.updateCart(id, parseInt(selected)).then(() => {
+    this.props.updateCart(id, parseInt(selected, 10)).then(() => {
       this.props.getCart();
       this.props.getGrandTotal();
     });
@@ -53,12 +54,6 @@ class Cart extends Component {
         <Header />
         {cart[0] ? (
           <div>
-            <div>
-              <Link to="/checkout">
-                <h4>Est. Total: ${grandTotal.toFixed(2)}</h4>
-                <button>CHECK OUT</button>
-              </Link>
-            </div>
             {cart.map((e, i) => (
               <div className="productContainer" key={i}>
                 <h3 className="productName">{e.name}</h3>
@@ -77,13 +72,20 @@ class Cart extends Component {
                     value={this.state.selected}
                     id="qtySelect"
                   >
-                    {this.state.options.map(e => {
-                      return <option value={e}>{e}</option>;
+                    {this.state.options.map((e, i) => {
+                      return (
+                        <option value={e} key={i}>
+                          {e}
+                        </option>
+                      );
                     })}
                   </select>
                   <button
                     onClick={() =>
-                      this.handleUpdate(e.partid, parseInt(this.state.selected))
+                      this.handleUpdate(
+                        e.partid,
+                        parseInt(this.state.selected, 10)
+                      )
                     }
                   >
                     Update Qty
@@ -94,6 +96,18 @@ class Cart extends Component {
                 </div>
               </div>
             ))}
+            <div className="grandTotalContainer">
+              <div className="checkOutBoxes checkOutTextBox">
+                <h4 className="grandTotalText">
+                  Est. Total: ${grandTotal.toFixed(2)}
+                </h4>
+              </div>
+              <Link to="/checkout" className="links">
+                <div className="checkOutBoxes checkOutBtnBox">
+                  <button className="checkOutBtn">CHECK OUT</button>
+                </div>
+              </Link>
+            </div>
           </div>
         ) : (
           <div>

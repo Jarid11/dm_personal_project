@@ -5,6 +5,10 @@ import { getUser } from "../../ducks/userReducer";
 
 import Header from "../Header/Header";
 import Slides from "../Slides/Slides";
+import Manufacturers from "../Manufacturers/Manufacturers";
+import Contact from "../Contact/Contact";
+import QuickLinks from "../QuickLinks/QuickLinks";
+import Footer from "../Footer/Footer";
 
 class Home extends Component {
   componentDidMount() {
@@ -16,6 +20,10 @@ class Home extends Component {
       <div>
         <Header />
         <Slides />
+        <Manufacturers />
+        <Contact />
+        <QuickLinks />
+        <Footer />
       </div>
     );
   }

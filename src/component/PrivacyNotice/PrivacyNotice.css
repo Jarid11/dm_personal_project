@@ -1,0 +1,15 @@
+.privacyBg {
+  background: lightgray;
+}
+
+.privacyContainer {
+  padding: 10px;
+  text-align: center;
+  background: #fff;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  border: 1px solid #666;
+  border-radius: 5px;
+}

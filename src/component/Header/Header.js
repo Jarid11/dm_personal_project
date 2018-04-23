@@ -23,7 +23,6 @@ class Header extends Component {
   componentDidMount() {
     this.props.getUser();
     this.props.getCart();
-    this.props.getTotalItems();
   }
 
   showMenu() {
@@ -47,6 +46,9 @@ class Header extends Component {
   render() {
     const { showMenu, showCategories, dropdown } = this.state;
     const { cart, totalItems } = this.props;
+
+    this.props.getTotalItems();
+
     return (
       <div>
         {!showMenu ? (
@@ -125,7 +127,7 @@ class Header extends Component {
                     <button className="menu-btns">Account</button>
                   </div>
                 </Link>
-                <Link to="/Contact">
+                {/* <Link to="/Contact">
                   <div>
                     <img
                       className="phoneIcon"
@@ -134,7 +136,7 @@ class Header extends Component {
                     />
                     <button className="menu-btns">Contact</button>
                   </div>
-                </Link>
+                </Link> */}
               </div>
               <div className="list">
                 <Link to="/" className="links">
@@ -188,7 +190,7 @@ class Header extends Component {
                   <div className="list-lis">Events</div>
                 </Link>
                 <Link to="/about" className="links">
-                  <div className="extraSpace">About</div>
+                  <div className="list-lis">About</div>
                 </Link>
               </div>
             </div>

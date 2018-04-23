@@ -10,6 +10,8 @@ import Contact from "./component/Contact/Contact";
 import Product from "./component/Product/Product";
 import Cart from "./component/Cart/Cart";
 import Checkout from "./component/Checkout/Checkout";
+import PrivacyNotice from "./component/PrivacyNotice/PrivacyNotice";
+import Disclaimer from "./component/Disclaimer/Disclaimer";
 
 export default (
   <Switch>
@@ -22,5 +24,7 @@ export default (
     <Route path="/cart" component={Cart} />
     <Route path="/checkout" component={Checkout} />
     <Route path="/product/:type" component={Product} />
+    <Route path="/privacy" component={PrivacyNotice} />
+    <Route path="/disclaimer" component={Disclaimer} />
   </Switch>
 );

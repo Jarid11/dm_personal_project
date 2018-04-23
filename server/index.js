@@ -6,7 +6,18 @@ const massive = require("massive");
 const session = require("express-session");
 const passport = require("passport");
 
-const port = process.env.PORT || 3001;
+const app = express();
+
+// STRIPE
+
+const SERVER_CONFIGS = require("./constants/server");
+
+const configureServer = require("./server");
+const configureRoutes = require("./routes");
+
+configureServer(app);
+configureRoutes(app);
+//
 
 const {
   strat,
@@ -24,7 +35,6 @@ const {
   updateCart
 } = require(`${__dirname}/controllers/cartCtrl`);
 const { addShippingInfo } = require(`${__dirname}/controllers/userCtrl`);
-const app = express();
 
 massive(process.env.CONNECTION_STRING)
   .then(dbInstance => app.set("db", dbInstance))
@@ -98,6 +108,7 @@ app.put("/api/cart", updateCart);
 //User Endpoints
 app.post("/api/addShipInfo", addShippingInfo);
 
-app.listen(port, () => {
-  console.log(`Port is running on: ${port}`);
+app.listen(SERVER_CONFIGS.PORT, error => {
+  if (error) throw error;
+  console.log(`Port is running on: ${SERVER_CONFIGS.PORT}`);
 });

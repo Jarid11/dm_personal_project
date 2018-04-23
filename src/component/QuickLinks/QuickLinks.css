@@ -1,0 +1,20 @@
+.quickLinksInfoBox {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: lightgray;
+  border-top: 1px solid #fff;
+}
+
+.quickLinks {
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.quickLinks:link,
+.quickLinks:visited {
+  color: #000;
+}

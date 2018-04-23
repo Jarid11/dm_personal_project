@@ -1,0 +1,32 @@
+.socialMediaAndPaymentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.socialMediaContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
+}
+
+.socialMediaImgs {
+  width: 25px;
+}
+
+.instagramImgs {
+  width: 35px;
+}
+
+.copyrightAndPaymentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.copyrightTxt {
+  text-align: center;
+  font-size: 13px;
+}

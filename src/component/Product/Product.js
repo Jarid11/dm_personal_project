@@ -5,7 +5,15 @@ import Header from "../Header/Header";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getParts } from "../../ducks/partReducer";
-import { addToCart, getCart, updateCart } from "../../ducks/cartReducer";
+
+// import { updateTotalItems } from "../Header/Header";
+
+import {
+  addToCart,
+  getCart,
+  updateCart,
+  getTotalItems
+} from "../../ducks/cartReducer";
 
 class Product extends Component {
   constructor(props) {
@@ -29,7 +37,8 @@ class Product extends Component {
     } else {
       for (let i = 0; i < this.props.cart.length; i++) {
         if (this.props.cart[i].part_id === id) {
-          let newQty = parseInt(this.props.cart[i].quantity) + parseInt(qty);
+          let newQty =
+            parseInt(this.props.cart[i].quantity, 10) + parseInt(qty, 10);
           return this.handleUpdate(id, newQty);
         }
       }
@@ -45,7 +54,7 @@ class Product extends Component {
 
   handleUpdate(id, selected) {
     this.props
-      .updateCart(id, parseInt(selected))
+      .updateCart(id, parseInt(selected, 10))
       .then(() => this.props.getCart());
   }
 
@@ -75,8 +84,12 @@ class Product extends Component {
                 value={this.state.selected}
                 id="qtySelect"
               >
-                {this.state.options.map(e => {
-                  return <option value={e}>{e}</option>;
+                {this.state.options.map((e, i) => {
+                  return (
+                    <option value={e} key={i}>
+                      {e}
+                    </option>
+                  );
                 })}
               </select>
               <button
@@ -90,7 +103,7 @@ class Product extends Component {
       });
     return (
       <div className="shopContainer">
-        <Header />
+        <Header flag={this.state.flag} />
         {partList}
       </div>
     );
@@ -108,6 +121,7 @@ export default withRouter(
     getParts,
     addToCart,
     getCart,
-    updateCart
+    updateCart,
+    getTotalItems
   })(Product)
 );

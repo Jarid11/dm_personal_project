@@ -1,0 +1,40 @@
+/* .grandTotalText {
+  text-align: center;
+} */
+
+.checkOutBtn {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.checkOutBoxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+}
+
+.checkOutTextBox {
+  background-color: lightgray;
+}
+
+.checkOutBtnBox {
+  background-color: #239afc;
+}
+
+.grandTotalContainer {
+  display: flex;
+  flex-direction: column;
+  height: 10vh;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.links {
+  text-decoration: none;
+}
