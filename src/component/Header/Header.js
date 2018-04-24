@@ -71,8 +71,8 @@ class Header extends Component {
                 src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
                 alt="logo"
               />
-              <div className="cartContainer">
-                <Link to="/cart" className="links">
+              <div>
+                <Link to="/cart" className="links cartContainer">
                   <img className="cart" src={cartIcon} alt="cart button" />
                   <div className="bubble">
                     <p className="cartCountText">{totalItems}</p>
@@ -105,8 +105,8 @@ class Header extends Component {
                   src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
                   alt="logo"
                 />
-                <div className="cartContainer">
-                  <Link to="/cart" className="links">
+                <div>
+                  <Link to="/cart" className="links cartContainer">
                     <img className="cart" src={cartIcon} alt="cart button" />
                     <div className="bubble">
                       <p className="cartCountText">{totalItems}</p>
