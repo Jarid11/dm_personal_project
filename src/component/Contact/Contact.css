@@ -30,3 +30,9 @@
 .contactCityStateZip {
   margin-top: 0;
 }
+
+.googleMapContainer {
+  position: relative;
+  width: 250px;
+  height: 250px;
+}

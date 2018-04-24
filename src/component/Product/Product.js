@@ -64,6 +64,7 @@ class Product extends Component {
 
   render() {
     const { parts } = this.props;
+    let estDate = new Date();
     const partList = parts
       .filter(
         e =>
@@ -74,10 +75,15 @@ class Product extends Component {
       .map((e, i) => {
         return (
           <div className="productContainer" key={i}>
+            {this.props.location.pathname === "/product" ? <h2>{estDate.toString()
+              .split(" ")
+              .splice(1, 1)
+              .join(" ")} Specials</h2> : null}
             <h3 className="productName">{e.name}</h3>
             <h5 className="productNum">Part Number: {e.model}</h5>
             <img className="productImg" src={e.img} alt="part" />
-            <h3>${e.price}</h3>
+            {e.saleprice ? <h3 className="regPriceText">${e.price}</h3> : <h3>${e.price}</h3>}
+            {e.saleprice ? <h3 className="salePriceText">${e.saleprice}</h3> : null}
             <div>
               <select
                 onChange={e => this.qtySelectVal(e.target.value)}
@@ -101,6 +107,7 @@ class Product extends Component {
           </div>
         );
       });
+
     return (
       <div className="shopContainer">
         <Header flag={this.state.flag} />

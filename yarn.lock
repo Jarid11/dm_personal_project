@@ -3086,6 +3086,12 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
+google-maps-react@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/google-maps-react/-/google-maps-react-2.0.1.tgz#026a587c9d666d34948a8358c959f804a6a686c4"
+  dependencies:
+    invariant "^2.2.1"
+
 got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"

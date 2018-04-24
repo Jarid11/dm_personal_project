@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./Contact.css";
 
+import MapContainer from "../MapContainer/MapContainer";
+
 // import Header from "../Header/Header";
 import chevronUp from "./ChevronImgs/chevron-up.svg";
 import chevronDown from "./ChevronImgs/chevron-down.svg";
@@ -46,7 +48,9 @@ class Contact extends Component {
               />
             </div>
             <div className="contactDropdownInfoBox">
-              <p>GOOGLE MAP HERE</p>
+              <div className="googleMapContainer">
+                <MapContainer />
+              </div>
               <p className="contactStreetAddress">709 Jefferson Ave</p>
               <p className="contactCityStateZip">Brownsville, PA 15417</p>
               <p>(724) 785-7000</p>
