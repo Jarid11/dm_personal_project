@@ -1,10 +1,3 @@
--- CREATE TABLE users (
---   UserId SERIAL Primary Key,
---   name varchar(512),
---   authId varchar(50),
---   img text
--- )
-
 CREATE TABLE users (
   UserId SERIAL Primary Key,
   name varchar(512),

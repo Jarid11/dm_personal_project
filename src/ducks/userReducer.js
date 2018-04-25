@@ -1,11 +1,14 @@
 import axios from "axios";
 
 const initialState = {
-  user: {}
+  user: {},
+  email: []
 };
 
 const GET_USER = "GET_USER";
 const ADD_SHIPPING_INFO = "ADD_SHIPPING_INFO";
+
+const CONFIRMATION_EMAIL = "CONFIRMATION_EMAIL"
 
 export function getUser() {
   return {
@@ -41,6 +44,17 @@ export function addShippingInfo(
   };
 }
 
+export function confirmationEmail(name, email, orderNum) {
+  return {
+    type: CONFIRMATION_EMAIL,
+    payload: axios.post("/api/email", {
+      name, 
+      email,
+      orderNum
+    })
+  }
+}
+
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_USER}_FULFILLED`:
@@ -49,6 +63,11 @@ export default function userReducer(state = initialState, action) {
         ...state,
         user: action.payload.data
       };
+    case `${CONFIRMATION_EMAIL}_FULFILLED`:
+      return {
+        ...state,
+        email: action.payload.data
+      }
     default:
       return state;
   }

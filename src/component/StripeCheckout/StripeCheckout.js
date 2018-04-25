@@ -7,10 +7,11 @@ import PAYMENT_SERVER_URL from "../../constants/server";
 
 const CURRENCY = "USD";
 
-const fromUsdToCent = amount => amount * 100;
+const fromUsdToCent = amount => parseInt(amount * 100);
 
 const successPayment = data => {
   alert("Payment Successful");
+  axios.post("/api/email")
 };
 
 const errorPayment = data => {

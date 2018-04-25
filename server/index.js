@@ -9,7 +9,6 @@ const passport = require("passport");
 const app = express();
 
 // STRIPE
-
 const SERVER_CONFIGS = require("./constants/server");
 
 const configureServer = require("./server");
@@ -17,6 +16,41 @@ const configureRoutes = require("./routes");
 
 configureServer(app);
 configureRoutes(app);
+//
+
+// NODEMAILER
+
+// 'use strict';
+const nodemailer = require('nodemailer');
+
+app.post('/api/email', function(req, res) {
+
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.GMAIL_EMAIL,
+        pass: process.env.GMAIL_PASS
+    }
+});
+
+   const mailOptions = {
+    from: 'Marinosj1995@gmail.com', // sender address
+    to: 'Marinosj11@gmail.com, HYUNWOO1245@hotmail.com, michaelpacoplange@gmail.com', 
+    subject: 'Order Confirmation', // Subject line
+    html: '<p>210 CREW</p>'// plain text body
+  };
+
+// send mail with defined transport object
+transporter.sendMail(mailOptions, function (err, info) {
+  if(err)
+    console.log(err)
+  else
+    console.log(info);
+});
+})
+
 //
 
 const {

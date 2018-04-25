@@ -3,7 +3,6 @@ import "./Contact.css";
 
 import MapContainer from "../MapContainer/MapContainer";
 
-// import Header from "../Header/Header";
 import chevronUp from "./ChevronImgs/chevron-up.svg";
 import chevronDown from "./ChevronImgs/chevron-down.svg";
 
@@ -25,8 +24,6 @@ class Contact extends Component {
     const { showContact } = this.state;
     return (
       <div>
-        {/* <Header />
-    <p>Contact</p> */}
         {!showContact ? (
           <div className="contactInfoBox" onClick={() => this.showContact()}>
             <h3>Contact Us</h3>

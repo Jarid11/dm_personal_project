@@ -472,12 +472,6 @@ class Checkout extends Component {
                   <p>3</p>
                 </div>
                 <h3 className="disabledStepsTitles">Enter payment method</h3>
-                {/* <StripeCheckout
-                    name={`Bugstuff`}
-                    description={`${this.state.firstName}'s order`}
-                    amount={total}
-                    dataEmail={this.state.email}
-                  /> */}
               </div>
             </div>
           )}
