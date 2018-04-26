@@ -20,35 +20,34 @@ configureRoutes(app);
 
 // NODEMAILER
 
-// 'use strict';
 const nodemailer = require('nodemailer');
 
-app.post('/api/email', function(req, res) {
+app.post('/api/email', function (req, res) {
 
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-        user: process.env.GMAIL_EMAIL,
-        pass: process.env.GMAIL_PASS
+      user: process.env.GMAIL_EMAIL,
+      pass: process.env.GMAIL_PASS
     }
-});
+  });
 
-   const mailOptions = {
-    from: 'Marinosj1995@gmail.com', // sender address
-    to: 'Marinosj11@gmail.com, HYUNWOO1245@hotmail.com, michaelpacoplange@gmail.com', 
+  const mailOptions = {
+    from: process.env.GMAIL_EMAIL, // sender address
+    to: req.body.email,
     subject: 'Order Confirmation', // Subject line
-    html: '<p>210 CREW</p>'// plain text body
+    html: `<p>Thank you for ordering from Bugstuff ${req.body.name}</p>`// plain text body
   };
 
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function (err, info) {
-  if(err)
-    console.log(err)
-  else
-    console.log(info);
-});
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err)
+      console.log(err)
+    else
+      console.log(info);
+  });
 })
 
 //

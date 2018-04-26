@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 
@@ -11,7 +11,8 @@ const fromUsdToCent = amount => parseInt(amount * 100);
 
 const successPayment = data => {
   alert("Payment Successful");
-  axios.post("/api/email")
+  // how to pass email, name orderNum as props??
+  // axios.post("/api/email", { email: props.email, name: props.userName })
 };
 
 const errorPayment = data => {

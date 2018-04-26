@@ -204,32 +204,32 @@ class Checkout extends Component {
             </div>
           </div>
         ) : (
-          <div className="shrinkedStepContainer">
-            <div className="checkAndShipContainer">
-              <div className="checkMarkContainer">
-                <img className="checkMarkIcon" src={checkIcon} alt="check" />
-                <img className="truckIcon" src={truckIcon} alt="truck" />
-                <h4>Shipping</h4>
-              </div>
-              <div className="shrinkedEditBtnContainer">
-                <button className="shrinkedEditBtn" onClick={this.handleSteps}>
-                  Edit
+            <div className="shrinkedStepContainer">
+              <div className="checkAndShipContainer">
+                <div className="checkMarkContainer">
+                  <img className="checkMarkIcon" src={checkIcon} alt="check" />
+                  <img className="truckIcon" src={truckIcon} alt="truck" />
+                  <h4>Shipping</h4>
+                </div>
+                <div className="shrinkedEditBtnContainer">
+                  <button className="shrinkedEditBtn" onClick={this.handleSteps}>
+                    Edit
                 </button>
+                </div>
+              </div>
+              <div className="shrinkedCartImgContainer">{cartImgList}</div>
+              <div className="shrinkedArrivalContainer">
+                <h5>Arrive by</h5>
+                <h5 className="shrinkedDate">
+                  {estDate
+                    .toString()
+                    .split(" ")
+                    .splice(0, 3)
+                    .join(" ")}
+                </h5>
               </div>
             </div>
-            <div className="shrinkedCartImgContainer">{cartImgList}</div>
-            <div className="shrinkedArrivalContainer">
-              <h5>Arrive by</h5>
-              <h5 className="shrinkedDate">
-                {estDate
-                  .toString()
-                  .split(" ")
-                  .splice(0, 3)
-                  .join(" ")}
-              </h5>
-            </div>
-          </div>
-        )}
+          )}
 
         <div
           className="step2Container"
@@ -432,49 +432,49 @@ class Checkout extends Component {
               </div>
             </div>
           ) : (
-            <div>
-              <div className="shrinkedStepContainer">
-                <div className="checkAndShipContainer">
-                  <div className="checkMarkContainer2">
-                    <img
-                      className="checkMarkIcon"
-                      src={checkIcon}
-                      alt="check"
-                    />
-                    {/* <img className="truckIcon" src={truckIcon} alt="truck" /> */}
-                    <h4>Sending to</h4>
-                  </div>
-                  <div className="shrinkedEditBtnContainer">
-                    <button
-                      className="shrinkedEditBtn"
-                      onClick={() => this.handleStep2()}
-                    >
-                      Edit
+              <div>
+                <div className="shrinkedStepContainer">
+                  <div className="checkAndShipContainer">
+                    <div className="checkMarkContainer2">
+                      <img
+                        className="checkMarkIcon"
+                        src={checkIcon}
+                        alt="check"
+                      />
+                      {/* <img className="truckIcon" src={truckIcon} alt="truck" /> */}
+                      <h4>Sending to</h4>
+                    </div>
+                    <div className="shrinkedEditBtnContainer">
+                      <button
+                        className="shrinkedEditBtn"
+                        onClick={() => this.handleStep2()}
+                      >
+                        Edit
                     </button>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 className="shrinkedStep2FirstName">{`${
+                      this.state.firstName
+                      } ${this.state.lastName}`}</h5>
+                    <h5>{`${this.state.streetAddress}`}</h5>
+                    {this.state.extraAddressInfo ? (
+                      <h5>{`${this.state.extraAddressInfo}`}</h5>
+                    ) : null}
+                    <h5>{`${this.state.city}, ${this.state.state}, ${
+                      this.state.zip
+                      }`}</h5>
+                    <h5>{`${this.state.email}`}</h5>
                   </div>
                 </div>
-                <div>
-                  <h5 className="shrinkedStep2FirstName">{`${
-                    this.state.firstName
-                  } ${this.state.lastName}`}</h5>
-                  <h5>{`${this.state.streetAddress}`}</h5>
-                  {this.state.extraAddressInfo ? (
-                    <h5>{`${this.state.extraAddressInfo}`}</h5>
-                  ) : null}
-                  <h5>{`${this.state.city}, ${this.state.state}, ${
-                    this.state.zip
-                  }`}</h5>
-                  <h5>{`${this.state.email}`}</h5>
+                <div className="disabledStep3Container4Step2">
+                  <div className="disabledStepNumBox">
+                    <p>3</p>
+                  </div>
+                  <h3 className="disabledStepsTitles">Enter payment method</h3>
                 </div>
               </div>
-              <div className="disabledStep3Container4Step2">
-                <div className="disabledStepNumBox">
-                  <p>3</p>
-                </div>
-                <h3 className="disabledStepsTitles">Enter payment method</h3>
-              </div>
-            </div>
-          )}
+            )}
         </div>
 
         <footer className="checkoutFooter">
@@ -483,17 +483,18 @@ class Checkout extends Component {
               name={`Bugstuff`}
               description={`${this.state.firstName}'s order`}
               amount={total}
-              dataEmail={this.state.email}
+              email={this.state.email}
+              userName={this.state.firstName}
             />
           ) : this.state.zip && !step1 ? (
             <button className="contBtn" onClick={() => this.handleStep2()}>
               Review Order
             </button>
           ) : (
-            <button className="contBtn" onClick={() => this.handleSteps()}>
-              Continue
+                <button className="contBtn" onClick={() => this.handleSteps()}>
+                  Continue
             </button>
-          )}
+              )}
           <div className="footerTotBox">
             <h5 className="footerTotText"> Est. total</h5>
             <h4 className="footerTotAmount">{total.toFixed(2)}</h4>

@@ -44,13 +44,12 @@ export function addShippingInfo(
   };
 }
 
-export function confirmationEmail(name, email, orderNum) {
+export function confirmationEmail(name, email) {
   return {
     type: CONFIRMATION_EMAIL,
     payload: axios.post("/api/email", {
-      name, 
-      email,
-      orderNum
+      name,
+      email
     })
   }
 }
