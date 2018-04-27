@@ -27,6 +27,7 @@ class Product extends Component {
 
   render() {
     const { parts } = this.props;
+    let estDate = new Date();
     const partList = parts
       .filter(
         e =>
@@ -42,6 +43,10 @@ class Product extends Component {
     return (
       <div className="shopContainer">
         <Header flag={this.state.flag} />
+        {this.props.location.pathname === "/product" ? <h2 className="monthlySaleText">{estDate.toString()
+                    .split(" ")
+                    .splice(1, 1)
+                    .join(" ")} Specials</h2> : null}
         {partList}
       </div>
     );

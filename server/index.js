@@ -68,6 +68,7 @@ const {
   updateCart
 } = require(`${__dirname}/controllers/cartCtrl`);
 const { addShippingInfo } = require(`${__dirname}/controllers/userCtrl`);
+const { changePartName } = require(`${__dirname}/controllers/adminCtrl`);
 
 massive(process.env.CONNECTION_STRING)
   .then(dbInstance => app.set("db", dbInstance))
@@ -140,6 +141,9 @@ app.put("/api/cart", updateCart);
 
 //User Endpoints
 app.post("/api/addShipInfo", addShippingInfo);
+
+//Admin Endpoint
+app.put("/api/changePartName", changePartName)
 
 app.listen(SERVER_CONFIGS.PORT, error => {
   if (error) throw error;

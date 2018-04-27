@@ -1,5 +1,6 @@
 CREATE TABLE users (
-  UserId SERIAL Primary Key,
+  UserId SERIAL Primary Key,,
+  admin Int,
   name varchar(512),
   authId varchar(50),
   img text,

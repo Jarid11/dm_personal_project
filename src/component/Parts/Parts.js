@@ -9,14 +9,16 @@ import {
     updateCart
 } from "../../ducks/cartReducer";
 
-
+import { getParts, changePartName} from "../../ducks/partReducer";
 
 class Parts extends Component {
     constructor() {
         super()
         this.state = {
             options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            selected: 1
+            selected: 1,
+            nameFlag: false,
+            nameVal: ""
         }
     }
 
@@ -55,17 +57,39 @@ class Parts extends Component {
     }
 
 
+    //admin methods
+
+    handleNameInput() {
+        this.setState({
+            nameFlag: !this.state.nameFlag
+        })
+    }
+
+    handleNameVal(val) {
+        this.setState({
+            nameVal: val
+        })
+    }
+
+    handleNameChange(partId, name) {
+        this.props.changePartName(partId, name)
+        .then(() => {
+            this.props.getParts();
+        })
+    }
+
     render() {
-        let estDate = new Date();
-        const { index, pathLocation, name, model, img, salePrice, price, partId } = this.props;
-        const { selected } = this.state;
+        const { index, name, model, img, salePrice, price, partId } = this.props;
+        const { selected, nameFlag, nameVal } = this.state;
         return (
             <div className="productContainer" key={index}>
-                {pathLocation === "/product" ? <h2>{estDate.toString()
-                    .split(" ")
-                    .splice(1, 1)
-                    .join(" ")} Specials</h2> : null}
-                <h3 className="productName">{name}</h3>
+                {this.props.user.admin ?
+                    (<div>
+                        {nameFlag ? <input type="text" placeholder={name} value={nameVal} onChange={(e) => this.handleNameVal(e.target.value)}/> : <h3 className="productName">{name}</h3>} 
+                        {!nameFlag ? <button onClick={() => this.handleNameInput()}>Edit</button> : <button onClick={() => this.handleNameChange(partId, nameVal)}>Submit</button>}
+                    </div>) : (
+                         <h3 className="productName">{name}</h3>
+                    )}
                 <h5 className="productNum">Part Number: {model}</h5>
                 <img className="productImg" src={img} alt="part" />
                 {salePrice ? <h3 className="regPriceText">${price}</h3> : <h3>${price}</h3>}
@@ -107,6 +131,8 @@ export default withRouter(
     connect(mapStateToProps, {
         addToCart,
         getCart,
-        updateCart
+        updateCart,
+        getParts,
+        changePartName
     })(Parts)
 );

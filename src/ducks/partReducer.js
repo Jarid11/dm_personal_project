@@ -6,12 +6,20 @@ const initialState = {
 };
 
 const GET_PARTS = "GET_PARTS";
+const CHANGE_PART_NAME = "CHANGE_PART_NAME"
 
 export function getParts() {
   return {
     type: GET_PARTS,
     payload: axios.get("/api/parts")
   };
+}
+
+export function changePartName(partId, name) {
+  return {
+    type: CHANGE_PART_NAME,
+    payload: axios.put("/api/changePartName", { partId, name })
+  }
 }
 
 export default function partReducer(state = initialState, action) {
@@ -22,6 +30,7 @@ export default function partReducer(state = initialState, action) {
         loading: true
       };
     case `${GET_PARTS}_FULFILLED`:
+    case `${CHANGE_PART_NAME}_FULFILLED`:
       return {
         ...state,
         loading: false,

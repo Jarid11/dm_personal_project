@@ -2,7 +2,11 @@ let products = [];
 module.exports = {
   getParts: (req, res, next) => {
     const dbInstance = req.app.set("db");
-    if (!products.length) {
+    
+    // if (!products.length) {
+      // prevents admin name change to show instantly
+      // but now I have to hit my db many times..
+      
       dbInstance.parts
         .get_parts()
         .then(parts => {
@@ -12,8 +16,9 @@ module.exports = {
         .catch(err => {
           console.log(err);
         });
-    } else {
-      res.status(200).json(products);
-    }
+
+    // } else {
+    //   res.status(200).json(products);
+    // }
   }
 };

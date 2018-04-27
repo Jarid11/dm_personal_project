@@ -7,7 +7,6 @@ const initialState = {
 
 const GET_USER = "GET_USER";
 const ADD_SHIPPING_INFO = "ADD_SHIPPING_INFO";
-
 const CONFIRMATION_EMAIL = "CONFIRMATION_EMAIL"
 
 export function getUser() {
