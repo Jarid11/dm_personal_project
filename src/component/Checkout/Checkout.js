@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import "./Checkout.css";
 
 import Header from "../Header/Header";
-import cartIcon from "../Header/HeaderSvgs/shopping-cart.svg";
+// import cartIcon from "../Header/HeaderSvgs/shopping-cart.svg";
 import checkIcon from "./check.svg";
 import truckIcon from "./truck.svg";
 
 import StripeCheckout from "../StripeCheckout/StripeCheckout";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUser, addShippingInfo } from "../../ducks/userReducer";
 import {
@@ -24,7 +24,6 @@ class Checkout extends Component {
     this.state = {
       step1: true,
       step2: false,
-      step3: false,
       standardShip: 7.99,
       expressShip: 15.99,
       shipCost: 7.99,
@@ -97,9 +96,6 @@ class Checkout extends Component {
     const {
       step1,
       step2,
-      step3,
-      standardShip,
-      expressShip,
       shipCost,
       shipDate,
       firstName,
@@ -112,7 +108,7 @@ class Checkout extends Component {
       state,
       zip
     } = this.state;
-    const { cart, totalItems, grandTotal, cartImgs } = this.props;
+    const { totalItems, grandTotal, cartImgs } = this.props;
 
     let estDate = new Date();
     estDate.setDate(estDate.getDate() + shipDate);

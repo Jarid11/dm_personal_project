@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 
@@ -7,7 +7,7 @@ import PAYMENT_SERVER_URL from "../../constants/server";
 
 const CURRENCY = "USD";
 
-const fromUsdToCent = amount => parseInt(amount * 100);
+const fromUsdToCent = amount => parseInt(amount * 100, 10);
 
 const successPayment = data => {
   alert("Payment Successful");

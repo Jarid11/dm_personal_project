@@ -17,25 +17,25 @@ const Manufacturers = () => {
       </div>
       <div className="manufacturersImgContainer">
         <div>
-          <img src={bugpack} />
+          <img src={bugpack} alt="bugpack" />
         </div>
         <div>
-          <img src={empi} />
+          <img src={empi} alt="empi" />
         </div>
         <div>
-          <img src={tmi} />
+          <img src={tmi} alt="tmi" />
         </div>
         <div>
-          <img src={scat} />
+          <img src={scat} alt="scat" />
         </div>
         <div>
-          <img src={pertronix} />
+          <img src={pertronix} alt="pertronix" />
         </div>
         <div>
-          <img src={chassis} />
+          <img src={chassis} alt="chassis" />
         </div>
         <div>
-          <img src={glasworx} />
+          <img src={glasworx} alt="glasworx" />
         </div>
       </div>
     </div>
