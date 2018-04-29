@@ -1,1 +1,1 @@
-Update parts set specials = $2 where partid = $1
+Update parts set specials = $2, saleprice = $3 where partid = $1

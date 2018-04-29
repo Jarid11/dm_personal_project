@@ -59,10 +59,10 @@ export function changePartModel(partId, model) {
   }
 }
 
-export function changePartSpecial(partId, special) {
+export function changePartSpecial(partId, special, saleprice) {
   return {
     type: CHANGE_PART_SPECIAL,
-    payload: axios.put("/api/changePartSpecial", { partId, special })
+    payload: axios.put("/api/changePartSpecial", { partId, special, saleprice })
   }
 }
 

@@ -5,7 +5,8 @@ import {
     getCart,
     deleteFromCart,
     updateCart,
-    getGrandTotal
+    getGrandTotal,
+    getTotalItems
 } from "../../ducks/cartReducer";
 
 class CartParts extends Component {
@@ -33,6 +34,7 @@ class CartParts extends Component {
         this.props.updateCart(id, parseInt(selected, 10)).then(() => {
             this.props.getCart();
             this.props.getGrandTotal();
+            this.props.getTotalItems();
         });
     }
 
@@ -40,6 +42,7 @@ class CartParts extends Component {
         this.props.deleteFromCart(id).then(() => {
             this.props.getCart();
             this.props.getGrandTotal();
+            this.props.getTotalItems();
         });
     }
 
@@ -89,5 +92,6 @@ export default connect(mapStateToProps, {
     getCart,
     deleteFromCart,
     updateCart,
-    getGrandTotal
+    getGrandTotal,
+    getTotalItems
 })(CartParts);

@@ -37,16 +37,16 @@ class Product extends Component {
       )
       .map((e, i) => {
         return (
-          <Parts className="productContainer" key={i} index={i} pathLocation={this.props.location.pathname} name={e.name} model={e.model} category={e.category} img={e.img} salePrice={e.saleprice} price={e.price} partId={e.partid} parts={parts} />
+          <Parts className="productContainer" key={i} index={i} pathLocation={this.props.location.pathname} name={e.name} model={e.model} category={e.category} img={e.img} specials={e.specials} salePrice={e.saleprice} price={e.price} partId={e.partid} parts={parts} />
         )
       })
     return (
       <div className="shopContainer">
         <Header flag={this.state.flag} />
         {this.props.location.pathname === "/product" ? <h2 className="monthlySaleText">{estDate.toString()
-                    .split(" ")
-                    .splice(1, 1)
-                    .join(" ")} Specials</h2> : null}
+          .split(" ")
+          .splice(1, 1)
+          .join(" ")} Specials</h2> : null}
         {partList}
       </div>
     );

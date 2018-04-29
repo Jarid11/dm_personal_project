@@ -12,7 +12,8 @@
 }
 
 .productName {
-  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 0
 }
 
 .productNum {
