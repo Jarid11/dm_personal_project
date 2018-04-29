@@ -130,7 +130,7 @@ class Parts extends Component {
                                 <button onClick={() => this.handleNameInput()}>Cancel</button>
                                 <button onClick={() => this.handleNameChange(partId, nameVal)}>Submit</button>
                             </div>
-                            <div class="adminCategoryContainer">
+                            <div className="adminCategoryContainer">
                                 <h4 className="productName">Category: {category}</h4>
                                 <select className="categorySelect" onChange={(e) => this.handleCategoryValue(e.target.value)}>
                                     { categoryList.map((e,i) => {
