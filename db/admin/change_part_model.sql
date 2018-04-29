@@ -1,0 +1,1 @@
+Update parts set model = $2 where partid = $1

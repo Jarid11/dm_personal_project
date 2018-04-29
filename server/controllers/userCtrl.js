@@ -2,7 +2,7 @@ module.exports = {
   addShippingInfo: (req, res) => {
     const dbInstance = req.app.set("db");
 
-    console.log(req.body);
+    // console.log(req);
 
     const {
       firstname,

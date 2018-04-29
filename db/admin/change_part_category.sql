@@ -1,0 +1,1 @@
+Update parts set category = $2 where partid = $1

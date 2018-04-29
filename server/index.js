@@ -57,7 +57,7 @@ const {
   getUser,
   logoutUser
 } = require(`${__dirname}/controllers/authCtrl`);
-const { getParts } = require(`${__dirname}/controllers/productCtrl`);
+const { getParts, getPartCategories } = require(`${__dirname}/controllers/productCtrl`);
 const {
   getCart,
   getTotalItems,
@@ -68,7 +68,7 @@ const {
   updateCart
 } = require(`${__dirname}/controllers/cartCtrl`);
 const { addShippingInfo } = require(`${__dirname}/controllers/userCtrl`);
-const { changePartName } = require(`${__dirname}/controllers/adminCtrl`);
+const { changePartName, changePartCategory, changePartPrice, changePartModel, changePartSpecial } = require(`${__dirname}/controllers/adminCtrl`);
 
 massive(process.env.CONNECTION_STRING)
   .then(dbInstance => app.set("db", dbInstance))
@@ -129,6 +129,7 @@ app.get("/logout", logoutUser);
 
 //Part Endpoints
 app.get("/api/parts", getParts);
+app.get("/api/partCategories", getPartCategories)
 
 //Cart Endpoints
 app.get("/api/cart", getCart);
@@ -143,7 +144,13 @@ app.put("/api/cart", updateCart);
 app.post("/api/addShipInfo", addShippingInfo);
 
 //Admin Endpoint
-app.put("/api/changePartName", changePartName)
+app.put("/api/changePartName", changePartName);
+app.put("/api/changePartCategory", changePartCategory);
+
+app.put("/api/changePartPrice", changePartPrice);
+app.put("/api/changePartModel", changePartModel);
+app.put("/api/changePartSpecial", changePartSpecial);
+
 
 app.listen(SERVER_CONFIGS.PORT, error => {
   if (error) throw error;

@@ -1,0 +1,1 @@
+Update parts set price = $2 where partid = $1

@@ -1,0 +1,1 @@
+Update parts set specials = $2 where partid = $1

@@ -12,16 +12,21 @@ class CartParts extends Component {
     constructor(props) {
         super();
         this.state = {
-            options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             selected: 1,
             tot: 0
         };
     }
 
-    qtySelectVal(val) {
+    handleDecrement() {
         this.setState({
-            selected: val
-        });
+            selected: --this.state.selected
+        })
+    }
+
+    handleIncrement() {
+        this.setState({
+            selected: ++this.state.selected
+        })
     }
 
     handleUpdate(id, selected) {
@@ -54,19 +59,11 @@ class CartParts extends Component {
                     </h4>
                 </div>
                 <div>
-                    <select
-                        onChange={e => this.qtySelectVal(e.target.value)}
-                        value={selected}
-                        id="qtySelect"
-                    >
-                        {this.state.options.map((e, i) => {
-                            return (
-                                <option value={e} key={i}>
-                                    {e}
-                                </option>
-                            );
-                        })}
-                    </select>
+                    <div className="qtyBtnsContainer">
+                        <button disabled={selected < 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
+                        <h4>{selected}</h4>
+                        <button onClick={() => this.handleIncrement()}>+</button>
+                    </div>
                     <button
                         onClick={() =>
                             this.handleUpdate(

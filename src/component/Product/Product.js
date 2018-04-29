@@ -37,7 +37,7 @@ class Product extends Component {
       )
       .map((e, i) => {
         return (
-          <Parts className="productContainer" key={i} index={i} pathLocation={this.props.location.pathname} name={e.name} model={e.model} img={e.img} salePrice={e.saleprice} price={e.price} partId={e.partid} />
+          <Parts className="productContainer" key={i} index={i} pathLocation={this.props.location.pathname} name={e.name} model={e.model} category={e.category} img={e.img} salePrice={e.saleprice} price={e.price} partId={e.partid} parts={parts} />
         )
       })
     return (
