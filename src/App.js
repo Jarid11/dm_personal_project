@@ -3,9 +3,19 @@ import "./App.css";
 
 import routes from "./routes";
 
+import Header from "./component/Header/Header"
+import Footer from "./component/Footer/Footer";
+
 class App extends Component {
+
   render() {
-    return <div>{routes}</div>;
+    return (
+    <div>
+      <Header />
+      {routes}
+      <Footer />
+    </div>
+    );
   }
 }
 

@@ -39,8 +39,6 @@ module.exports = {
   addToCart: (req, res) => {
     const dbInstance = req.app.set("db");
 
-    console.log(req);
-
     dbInstance.cart
       .add_to_cart([req.user.userid, req.body.id, parseInt(req.body.qty)])
       .then(response => res.status(200).json(response))

@@ -15,19 +15,20 @@ import {
 import { getParts, changePartName, changePartCategory, changePartModel, changePartPrice, changePartSpecial } from "../../ducks/partReducer";
 
 class Parts extends Component {
-    constructor() {
-        super(),
+    constructor(props) {
+        super(props)
             this.state = {
                 selected: 1,
                 adminFlag: false,
                 nameVal: "",
                 modelVal: "",
                 priceVal: "",
-                salePriceVal: "",
-                specialVal: 0,
-                categoryVal: "Exterior"
+                salePriceVal: props.salePrice,
+                specialVal: props.specials,
+                categoryVal: props.category
             }
     }
+
 
     addToCart(id, qty) {
         if (!this.props.user.name) return alert("Login to add to Cart");
@@ -156,16 +157,12 @@ class Parts extends Component {
 
     render() {
         const { index, name, model, category, img, specials, salePrice, price, partId, parts } = this.props;
-        const { selected, adminFlag, nameVal, modelVal, priceVal, salePriceVal, specialVal } = this.state;
-
+        const { selected, adminFlag, nameVal, modelVal, priceVal, salePriceVal, specialVal, categoryVal } = this.state;
         //sort duplicates out of category
         let categoryList = parts.filter((curr, index) => {
             return parts.findIndex(item => item.category === curr.category) === index
         })
-        let onSaleList = parts.filter((curr, index) => {
-            return parts.findIndex(item => item.specials === curr.specials) === index
-        })
-        // console.log(onSaleList)
+        // console.log(categoryList)
         return (
             <div className="productContainer" key={index}>
                 {this.props.user.admin ?
@@ -173,17 +170,16 @@ class Parts extends Component {
                         {adminFlag ? (<div>
                             <div>
                                 <h4 className="productName">Name: {name}</h4>
-                                <input type="text" placeholder="Enter new part name here" value={nameVal} onChange={(e) => this.handleNameVal(e.target.value)} />
-                                <button onClick={() => this.handleAdminFlag()}>Cancel</button>
+                                <input type="text" placeholder={name} value={nameVal} onChange={(e) => this.handleNameVal(e.target.value)} />
                                 <button onClick={() => this.handleNameChange(partId, nameVal)}>Submit</button>
                             </div>
                             <div>
                                 <h4 className="partCategoryText">Category: {category}</h4>
                                 <div className="adminCategoryContainer">
-                                    <select onChange={(e) => this.handleCategoryVal(e.target.value)}>
+                                    <select value={categoryVal} onChange={(e) => this.handleCategoryVal(e.target.value)}>
                                         {categoryList.map((e, i) => {
                                             return (
-                                                <option key={i}>{e.category}</option>
+                                                <option key={i} value={e.category}>{e.category}</option>
                                             )
                                         })}
                                     </select>
@@ -197,21 +193,20 @@ class Parts extends Component {
                             </div>
                             <div>
                                 {specials ? <h4 className="priceText">Price: ${price}</h4> : <h4>${price}</h4>}
-                                <input type="text" placeholder="Enter new part price here" value={priceVal} onChange={(e) => this.handlePriceVal(e.target.value)} />
+                                <input type="text" placeholder={price} value={priceVal} onChange={(e) => this.handlePriceVal(e.target.value)} />
                                 <button onClick={() => this.handlePriceChange(partId, priceVal)}>Submit</button>
                             </div>
                             <div>
-                                {specials ? <h4 className="saleText">Sale Price: ${salePrice}</h4> : null}
-                                <select onChange={(e) => this.handleSpecialVal(e.target.value)}>
-                                    {onSaleList.map((e, i) => {
-                                        return (
-                                            <option key={i}>{e.specials}</option>
-                                        )
-                                    })}
+                                <h4 className="saleText">Sale Price: ${salePrice}</h4>
+                                <select value={specialVal} onChange={(e) => this.handleSpecialVal(e.target.value)}>
+                                    <option value={0}>false</option>
+                                    <option value={1}>true</option>
                                 </select>
-                                <input type="text" placeholder={salePrice} value={salePriceVal} onChange={(e) => this.handleSalePriceVal(e.target.value)} />
+
+                                {specialVal || specials ? <input type="text" placeholder={salePrice} value={salePriceVal} onChange={(e) => this.handleSalePriceVal(e.target.value)} /> : null}
                                 <button onClick={() => this.handleSpecialChange(partId, specialVal, salePriceVal)}>Submit</button>
                             </div>
+                            <button className="adminCancelBtn" onClick={() => this.handleAdminFlag()}>Cancel</button>
                             <h3 className="productName">{name}</h3>
                             <h5 className="productNum">Part Number: {model}</h5>
                             <img className="productImg" src={img} alt="part" />
@@ -219,7 +214,7 @@ class Parts extends Component {
                             {specials ? <h4 className="salePriceText">${salePrice}</h4> : null}
                             <div>
                                 <div className="qtyBtnsContainer">
-                                    <button disabled={selected < 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
+                                    <button disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
                                     <h4>{selected}</h4>
                                     <button onClick={() => this.handleIncrement()}>+</button>
                                 </div>
@@ -241,7 +236,7 @@ class Parts extends Component {
                                 {specials ? <h3 className="salePriceText">${salePrice}</h3> : null}
                                 <div>
                                     <div className="qtyBtnsContainer">
-                                        <button disabled={selected < 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
+                                        <button disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
                                         <h4>{selected}</h4>
                                         <button onClick={() => this.handleIncrement()}>+</button>
                                     </div>
@@ -261,7 +256,7 @@ class Parts extends Component {
                             {specials ? <h3 className="salePriceText">${salePrice}</h3> : null}
                             <div>
                                 <div className="qtyBtnsContainer">
-                                    <button disabled={selected < 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
+                                    <button disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
                                     <h4>{selected}</h4>
                                     <button onClick={() => this.handleIncrement()}>+</button>
                                 </div>

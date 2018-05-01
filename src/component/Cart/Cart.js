@@ -7,7 +7,7 @@ import {
   getGrandTotal
 } from "../../ducks/cartReducer";
 
-import Header from "../Header/Header";
+// import Header from "../Header/Header";
 import CartParts from "../CartParts/CartParts";
 import "./Cart.css";
 
@@ -25,7 +25,7 @@ class Cart extends Component {
     const { cart, grandTotal } = this.props;
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
         {cart[0] ? (
           <div>
             {cart.map((e, i) => (

@@ -2,21 +2,26 @@ import React, { Component } from "react";
 import "./Account.css";
 
 import { connect } from "react-redux";
-import { getUser } from "../../ducks/userReducer";
 
-import Header from "../Header/Header";
+import { getUser } from "../../ducks/userReducer";
+import {getHamburgerMenu} from '../../ducks/viewReducer'
 
 class Account extends Component {
   componentDidMount() {
     this.props.getUser();
   }
 
+  handleBurgers = () => {
+    if (this.props.showHamburger) {
+      this.props.getHamburgerMenu()
+    }
+  }
+
   render() {
     return (
-      <div>
+      <div onClick={this.handleBurgers}>
         {this.props.user.name ? (
           <div>
-            <Header />
             <div className="accImgContainer">
               <h4>{this.props.user.name}</h4>
               <img
@@ -32,7 +37,6 @@ class Account extends Component {
           </div>
         ) : (
           <div>
-            <Header />
             <a href={process.env.REACT_APP_LOGIN}>
               <button>Login</button>
             </a>
@@ -44,6 +48,6 @@ class Account extends Component {
   }
 }
 
-const mapStateToProps = state => ({ ...state.userReducer });
+const mapStateToProps = state => ({ ...state.userReducer, ...state.viewReducer });
 
-export default connect(mapStateToProps, { getUser })(Account);
+export default connect(mapStateToProps, { getUser, getHamburgerMenu })(Account);

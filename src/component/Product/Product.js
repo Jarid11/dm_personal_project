@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import "./Product.css";
 
-import Header from "../Header/Header";
+// import Header from "../Header/Header";
 import Parts from "../Parts/Parts";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { getParts } from "../../ducks/partReducer";
 
-import {
-  getCart
-} from "../../ducks/cartReducer";
+import { getParts } from "../../ducks/partReducer";
+import { getHamburgerMenu } from '../../ducks/viewReducer';
+import { getCart } from "../../ducks/cartReducer";
 
 class Product extends Component {
   constructor(props) {
@@ -23,6 +22,12 @@ class Product extends Component {
   componentDidMount() {
     this.props.getParts();
     this.props.getCart();
+  }
+
+  handleBurgers = () => {
+    if (this.props.showHamburger) {
+      this.props.getHamburgerMenu()
+    }
   }
 
   render() {
@@ -41,8 +46,8 @@ class Product extends Component {
         )
       })
     return (
-      <div className="shopContainer">
-        <Header flag={this.state.flag} />
+      <div className="shopContainer"  onClick={this.handleBurgers}>
+        {/* <Header flag={this.state.flag} /> */}
         {this.props.location.pathname === "/product" ? <h2 className="monthlySaleText">{estDate.toString()
           .split(" ")
           .splice(1, 1)
@@ -56,12 +61,14 @@ class Product extends Component {
 const mapStateToProps = state => ({
   ...state.partReducer,
   ...state.userReducer,
-  ...state.cartReducer
+  ...state.cartReducer,
+  ...state.viewReducer
 });
 
 export default withRouter(
   connect(mapStateToProps, {
     getParts,
-    getCart
+    getCart,
+    getHamburgerMenu
   })(Product)
 );

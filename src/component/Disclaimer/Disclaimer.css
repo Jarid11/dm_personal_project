@@ -1,4 +1,5 @@
 .disclaimerBg {
+  padding: 10px;
   background: lightgray;
 }
 
@@ -9,7 +10,7 @@
   width: 80%;
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin: auto;
   border: 1px solid #666;
   border-radius: 5px;
 }
