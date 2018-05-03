@@ -19,14 +19,15 @@ class Slides extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 3000
+      autoplaySpeed: 3000,
+      arrows: false
     };
     return (
-      <Slider {...settings}>
+      <Slider {...settings} className="slidesWrapper">
         <div>
           <img
             className="slides"
-            src="https://images.unsplash.com/photo-1467744431200-ec24296954a4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0a72d934226f960557e4e511f001becf&auto=format&fit=crop&w=1500&q=80"
+            src="https://images.unsplash.com/photo-1493398961404-f06dd2f81108?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7866028f76bbf75ba18ee00babfd06d8&auto=format&fit=crop&w=755&q=80"
             alt="slide1"
           />
         </div>

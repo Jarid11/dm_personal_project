@@ -22,9 +22,7 @@ class QuickLinks extends Component {
   render() {
     const { showLinks } = this.state;
     return (
-      <div>
-        {/* <Header />
-    <p>Contact</p> */}
+      <div className="quickLinksWrapper">
         {!showLinks ? (
           <div className="quickLinksInfoBox" onClick={() => this.showLinks()}>
             <h3>Quick Links</h3>
@@ -52,9 +50,6 @@ class QuickLinks extends Component {
               <Link to="/about" className="quickLinks">
                 About
               </Link>
-              {/* <Link to="/contact" className="quickLinks">
-                Contact
-              </Link> */}
               <Link to="/privacy" className="quickLinks">
                 Privacy Notice
               </Link>

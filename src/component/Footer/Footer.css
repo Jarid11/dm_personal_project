@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 70px;
+}
+
+.copyrightAndPaymentContainer {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .socialMediaContainer {
@@ -11,22 +19,125 @@
   width: 40%;
 }
 
-.socialMediaImgs {
-  width: 25px;
+.fa {
+  font-size: 25px !important;
+  color: #000;
+  margin: 1px;
 }
 
-.instagramImgs {
-  width: 35px;
+.mobileMedia {
+  color: #000;
 }
 
-.copyrightAndPaymentContainer {
+.media:hover, .mobileMedia:hover {
+  color: #ece70c;
+}
+
+.copyrightAndPaymentWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
 }
 
+.paymentContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.footerTxt {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
 .copyrightTxt {
   text-align: center;
+  margin: 0;
   font-size: 13px;
+}
+
+.footerContactAndSocialMediaBg {
+  display: none;
+}
+
+.paymentImgs {
+  width: 50px;
+  height: 50px;
+}
+
+.paymentImgs:hover {
+  color: #ece70c;
+}
+
+@media (min-width: 768px) {
+  .footerWrapper {
+    display: none
+  }
+
+  .footerContactWrapper {
+    display: flex;
+    height: 45vh;
+    width: 33.33%;
+    justify-content: center;
+  }
+
+  .footerContactAndSocialMediaBg {
+    background: #000;
+    color: #fff;
+    border-top: 2px solid #666;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+
+  .contactDropdownInfoWrapper {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+  }
+  
+  .socialMediaAndPaymentWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 33.33%;
+  }
+
+  .socialMediaWrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+  }
+
+  .paymentWrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .fa {
+    font-size: 25px !important;
+    color: #fff;
+  }
+
+  .quickLinksContainer {
+    width: 33.33%;
+  }
+
+  .quickLinkText {
+    margin-bottom: 5px;
+  }
+
+  .footerLinks {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .footerLinks:hover {
+    color: #ece70c;
+  }
 }

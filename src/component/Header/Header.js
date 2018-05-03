@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./Header.css";
+// import "font-awesome/css/font-awesome.min.css"
 
 import accountIcon from "./HeaderSvgs/account.svg";
-// import phoneIcon from "./HeaderSvgs/phone.svg";
 import hamburgerBtnIcon from "./HeaderSvgs/hamburger-btn.svg";
 import cartIcon from "./HeaderSvgs/shopping-cart.svg";
+import chevronUp from "../Contact/ChevronImgs/chevron-up.svg";
+import chevronDown from "../Contact/ChevronImgs/chevron-down.svg";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -22,9 +24,12 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    this.props.getUser();
-    this.props.getCart();
-    this.props.getTotalItems();
+    this.props.getUser().then(()=>{
+      if (this.props.user !== "Unauthorized" && this.props.user) {
+        this.props.getCart();
+        this.props.getTotalItems();
+      }
+    });
     this.props.getPartCategories();
   }
 
@@ -61,6 +66,7 @@ class Header extends Component {
                   alt="hamburger button"
                 />
               </button>
+              <div className="logoBox">
               <img
                 className="car-image"
                 src="http://freepngimages.com/wp-content/uploads/2015/05/volkswagon-beetle-png-image.png"
@@ -71,16 +77,44 @@ class Header extends Component {
                 src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
                 alt="logo"
               />
-              <div>
-                <Link to="/cart" className="links cartContainer" onClick={this.handleBurgers}>
-                  <img className="cart" src={cartIcon} alt="cart button" />
-                  <div className="bubble">
-                    <p className="cartCountText">{totalItems}</p>
-                  </div>
+              </div>
+              <div className="headerLinksWrapper">
+                <Link to="/" className="links headerLinks">
+                  <div>Home</div>
+                </Link>
+                <Link to="/product" className="links headerLinks">
+                  <div>Shop</div>
+                </Link>
+                <Link to="/about" className="links headerLinks">
+                  <div>About</div>
+                </Link>
+                <Link to="/privacy" className="links headerLinks">
+                  <div>Privacy</div>
                 </Link>
               </div>
+                <div className="accountAndCartWrapper">
+                  <div className="accountWrapper">
+                    <Link to="/Account">
+                        <div>
+                          <img
+                            className="accountIcon"
+                            src={accountIcon}
+                            alt="account icon"
+                          />
+                        </div>
+                      </Link>
+                  </div>
+                  <div id="cartContainer">
+                    <Link to="/cart" className="links cartContainer" onClick={this.handleBurgers}>
+                      <img className="cart" src={cartIcon} alt="cart button" />
+                      <div className="bubble">
+                        <p className="cartCountText">{totalItems}</p>
+                      </div>
+                    </Link>
+                  </div>
+              </div>
             </div>
-          </header>
+        </header>
         ) : (
             <div>
               <header className="header">
@@ -116,53 +150,28 @@ class Header extends Component {
                 </div>
               </header>
               <div className="menu">
-                <div className="menu-btns-container">
-                  <Link to="/Account" onClick={this.handleBurgers}>
-                    <div>
-                      <img
-                        className="accountIcon"
-                        src={accountIcon}
-                        alt="account icon"
-                      />
-                      <button className="menu-btns">Account</button>
-                    </div>
-                  </Link>
-                  {/* <Link to="/Contact">
-                  <div>
-                    <img
-                      className="phoneIcon"
-                      src={phoneIcon}
-                      alt="phone icon"
-                    />
-                    <button className="menu-btns">Contact</button>
-                  </div>
-                </Link> */}
-                </div>
                 <div className="list">
+                  <Link to="/Account" className="links" onClick={this.handleBurgers}>
+                    <div className="list-lis">Account</div>
+                  </Link>
                   <Link to="/" className="links" onClick={this.handleBurgers}>
                     <div className="list-lis">Home</div>
                   </Link>
                   <div className="links">
                     {!showCategories ? (
-                      <div className="list-lis">
+                      <div className="list-lis centerChevron">
                         <Link to="/product" onClick={this.handleBurgers}>
-                          <button
-                            className="categoryBtn"
-                            onClick={() => this.showCategories()}
-                          >
                             <p className="shopText">Shop</p>
-                          </button>
+                            <img className="categoryBtn" onClick={() => this.showCategories()} src={chevronUp} alt="chevronUp" />
                         </Link>
                       </div>
                     ) : (
                         <div>
-                          <div className="list-lis">
-                            <button
-                              className="categoryBtn"
-                              onClick={() => this.hideCategories()}
-                            >
-                              <p className="shopText boldShop">Shop</p>
-                            </button>
+                          <div className="list-lis centerChevron">
+                          <Link to="/product" onClick={this.handleBurgers}>
+                            <p className="shopText">Shop</p>
+                            <img className="categoryBtn" onClick={() => this.showCategories()} src={chevronDown} alt="chevronUp" />
+                        </Link>
                           </div>
                           <div className="list">
                             {this.props.categories.map((e, i) => {
@@ -176,9 +185,6 @@ class Header extends Component {
                         </div>
                       )}
                   </div>
-                  <Link to="/events" className="links" onClick={this.handleBurgers}>
-                    <div className="list-lis">Events</div>
-                  </Link>
                   <Link to="/about" className="links" onClick={this.handleBurgers}>
                     <div className="list-lis">About</div>
                   </Link>

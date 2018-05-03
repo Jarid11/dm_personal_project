@@ -18,3 +18,9 @@
 .quickLinks:visited {
   color: #000;
 }
+
+@media (min-width: 768px) {
+  .quickLinksWrapper {
+    display: none
+  }
+}

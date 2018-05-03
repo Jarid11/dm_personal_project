@@ -8,6 +8,7 @@
 .checkoutContainer {
   height: 92vh;
   background: #eaeaea;
+  margin-top: 97px;
 }
 
 .step1Box,
@@ -70,7 +71,7 @@
 .arrivalBox {
   height: 4vh;
   width: 66.66%;
-  padding: 2px;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -182,7 +183,7 @@
 }
 
 .checkMarkContainer2 {
-  width: 37%;
+  width: 40%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;

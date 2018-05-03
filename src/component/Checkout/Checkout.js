@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Checkout.css";
 
-import Header from "../Header/Header";
 // import cartIcon from "../Header/HeaderSvgs/shopping-cart.svg";
 import checkIcon from "./check.svg";
 import truckIcon from "./truck.svg";
@@ -10,7 +9,7 @@ import StripeCheckout from "../StripeCheckout/StripeCheckout";
 
 // import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUser, addShippingInfo } from "../../ducks/userReducer";
+import { getUser, getShippingInfo, addShippingInfo } from "../../ducks/userReducer";
 import {
   getCart,
   getTotalItems,
@@ -19,8 +18,8 @@ import {
 } from "../../ducks/cartReducer";
 
 class Checkout extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       step1: true,
       step2: false,
@@ -28,15 +27,15 @@ class Checkout extends Component {
       expressShip: 15.99,
       shipCost: 7.99,
       shipDate: 7,
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      email: "",
-      streetAddress: "",
-      extraAddressInfo: "",
-      city: "",
-      state: "",
-      zip: ""
+      firstName: props.user.firstname || "",
+      lastName: props.user.lastname || "",
+      phoneNumber: props.user.phonenumber || "",
+      email: props.user.email || "",
+      streetAddress: props.user.streetaddress || "",
+      extraAddressInfo: props.user.extraaddressinfo || "",
+      city: props.user.city || "",
+      state: props.user.state || "",
+      zip: props.user.zip || ""
     };
     this.handleSteps = this.handleSteps.bind(this);
     this.handleStandardShip = this.handleStandardShip.bind(this);
@@ -46,7 +45,7 @@ class Checkout extends Component {
   }
 
   componentDidMount() {
-    this.props.getUser();
+    // this.props.getUser();
     this.props.getCart();
     this.props.getTotalItems();
     this.props.getGrandTotal();
@@ -54,6 +53,9 @@ class Checkout extends Component {
   }
 
   handleSteps() {
+    this.props.getShippingInfo().then(() => {
+      this.props.getUser();
+    })
     this.setState({
       step1: !this.state.step1,
       step2: !this.state.step2
@@ -80,10 +82,18 @@ class Checkout extends Component {
     });
   }
 
-  handleAddInfo(fn, ln, pn, e, sa, eai, c, z) {
-    this.props
-      .addShippinInfo(fn, ln, pn, e, sa, eai, c, z)
-      .then(() => this.props.getUser());
+  handleAddInfo(fn, ln, pn, e, sa, eai, c, s, z) {
+    const {firstName, lastName, phoneNumber, email, streetAddress, extraAddressInfo, city, state, zip}  = this.state
+    if ((firstName === this.props.user.firstname) && (lastName === this.props.user.lastname) && phoneNumber && email && streetAddress && extraAddressInfo && city && state && zip) {
+      this.handleStep2();
+    } else {
+      this.props
+        .addShippingInfo(fn, ln, pn, e, sa, eai, c, s, z)
+        .then(() => {
+          this.props.getUser();
+          this.handleStep2();
+        });
+    }
   }
 
   handleInputs(prop, val) {
@@ -108,14 +118,16 @@ class Checkout extends Component {
       state,
       zip
     } = this.state;
+
     const { totalItems, grandTotal, cartImgs } = this.props;
 
     let estDate = new Date();
     estDate.setDate(estDate.getDate() + shipDate);
+    let arrivalDate = estDate.toString().split(" ").splice(0, 3).join(" ")
     const subTotal = grandTotal.toFixed(2);
     const tax = (grandTotal.toFixed(2) * 0.06).toFixed(2);
     const total = Number(subTotal) + Number(tax) + Number(shipCost);
-
+    const orderNum = Math.floor((Math.random() * 1000000000) + 1)
     const cartImgList = cartImgs.map((e, i) => {
       return (
         <div className="imgBoxes" key={i}>
@@ -126,7 +138,6 @@ class Checkout extends Component {
 
     return (
       <div>
-        <Header />
         {step1 ? (
           <div>
             <div className="checkoutContainer">
@@ -158,7 +169,7 @@ class Checkout extends Component {
                   ${new Date().getDate() + shipDate} /
                   ${new Date().getYear() - 100}`}
                   </h5>
-                  <h5>{shipCost}</h5>
+                  <h5>${shipCost}</h5>
                 </div>
               </div>
 
@@ -217,11 +228,7 @@ class Checkout extends Component {
               <div className="shrinkedArrivalContainer">
                 <h5>Arrive by</h5>
                 <h5 className="shrinkedDate">
-                  {estDate
-                    .toString()
-                    .split(" ")
-                    .splice(0, 3)
-                    .join(" ")}
+                  {arrivalDate}
                 </h5>
               </div>
             </div>
@@ -450,17 +457,11 @@ class Checkout extends Component {
                     </div>
                   </div>
                   <div>
-                    <h5 className="shrinkedStep2FirstName">{`${
-                      this.state.firstName
-                      } ${this.state.lastName}`}</h5>
-                    <h5>{`${this.state.streetAddress}`}</h5>
-                    {this.state.extraAddressInfo ? (
-                      <h5>{`${this.state.extraAddressInfo}`}</h5>
-                    ) : null}
-                    <h5>{`${this.state.city}, ${this.state.state}, ${
-                      this.state.zip
-                      }`}</h5>
-                    <h5>{`${this.state.email}`}</h5>
+                    <h5 className="shrinkedStep2FirstName">{`${firstName} ${lastName}`}</h5>
+                    <h5>{`${streetAddress}`}</h5>
+                    {extraAddressInfo ? (<h5>{`${extraAddressInfo}`}</h5>) : null}
+                    <h5>{`${city}, ${state}, ${zip}`}</h5>
+                    <h5>{`${email}`}</h5>
                   </div>
                 </div>
                 <div className="disabledStep3Container4Step2">
@@ -474,16 +475,29 @@ class Checkout extends Component {
         </div>
 
         <footer className="checkoutFooter">
-          {this.state.zip && !step1 && !step2 ? (
+          { zip && !step1 && !step2 ? (
             <StripeCheckout
               name={`Bugstuff`}
-              description={`${this.state.firstName}'s order`}
+              description={`${firstName}'s order`}
               amount={total}
-              email={this.state.email}
-              userName={this.state.firstName}
+              email={email}
+              firstName={firstName}
+              lastName={lastName}
+              streetAddress={streetAddress}
+              extraAddressInfo={extraAddressInfo}
+              city={city}
+              state={state}
+              zip={zip}
+              orderNum={orderNum}
+              arrivalDate={arrivalDate}
+              subtotal={subTotal}
+              shippingCost={shipCost}
+              tax={tax}
+              total={total.toFixed(2)}
+
             />
-          ) : this.state.zip && !step1 ? (
-            <button className="contBtn" onClick={() => this.handleStep2()}>
+          ) : zip && !step1 ? (
+            <button className="contBtn" onClick={() => this.handleAddInfo(firstName, lastName, phoneNumber, email, streetAddress, extraAddressInfo, city, state, zip)}>
               Review Order
             </button>
           ) : (
@@ -493,7 +507,7 @@ class Checkout extends Component {
               )}
           <div className="footerTotBox">
             <h5 className="footerTotText"> Est. total</h5>
-            <h4 className="footerTotAmount">{total.toFixed(2)}</h4>
+            <h4 className="footerTotAmount">${total.toFixed(2)}</h4>
           </div>
         </footer>
       </div>
@@ -512,5 +526,6 @@ export default connect(mapStateToProps, {
   getTotalItems,
   getGrandTotal,
   getCartImgs,
-  addShippingInfo
+  addShippingInfo,
+  getShippingInfo
 })(Checkout);

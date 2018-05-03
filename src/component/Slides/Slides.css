@@ -1,4 +1,29 @@
 .slides {
   height: 30vh;
+  /* height: 100%; */
   width: 100%;
+  object-fit: cover;
+  /* max-height: 486px; */
+}
+
+/* .slick-slide {
+  height: 100% !important;
+} */
+
+.slidesWrapper {
+  background-color: #666;
+}
+
+@media (min-width: 400px) {
+  .slides {
+    /* height: 50vh; */
+  }
+}
+
+
+@media (min-width: 768px) {
+  .slides {
+    height: 80vh;
+    /* max-height: none; */
+  }
 }

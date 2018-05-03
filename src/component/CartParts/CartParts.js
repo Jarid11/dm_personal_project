@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import "./CartParts.css"
+
+import "font-awesome/css/font-awesome.min.css"
+
+// import minus from "../Parts/PartSvgs/minus-circle.svg";
+// import plus from "../Parts/PartSvgs/plus-circle.svg"
 
 import { connect } from "react-redux";
 import {
@@ -13,21 +19,21 @@ class CartParts extends Component {
     constructor(props) {
         super();
         this.state = {
-            selected: 1,
+            selected: props.cart[props.index].quantity,
             tot: 0
         };
     }
 
     handleDecrement() {
-        this.setState({
-            selected: --this.state.selected
-        })
+        let {selected} = this.state
+        --selected
+        this.setState({ selected })
     }
 
     handleIncrement() {
-        this.setState({
-            selected: ++this.state.selected
-        })
+        let {selected} = this.state
+        ++selected
+        this.setState({ selected })
     }
 
     handleUpdate(id, selected) {
@@ -50,7 +56,7 @@ class CartParts extends Component {
         const { cart, index, name, model, img, price, partid } = this.props;
         const { selected } = this.state;
         return (
-            <div className="productContainer" key={index}>
+            <div className="cartWrapper" key={index}>
                 <h3 className="productName">{name}</h3>
                 <h5 className="productNum">Part Number: {model}</h5>
                 <img className="productImg" src={img} alt="part" />
@@ -63,9 +69,11 @@ class CartParts extends Component {
                 </div>
                 <div>
                     <div className="qtyBtnsContainer">
-                        <button disabled={selected < 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
+                        {/* <img className="qtyBtns" src={minus} alt="minus" disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()} /> */}
+                        <i className="qtyBtns fa fa-minus-circle" disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()}></i>
                         <h4>{selected}</h4>
-                        <button onClick={() => this.handleIncrement()}>+</button>
+                        {/* <img className="qtyBtns" src={plus} alt="plus" onClick={() => this.handleIncrement()} /> */}
+                        <i className="qtyBtns fa fa-plus-circle" disabled={selected <= 1 ? true : false} onClick={() => this.handleIncrement()}></i>
                     </div>
                     <button
                         onClick={() =>

@@ -1,8 +1,15 @@
 module.exports = {
+  getShippingInfo: (req, res) => {
+  const dbInstance = req.app.set("db")
+
+  dbInstance.users
+    .get_users_shipping_info(req.user.userid)
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+
+  },
   addShippingInfo: (req, res) => {
     const dbInstance = req.app.set("db");
-
-    // console.log(req);
 
     const {
       firstname,
@@ -17,7 +24,7 @@ module.exports = {
     } = req.body;
 
     dbInstance.users
-      .add_users_shippining_info([
+      .add_users_shipping_info([
         req.user.userid,
         firstname,
         lastname,

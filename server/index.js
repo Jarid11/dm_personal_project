@@ -38,7 +38,30 @@ app.post('/api/email', function (req, res) {
     from: process.env.GMAIL_EMAIL, // sender address
     to: req.body.email,
     subject: 'Order Confirmation', // Subject line
-    html: `<p>Thank you for ordering from Bugstuff ${req.body.name}</p>`// plain text body
+    html: `<div>
+            <div style="display: flex; border-bottom: 1px solid rgb(203,207,212);">
+              <img style="width: 150px; height: 80px;" src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"alt="logo"/>
+              <h2 style="margin-left: 50%; text-align: center; color: #000;">Shipping Confirmation</h2>
+            </div>
+            <h3 style="color: rgb(204,102,0);">Hello  ${req.body.firstName},</h3>
+            <h3 style="border-bottom: 1px solid rgb(203,207,212); color: rgb(204,102,0);margin: 0">Details</h3>
+            <h4 style="margin: 0;color: #000;">Order#${req.body.orderNum}</h4>
+            <div style="background: rgb(203,207,212); border-top: 3px solid rgb(203,207,212);width: 80%;display: flex;margin: auto;">
+              <div style="width: 50%; padding: 20px">
+                <h4 style="text-align: left; color: rgb(0,153,0)">Arriving: ${req.body.arrivalDate}</h4>  
+                <h4 style="text-align: left; color: #000; margin: 0;">Shipped to:</h4>
+                <h4 style="text-align: left; color: #000; margin: 0;">${req.body.firstName} ${req.body.lastName}</h4>
+                <h4 style="text-decoration: none;color: #000;margin-bottom: 0;">${req.body.streetAddress}</h4>
+                <h4 style="text-decoration: none;color: #000;margin-top: 0;">${req.body.city}, ${req.body.state}, ${req.body.zip}</h4>
+              </div>
+              <div style="margin-top: 80px; width: 50%;">
+                <h4 style="text-align: center; margin-top: 0; margin-bottom: 3px; color: #000;">Subtotal: ${req.body.subtotal}</h4>
+                <h4 style="text-align: center; margin-top: 0; margin-bottom: 3px; color: #000;">Shipping: ${req.body.shippingCost}</h4>
+                <h4 style="text-align: center; margin-top: 0; margin-bottom: 3px; color: #000;">Tax: ${req.body.tax}</h4>            
+                <h4 style="text-align: center; margin-top: 6px; color: #000;">Total: ${req.body.total}</h4>
+              </div>
+            <div>
+          </div>`// plain text body
   };
 
   // send mail with defined transport object
@@ -67,7 +90,7 @@ const {
   deleteFromCart,
   updateCart
 } = require(`${__dirname}/controllers/cartCtrl`);
-const { addShippingInfo } = require(`${__dirname}/controllers/userCtrl`);
+const { getShippingInfo, addShippingInfo } = require(`${__dirname}/controllers/userCtrl`);
 const { changePartName, changePartCategory, changePartPrice, changePartModel, changePartSpecial } = require(`${__dirname}/controllers/adminCtrl`);
 
 massive(process.env.CONNECTION_STRING)
@@ -124,6 +147,8 @@ app.get(
   })
 );
 
+
+//Auth Endpoints
 app.get("/api/user", getUser);
 app.get("/logout", logoutUser);
 
@@ -141,6 +166,7 @@ app.delete("/api/cart/:id", deleteFromCart);
 app.put("/api/cart", updateCart);
 
 //User Endpoints
+app.get("/api/getShipInfo", getShippingInfo)
 app.post("/api/addShipInfo", addShippingInfo);
 
 //Admin Endpoint

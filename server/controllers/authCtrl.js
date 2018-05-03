@@ -17,14 +17,18 @@ const strat = new Auth0Strategy(
 
 const getUser = (req, res) => {
   if (!req.user) {
-    res.status(401).json({ message: "Unauthorized" });
+    res.status(200).json("Unauthorized");
   } else {
-    res.status(200).json(req.user);
+    const dbInstance = req.app.set("db")
+
+    dbInstance.auth
+      .getUserByAuthid(req.user.authid).then((person) => {
+        res.status(200).json(person[0]);
+      }).catch(err => res.status(500).json(err))  
   }
 };
 
 const logoutUser = (req, res) => {
-  console.log(req);
   req.session.destroy(() => {
     res.redirect("http://localhost:3000/#/");
   });

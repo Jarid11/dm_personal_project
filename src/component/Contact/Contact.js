@@ -23,7 +23,7 @@ class Contact extends Component {
   render() {
     const { showContact } = this.state;
     return (
-      <div>
+      <div className="contactWrapper">
         {!showContact ? (
           <div className="contactInfoBox" onClick={() => this.showContact()}>
             <h3>Contact Us</h3>

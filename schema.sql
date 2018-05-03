@@ -28,15 +28,15 @@ CREATE TABLE Parts (
   Specials Int
 )
 
-
 CREATE TABLE Orders (
-  OrderNum Int,
+  OrderId SERIAL PRIMARY KEY,
   UserId Int REFERENCES Users(UserId),
-  PartId Int REFERENCES Parts(PartId)
+  PartId Int REFERENCES Parts(PartId),
+  total int
 )
 
 CREATE TABLE cart (
-  OrderNum SERIAL PRIMARY KEY,
+  CartNum SERIAL PRIMARY KEY,
   user_Id Int REFERENCES Users(UserId),
   part_Id Int REFERENCES Parts(PartId),
   quantity Int

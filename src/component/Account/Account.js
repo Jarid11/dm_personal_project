@@ -19,7 +19,7 @@ class Account extends Component {
 
   render() {
     return (
-      <div onClick={this.handleBurgers}>
+      <div className="positionAccount" onClick={this.handleBurgers}>
         {this.props.user.name ? (
           <div>
             <div className="accImgContainer">
@@ -36,11 +36,11 @@ class Account extends Component {
             </div>
           </div>
         ) : (
-          <div>
+          <div className="positionAccount">
+            <p>Login to your account and start shopping today!</p>
             <a href={process.env.REACT_APP_LOGIN}>
               <button>Login</button>
             </a>
-            <p>Account</p>
           </div>
         )}
       </div>

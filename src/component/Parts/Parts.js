@@ -47,15 +47,15 @@ class Parts extends Component {
     }
 
     handleDecrement() {
-        this.setState({
-            selected: --this.state.selected
-        })
+        let {selected} = this.state
+        --selected
+        this.setState({ selected })
     }
 
     handleIncrement() {
-        this.setState({
-            selected: ++this.state.selected
-        })
+        let {selected} = this.state
+        ++selected
+        this.setState({ selected })
     }
 
 

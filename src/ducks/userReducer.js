@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const GET_USER = "GET_USER";
+const GET_SHIPPING_INFO = "GET_SHIPPING_INFO"
 const ADD_SHIPPING_INFO = "ADD_SHIPPING_INFO";
 const CONFIRMATION_EMAIL = "CONFIRMATION_EMAIL"
 
@@ -14,6 +15,13 @@ export function getUser() {
     type: GET_USER,
     payload: axios.get("/api/user")
   };
+}
+
+export function getShippingInfo() {
+  return {
+    type: GET_SHIPPING_INFO,
+    payload: axios.get("/api/getShipInfo")
+  }
 }
 
 export function addShippingInfo(
@@ -56,6 +64,7 @@ export function confirmationEmail(name, email) {
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_USER}_FULFILLED`:
+    case `${GET_SHIPPING_INFO}_FULFILLED`:
     case `${ADD_SHIPPING_INFO}_FULFILLED`:
       return {
         ...state,

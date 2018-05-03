@@ -7,7 +7,6 @@ import {
   getGrandTotal
 } from "../../ducks/cartReducer";
 
-// import Header from "../Header/Header";
 import CartParts from "../CartParts/CartParts";
 import "./Cart.css";
 
@@ -24,8 +23,7 @@ class Cart extends Component {
   render() {
     const { cart, grandTotal } = this.props;
     return (
-      <div>
-        {/* <Header /> */}
+      <div className="positionCartView">
         {cart[0] ? (
           <div>
             {cart.map((e, i) => (
