@@ -108,7 +108,7 @@ class Header extends Component {
                     <Link to="/cart" className="links cartContainer" onClick={this.handleBurgers}>
                       <img className="cart" src={cartIcon} alt="cart button" />
                       <div className="bubble">
-                        <p className="cartCountText">{totalItems}</p>
+                        <p className="cartCountText">{Number(totalItems)}</p>
                       </div>
                     </Link>
                   </div>

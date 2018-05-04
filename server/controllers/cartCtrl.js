@@ -2,7 +2,10 @@ module.exports = {
   getCart: (req, res) => {
     const dbInstance = req.app.set("db");
 
-    dbInstance.cart
+    if(!req.user) {
+        res.status(200).json("Must Login To See Cart");
+    } else {
+      dbInstance.cart
       .get_cart(req.user.userid)
       .then(response => {
         res.status(200).json(response);
@@ -11,6 +14,7 @@ module.exports = {
         console.log(err);
         res.status(500).json(err);
       });
+    }
   },
   getTotalItems: (req, res) => {
     const dbInstance = req.app.set("db");

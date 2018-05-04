@@ -1,4 +1,3 @@
-let products = [];
 module.exports = {
   getParts: (req, res, next) => {
     const dbInstance = req.app.set("db");
@@ -10,8 +9,7 @@ module.exports = {
     dbInstance.parts
       .get_parts()
       .then(parts => {
-        products = parts;
-        res.status(200).json(products);
+        res.status(200).json(parts);
       })
       .catch(err => {
         console.log(err);
