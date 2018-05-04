@@ -3,9 +3,6 @@ import "./CartParts.css"
 
 import "font-awesome/css/font-awesome.min.css"
 
-// import minus from "../Parts/PartSvgs/minus-circle.svg";
-// import plus from "../Parts/PartSvgs/plus-circle.svg"
-
 import { connect } from "react-redux";
 import {
     getCart,
@@ -26,8 +23,10 @@ class CartParts extends Component {
 
     handleDecrement() {
         let {selected} = this.state
+        if (selected >= 2) {
         --selected
         this.setState({ selected })
+        }
     }
 
     handleIncrement() {
@@ -69,11 +68,9 @@ class CartParts extends Component {
                 </div>
                 <div>
                     <div className="qtyBtnsContainer">
-                        {/* <img className="qtyBtns" src={minus} alt="minus" disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()} /> */}
-                        <i className="qtyBtns fa fa-minus-circle" disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()}></i>
+                        <i className="qtyBtns fa fa-minus-circle" onClick={() => this.handleDecrement()}></i>
                         <h4>{selected}</h4>
-                        {/* <img className="qtyBtns" src={plus} alt="plus" onClick={() => this.handleIncrement()} /> */}
-                        <i className="qtyBtns fa fa-plus-circle" disabled={selected <= 1 ? true : false} onClick={() => this.handleIncrement()}></i>
+                        <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                     </div>
                     <button
                         onClick={() =>

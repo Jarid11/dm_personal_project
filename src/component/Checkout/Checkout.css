@@ -6,7 +6,7 @@
 }
 
 .checkoutContainer {
-  height: 92vh;
+  /* height: 92vh; */
   background: #eaeaea;
   margin-top: 97px;
 }
@@ -35,15 +35,17 @@
 }
 
 .shippingOptsContainer {
-  width: 95%;
+  width: 300px;
+  height: 100px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .shippingBtns {
-  width: 49%;
-  height: 5vh;
+  width: 125px;
+  height: 40px;
   background-color: Transparent;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -60,17 +62,17 @@
 }
 
 .arrivalContainer {
-  height: 15vh;
+  /* height: 15vh; */
   width: 95%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .arrivalBox {
   height: 4vh;
-  width: 66.66%;
+  width: 150px;
   padding: 4px;
   display: flex;
   align-items: center;
@@ -79,17 +81,47 @@
   border-radius: 5px;
 }
 
-.cartImgContainer {
-  height: 20vh;
-  width: 95%;
+.test {
   display: flex;
-  /* justify-content: space-between; */
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
+.test2 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 500px;
+}
+
+.totalContainerAndReviewOrderWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* width: 500px; */
+  margin: auto;
+}
+
+.cartImgContainer {
+  /* height: 20vh;
+  width: 95%; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.arrivalWrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+  margin-top: 20px;
+}
+
 .itemImgContainer {
-  height: 7vh;
-  border: 1px solid #6666;
+  height: 80px;
+  width: 80px;
+  border: 1px solid #666;
 }
 
 .imgBoxes {
@@ -103,6 +135,11 @@
   background-color: #fff;
   border: 1px solid lightgray;
   margin-top: 10px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
   /* margin-bottom: 80px; */
 }
 
@@ -123,7 +160,6 @@
 
 .disabledStep2Container,
 .disabledStep3Container {
-  width: 100%;
   height: 10vh;
   display: flex;
   align-items: center;
@@ -141,9 +177,7 @@
 }
 
 .disabledStep3Container4Step2 {
-  width: 100%;
   height: 10vh;
-  display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
@@ -154,6 +188,10 @@
   margin-bottom: 80px;
   margin-top: 50px;
   background: white;
+}
+
+.disabledStripeWrapper {
+  display: none;
 }
 
 .disabledStepNumBox {
@@ -171,8 +209,7 @@
 }
 
 .shrinkedStepContainer {
-  height: 30vh;
-  width: 100%;
+  margin-top: 97px;
 }
 
 .checkMarkContainer {
@@ -228,10 +265,10 @@
 }
 
 .shrinkedCartImgContainer {
-  height: 15vh;
-  width: 95%;
+  /* height: 15vh; */
+  /* width: 95%; */
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -289,6 +326,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .checkoutFooter {
@@ -304,6 +343,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
 }
 
 .footerTotText,
@@ -326,8 +366,123 @@
   outline: none;
 }
 
+.wideViewBtn {
+  display: none;
+}
+
 .footerTotBox {
   height: 50px;
   width: 25%;
   padding: 10px;
+}
+
+
+.checkoutContBtn, .wideViewPositioning {
+  display: none;
+}
+
+.arrivalWrapperForWideView {
+  display: none;
+  margin-top: 20px;
+}
+
+.shrinkedStep2FirstNameWrapper {
+  margin-top: 20px;
+}
+
+/* @media (max-width: 500px) {
+  .step2InputBoxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .inputBoxesWrapper {
+    width: 80%;
+  }
+} */
+
+@media (min-width: 637px) {
+  .checkoutContBtn, .disabledStripeWrapper {
+    display: block;
+  }
+
+  .wideViewPositioning {
+    display: block;
+  }
+
+  .itemImgContainer {
+    height: 120px;
+    width: 120px;
+  }
+  .shippingOptsContainer {
+    width: 510px;
+    height: 200px
+  }
+  .shippingBtns {
+    width: 250px;
+  }
+  .arrivalWrapper, .totalContainerAndReviewOrderWrapper {
+    width: 500px;
+  }
+
+  .inputBoxes {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step2Inputs {
+    width: 50%;
+  }
+
+  .stateAndZipContainer {
+    width: 500px;
+    margin: auto;
+  }
+
+  .totalContainer {
+    margin-top: 40px;
+  }
+
+  .wideViewBtn {
+    display: block;
+  }
+
+  .checkMarkContainer, .checkMarkContainer2 {
+    width: 200px;
+  }
+
+  .checkoutFooter  {
+    display: none;
+  }
+
+  /* .mobileViewPositioning {
+    display: none;
+  } */
+
+  .disabledStep3Container {
+    margin: 0;
+  }
+
+  .step3AndStripeWideViewWrapper {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .disabledStep3Container4Step2 {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .arrivalWrapper {
+    display: none;
+  }
+  .arrivalWrapperForWideView {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+  }
 }

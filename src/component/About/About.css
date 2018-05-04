@@ -15,3 +15,15 @@
   border: 1px solid #666;
   border-radius: 5px;
 }
+
+@media (min-width: 900px) {
+  .aboutContainer {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1500px) {
+  .aboutContainer {
+    width: 40%;
+  }
+}

@@ -1,6 +1,7 @@
 .disclaimerBg {
   padding: 10px;
   background: lightgray;
+  margin-top: 97px;
 }
 
 .disclaimerContainer {
@@ -13,4 +14,16 @@
   margin: auto;
   border: 1px solid #666;
   border-radius: 5px;
+}
+
+@media (min-width: 900px) {
+  .disclaimerContainer {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1500px) {
+  .disclaimerContainer {
+    width: 40%;
+  }
 }

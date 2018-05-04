@@ -14,7 +14,8 @@ import {
   getCart,
   getTotalItems,
   getGrandTotal,
-  getCartImgs
+  getCartImgs,
+  emptyCart
 } from "../../ducks/cartReducer";
 
 class Checkout extends Component {
@@ -42,6 +43,7 @@ class Checkout extends Component {
     this.handleExpressShip = this.handleExpressShip.bind(this);
     this.handleAddInfo = this.handleAddInfo.bind(this);
     this.handleInputs = this.handleInputs.bind(this);
+    this.handleEmpty = this.handleEmpty.bind(this)
   }
 
   componentDidMount() {
@@ -102,6 +104,10 @@ class Checkout extends Component {
     });
   }
 
+  handleEmpty() {
+    this.props.emptyCart().then(()=>this.props.getTotalItems())
+  }
+
   render() {
     const {
       step1,
@@ -147,53 +153,101 @@ class Checkout extends Component {
                 </div>
                 <h3>Shipping Cost</h3>
               </div>
-              <div className="shippingOptsContainer">
-                <button
-                  className="shippingBtns"
-                  onClick={this.handleStandardShip}
-                >
-                  Standard Shipping
-                </button>
-                <button
-                  className="shippingBtns"
-                  onClick={this.handleExpressShip}
-                >
-                  Express Shipping
-                </button>
-              </div>
-              <div className="arrivalContainer">
-                <h4>Arrive by</h4>
-                <div className="arrivalBox">
-                  <h5>
-                    {`${new Date().getMonth() + 1} /
-                  ${new Date().getDate() + shipDate} /
-                  ${new Date().getYear() - 100}`}
-                  </h5>
-                  <h5>${shipCost}</h5>
-                </div>
-              </div>
+              <div className="test">
+                <div className="arrivalContainer">
+                  <div className="shippingOptsContainer">
+                    <button
+                      className="shippingBtns"
+                      onClick={this.handleStandardShip}
+                    >
+                      Standard Shipping
+                    </button>
+                    <button
+                      className="shippingBtns"
+                      onClick={this.handleExpressShip}
+                    >
+                      Express Shipping
+                    </button>
+                    <div className="arrivalWrapperForWideView">
+                      <h4>Arrive by</h4>
+                      <div className="arrivalBox">
+                        <h5>
+                          {`${new Date().getMonth() + 1} /
+                        ${new Date().getDate() + shipDate} /
+                        ${new Date().getYear() - 100}`}
+                        </h5>
+                        <h5>${shipCost}</h5>
+                      </div>
+                  </div>
+                  </div>
+                  <div className="cartImgContainer mobileViewPositioning">{cartImgList}</div>
 
-              <div className="cartImgContainer">{cartImgList}</div>
+                  {/* <div className="test2 wideViewPositioning">
+                    <div className="totalContainer">
+                      <div className="subtotalBox">
+                        <h5>Subtotal ({totalItems} items )</h5>
+                        <h5>${subTotal}</h5>
+                      </div>
+                      <div className="shippingBox">
+                        <h5>Shipping</h5>
+                        <h5>${shipCost}</h5>
+                      </div>
+                      <div className="taxesBox">
+                        <h5>{`Est. Taxes & fees`}</h5>
+                        <h5>${tax}</h5>
+                      </div>
+                      <div className="totalBox">
+                        <h4>Est. total</h4>
+                        <h4>${total.toFixed(2)}</h4>
+                      </div>
+                      <div className="itemDropdown">
+                        <h5>See item details +</h5>
+                      </div>
+                    </div>
+                    <button className="contBtn wideViewBtn wideViewPositioning" onClick={() => this.handleSteps()}>
+                          Continue
+                    </button>
+                  </div>
+                  <div className="cartImgContainer wideViewPositioning">{cartImgList}</div> */}
 
-              <div className="totalContainer">
-                <div className="subtotalBox">
-                  <h5>Subtotal ({totalItems} items )</h5>
-                  <h5>${subTotal}</h5>
+                  <div className="arrivalWrapper">
+                    <h4>Arrive by</h4>
+                    <div className="arrivalBox">
+                      <h5>
+                        {`${new Date().getMonth() + 1} /
+                      ${new Date().getDate() + shipDate} /
+                      ${new Date().getYear() - 100}`}
+                      </h5>
+                      <h5>${shipCost}</h5>
+                    </div>
+                  </div>
                 </div>
-                <div className="shippingBox">
-                  <h5>Shipping</h5>
-                  <h5>${shipCost}</h5>
-                </div>
-                <div className="taxesBox">
-                  <h5>{`Est. Taxes & fees`}</h5>
-                  <h5>${tax}</h5>
-                </div>
-                <div className="totalBox">
-                  <h4>Est. total</h4>
-                  <h4>${total.toFixed(2)}</h4>
-                </div>
-                <div className="itemDropdown">
-                  <h5>See item details +</h5>
+
+                <div className="test2 mobileViewPositioning">
+                  <div className="totalContainer">
+                    <div className="subtotalBox">
+                      <h5>Subtotal ({totalItems} items )</h5>
+                      <h5>${subTotal}</h5>
+                    </div>
+                    <div className="shippingBox">
+                      <h5>Shipping</h5>
+                      <h5>${shipCost}</h5>
+                    </div>
+                    <div className="taxesBox">
+                      <h5>{`Est. Taxes & fees`}</h5>
+                      <h5>${tax}</h5>
+                    </div>
+                    <div className="totalBox">
+                      <h4>Est. total</h4>
+                      <h4>${total.toFixed(2)}</h4>
+                    </div>
+                    <div className="itemDropdown">
+                      <h5>See item details +</h5>
+                    </div>
+                  </div>
+                  <button className="contBtn wideViewBtn" onClick={() => this.handleSteps()}>
+                        Continue
+                  </button>
                 </div>
               </div>
             </div>
@@ -239,7 +293,7 @@ class Checkout extends Component {
           style={{ display: step1 ? "none" : "block" }}
         >
           {step2 ? (
-            <div>
+            <div classNames="inputBoxesWrapper">
               <div className="step2InputBoxes">
                 <div className="step2Box">
                   <div className="stepNumBox">
@@ -405,26 +459,31 @@ class Checkout extends Component {
                     />
                   </div>
                 </div>
-                <div className="totalContainer">
-                  <div className="subtotalBox">
-                    <h5>Subtotal ({totalItems} items )</h5>
-                    <h5>${subTotal}</h5>
+                <div className="totalContainerAndReviewOrderWrapper">
+                  <div className="totalContainer">
+                    <div className="subtotalBox">
+                      <h5>Subtotal ({totalItems} items )</h5>
+                      <h5>${subTotal}</h5>
+                    </div>
+                    <div className="shippingBox">
+                      <h5>Shipping</h5>
+                      <h5>${shipCost}</h5>
+                    </div>
+                    <div className="taxesBox">
+                      <h5>{`Est. Taxes & fees`}</h5>
+                      <h5>${tax}</h5>
+                    </div>
+                    <div className="totalBox">
+                      <h4>Est. total</h4>
+                      <h4>${total.toFixed(2)}</h4>
+                    </div>
+                    <div className="itemDropdown">
+                      <h5>See item details +</h5>
+                    </div>
                   </div>
-                  <div className="shippingBox">
-                    <h5>Shipping</h5>
-                    <h5>${shipCost}</h5>
-                  </div>
-                  <div className="taxesBox">
-                    <h5>{`Est. Taxes & fees`}</h5>
-                    <h5>${tax}</h5>
-                  </div>
-                  <div className="totalBox">
-                    <h4>Est. total</h4>
-                    <h4>${total.toFixed(2)}</h4>
-                  </div>
-                  <div className="itemDropdown">
-                    <h5>See item details +</h5>
-                  </div>
+                  <button className="contBtn wideViewBtn" onClick={() => this.handleAddInfo(firstName, lastName, phoneNumber, email, streetAddress, extraAddressInfo, city, state, zip)}>
+                    Review Order
+                  </button>
                 </div>
               </div>
               <div className="disabledStep3Container4Step2">
@@ -444,7 +503,6 @@ class Checkout extends Component {
                         src={checkIcon}
                         alt="check"
                       />
-                      {/* <img className="truckIcon" src={truckIcon} alt="truck" /> */}
                       <h4>Sending to</h4>
                     </div>
                     <div className="shrinkedEditBtnContainer">
@@ -456,7 +514,7 @@ class Checkout extends Component {
                     </button>
                     </div>
                   </div>
-                  <div>
+                  <div className="shrinkedStep2FirstNameWrapper">
                     <h5 className="shrinkedStep2FirstName">{`${firstName} ${lastName}`}</h5>
                     <h5>{`${streetAddress}`}</h5>
                     {extraAddressInfo ? (<h5>{`${extraAddressInfo}`}</h5>) : null}
@@ -465,9 +523,33 @@ class Checkout extends Component {
                   </div>
                 </div>
                 <div className="disabledStep3Container4Step2">
-                  <div className="disabledStepNumBox">
-                    <p>3</p>
+                  <div className="step3AndStripeWideViewWrapper">
+                    <div className="disabledStepNumBox">
+                      <p>3</p>
+                    </div>
+                    <div onClick={this.handleEmpty} className="disabledStripeWrapper">
+                      <StripeCheckout
+                        name={`Bugstuff`}
+                        description={`${firstName}'s order`}
+                        amount={total}
+                        email={email}
+                        firstName={firstName}
+                        lastName={lastName}
+                        streetAddress={streetAddress}
+                        extraAddressInfo={extraAddressInfo}
+                        city={city}
+                        state={state}
+                        zip={zip}
+                        orderNum={orderNum}
+                        arrivalDate={arrivalDate}
+                        subtotal={subTotal}
+                        shippingCost={shipCost}
+                        tax={tax}
+                        total={total.toFixed(2)}
+                      />
+                    </div>
                   </div>
+
                   <h3 className="disabledStepsTitles">Enter payment method</h3>
                 </div>
               </div>
@@ -476,26 +558,29 @@ class Checkout extends Component {
 
         <footer className="checkoutFooter">
           { zip && !step1 && !step2 ? (
-            <StripeCheckout
-              name={`Bugstuff`}
-              description={`${firstName}'s order`}
-              amount={total}
-              email={email}
-              firstName={firstName}
-              lastName={lastName}
-              streetAddress={streetAddress}
-              extraAddressInfo={extraAddressInfo}
-              city={city}
-              state={state}
-              zip={zip}
-              orderNum={orderNum}
-              arrivalDate={arrivalDate}
-              subtotal={subTotal}
-              shippingCost={shipCost}
-              tax={tax}
-              total={total.toFixed(2)}
+              <div onClick={this.handleEmpty}>
+              <StripeCheckout
+                name={`Bugstuff`}
+                description={`${firstName}'s order`}
+                amount={total}
+                email={email}
+                firstName={firstName}
+                lastName={lastName}
+                streetAddress={streetAddress}
+                extraAddressInfo={extraAddressInfo}
+                city={city}
+                state={state}
+                zip={zip}
+                orderNum={orderNum}
+                arrivalDate={arrivalDate}
+                subtotal={subTotal}
+                shippingCost={shipCost}
+                tax={tax}
+                total={total.toFixed(2)}
+              />
+              </div>
 
-            />
+            
           ) : zip && !step1 ? (
             <button className="contBtn" onClick={() => this.handleAddInfo(firstName, lastName, phoneNumber, email, streetAddress, extraAddressInfo, city, state, zip)}>
               Review Order
@@ -527,5 +612,6 @@ export default connect(mapStateToProps, {
   getGrandTotal,
   getCartImgs,
   addShippingInfo,
-  getShippingInfo
+  getShippingInfo,
+  emptyCart
 })(Checkout);

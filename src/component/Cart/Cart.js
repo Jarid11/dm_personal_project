@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Swal from 'sweetalert2'
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -6,6 +7,8 @@ import {
   getCart,
   getGrandTotal
 } from "../../ducks/cartReducer";
+
+import { getUser } from "../../ducks/userReducer";
 
 import CartParts from "../CartParts/CartParts";
 import "./Cart.css";
@@ -16,16 +19,39 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    this.props.getCart();
-    this.props.getGrandTotal();
+    this.props
+      .getUser()
+      .then(response => {
+        if(response.value.data === "Unauthorized") {
+          this.props.history.push("/");
+          return Swal({
+            title: "User Unauthorized",
+            text: "Please login",
+            icon: "warning",
+            button: "Login"
+          }).then(login => {
+            if (login) {
+              window.location.replace("http://localhost:3001/auth");
+            }
+          });
+          
+        }else{
+          console.log(response)
+          this.props.getCart();
+          this.props.getGrandTotal();   
+        }
+        
+      }
+      );
   }
+  
 
   render() {
     const { cart, grandTotal } = this.props;
     return (
       <div className="positionCartView">
         {cart[0] ? (
-          <div>
+          <div className="cartPositionWrapper">
             {cart.map((e, i) => (
               <CartParts key={i} index={i} name={e.name} model={e.model}
                 img={e.img} price={e.price} partid={e.partid} />))}
@@ -52,9 +78,10 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = state => ({ ...state.cartReducer });
+const mapStateToProps = state => ({ ...state.cartReducer, ...state.getUser });
 
 export default connect(mapStateToProps, {
   getCart,
-  getGrandTotal
+  getGrandTotal,
+  getUser
 })(Cart);

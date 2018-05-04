@@ -1,7 +1,7 @@
 /* Header */
 
 .header {
-  height: 10vh;
+  height: 97px;
   width: 100%;
   background-color: rgba(0,0,0,0.7);
   display: flex;
@@ -118,7 +118,7 @@
   background-color: whitesmoke;
   z-index: 2;
   cursor: pointer;
-  opacity: .8;
+  opacity: .95;
   top: 0;
   left: 0;
   margin-top: 97px;
@@ -156,6 +156,10 @@
   text-decoration: none;
 }
 
+.aboutStyle {
+  color: #000;
+}
+
 .shopList {
   margin-bottom: 5px;
 }
@@ -167,7 +171,7 @@
 
 .shopText {
   margin-right: 20px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   margin-top: 0;
   color: #000;
 }

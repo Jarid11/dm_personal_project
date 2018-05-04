@@ -159,17 +159,17 @@ class Header extends Component {
                   </Link>
                   <div className="links">
                     {!showCategories ? (
-                      <div className="list-lis centerChevron">
-                        <Link to="/product" onClick={this.handleBurgers}>
-                            <p className="shopText">Shop</p>
+                      <div className="centerChevron">
+                        <Link to="/product">
+                            <p className="shopText" onClick={this.handleBurgers}>Shop</p>
                             <img className="categoryBtn" onClick={() => this.showCategories()} src={chevronUp} alt="chevronUp" />
                         </Link>
                       </div>
                     ) : (
                         <div>
-                          <div className="list-lis centerChevron">
-                          <Link to="/product" onClick={this.handleBurgers}>
-                            <p className="shopText">Shop</p>
+                          <div className="centerChevron">
+                          <Link to="/product">
+                            <p className="shopText" onClick={this.handleBurgers}>Shop</p>
                             <img className="categoryBtn" onClick={() => this.showCategories()} src={chevronDown} alt="chevronUp" />
                         </Link>
                           </div>
@@ -186,7 +186,7 @@ class Header extends Component {
                       )}
                   </div>
                   <Link to="/about" className="links" onClick={this.handleBurgers}>
-                    <div className="list-lis">About</div>
+                    <div className="aboutStyle">About</div>
                   </Link>
                 </div>
               </div>

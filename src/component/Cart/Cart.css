@@ -42,3 +42,11 @@
 .links {
   text-decoration: none;
 }
+
+.cartPositionWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 110px;
+}

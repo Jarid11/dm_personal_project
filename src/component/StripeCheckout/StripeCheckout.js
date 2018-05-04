@@ -8,6 +8,9 @@ import "./StripeCheckout.css"
 import STRIPE_PUBLISHABLE from "../../constants/stripe";
 import PAYMENT_SERVER_URL from "../../constants/server";
 
+// import {connect} from "react-redux";
+// import {getCart, emptyCart} from "../../ducks/cartReducer";
+
 const CURRENCY = "USD";
 
 const fromUsdToCent = amount => parseInt(amount * 100, 10);
@@ -19,9 +22,8 @@ const successPayment = (firstName, lastName, streetAddress, extraAddressInfo, ci
         title: 'Your order has been placed',
         showConfirmButton: false,
         timer: 2500
-      })
-
-  axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
+      }).then(() => (window.location.href="http://localhost:3000"))
+      axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
 };
 
 const errorPayment = data => {

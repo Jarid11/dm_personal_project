@@ -87,8 +87,9 @@ const {
   getGrandTotal,
   getCartImgs,
   addToCart,
+  updateCart,
   deleteFromCart,
-  updateCart
+  emptyCart
 } = require(`${__dirname}/controllers/cartCtrl`);
 const { getShippingInfo, addShippingInfo } = require(`${__dirname}/controllers/userCtrl`);
 const { changePartName, changePartCategory, changePartPrice, changePartModel, changePartSpecial } = require(`${__dirname}/controllers/adminCtrl`);
@@ -162,8 +163,9 @@ app.get("/api/cartItems", getTotalItems);
 app.get("/api/grandTotal", getGrandTotal);
 app.get("/api/cartImgs", getCartImgs);
 app.post("/api/cart", addToCart);
-app.delete("/api/cart/:id", deleteFromCart);
 app.put("/api/cart", updateCart);
+app.delete("/api/cart/:id", deleteFromCart);
+app.delete("/api/emptyCart", emptyCart);
 
 //User Endpoints
 app.get("/api/getShipInfo", getShippingInfo)

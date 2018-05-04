@@ -78,7 +78,7 @@
 
   .footerContactWrapper {
     display: flex;
-    height: 45vh;
+    /* height: 45vh; */
     width: 33.33%;
     justify-content: center;
   }

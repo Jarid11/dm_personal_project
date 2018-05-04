@@ -12,8 +12,9 @@ const GET_TOTAL_ITEMS = "GET_TOTAL_ITEMS";
 const GET_GRAND_TOTAL = "GET_GRAND_TOTAL";
 const GET_CART_IMGS = "GET_CART_IMGS";
 const ADD_TO_CART = "ADD_TO_CART";
-const DELETE_FROM_CART = "DELETE_FROM_CART";
 const UPDATE_CART = "UPDATE_CART";
+const DELETE_FROM_CART = "DELETE_FROM_CART";
+const EMPTY_CART = "EMPTY_CART";
 
 export function getCart() {
   return {
@@ -50,13 +51,6 @@ export function addToCart(id, qty) {
   };
 }
 
-export function deleteFromCart(id) {
-  return {
-    type: DELETE_FROM_CART,
-    payload: axios.delete(`/api/cart/${id}`)
-  };
-}
-
 export function updateCart(id, qty) {
   return {
     type: UPDATE_CART,
@@ -64,12 +58,27 @@ export function updateCart(id, qty) {
   };
 }
 
+export function deleteFromCart(id) {
+  return {
+    type: DELETE_FROM_CART,
+    payload: axios.delete(`/api/cart/${id}`)
+  };
+}
+
+export function emptyCart() {
+  return {
+    type: EMPTY_CART,
+    payload: axios.delete("/api/emptyCart")
+  }
+}
+
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_CART}_FULFILLED`:
     case `${ADD_TO_CART}_FULFILLED`:
-    case `${DELETE_FROM_CART}_FULFILLED`:
     case `${UPDATE_CART}_FULFILLED`:
+    case `${DELETE_FROM_CART}_FULFILLED`:
+    case `${EMPTY_CART}_FULFILLED`:
       return {
         ...state,
         cart: action.payload.data

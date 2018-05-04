@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import "./Parts.css"
+import "font-awesome/css/font-awesome.min.css"
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -48,8 +48,10 @@ class Parts extends Component {
 
     handleDecrement() {
         let {selected} = this.state
+        if (selected >= 2) {
         --selected
         this.setState({ selected })
+        }
     }
 
     handleIncrement() {
@@ -236,9 +238,9 @@ class Parts extends Component {
                                 {specials ? <h3 className="salePriceText">${salePrice}</h3> : null}
                                 <div>
                                     <div className="qtyBtnsContainer">
-                                        <button disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
+                                        <i className="qtyBtns fa fa-minus-circle" onClick={() => this.handleDecrement()}></i>
                                         <h4>{selected}</h4>
-                                        <button onClick={() => this.handleIncrement()}>+</button>
+                                        <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                                     </div>
                                     <button
                                         onClick={() => this.addToCart(partId, selected)}
@@ -256,9 +258,9 @@ class Parts extends Component {
                             {specials ? <h3 className="salePriceText">${salePrice}</h3> : null}
                             <div>
                                 <div className="qtyBtnsContainer">
-                                    <button disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
+                                    <i className="qtyBtns fa fa-minus-circle" onClick={() => this.handleDecrement()}></i>
                                     <h4>{selected}</h4>
-                                    <button onClick={() => this.handleIncrement()}>+</button>
+                                    <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                                 </div>
                                 <button
                                     onClick={() => this.addToCart(partId, selected)}

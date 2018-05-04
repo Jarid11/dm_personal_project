@@ -44,6 +44,14 @@ module.exports = {
       .then(response => res.status(200).json(response))
       .catch(err => res.status(500).json(err));
   },
+  updateCart: (req, res) => {
+    const dbInstance = req.app.set("db");
+
+    dbInstance.cart
+      .update_cart([req.user.userid, req.body.id, req.body.qty])
+      .then(response => res.status(200).json(response))
+      .catch(err => res.status(500).json(err));
+  },
   deleteFromCart: (req, res) => {
     const dbInstance = req.app.set("db");
 
@@ -52,11 +60,11 @@ module.exports = {
       .then(response => res.status(200).json(response))
       .catch(err => res.status(500).json(err));
   },
-  updateCart: (req, res) => {
+  emptyCart: (req, res) => {
     const dbInstance = req.app.set("db");
 
     dbInstance.cart
-      .update_cart([req.user.userid, req.body.id, req.body.qty])
+      .empty_cart([req.user.userid])
       .then(response => res.status(200).json(response))
       .catch(err => res.status(500).json(err));
   }
