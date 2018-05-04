@@ -1,8 +1,8 @@
 const FRONTEND_DEV_URLS = ["http://localhost:3000", "http://localhost:3001"];
 
 const FRONTEND_PROD_URLS = [
-  "https://www.yourdomain.com",
-  "https://yourdomain.com"
+  "https://www.bugstuff.online",
+  "https://bugstuff.online"
 ];
 
 module.exports =
