@@ -9,12 +9,12 @@ const passport = require("passport");
 const app = express();
 
 
-// app.use(express.static(`${__dirname}/../build`))
+app.use(express.static(`${__dirname}/../build`))
 
-// const path = require("path")
-// app.get("*", (req, res, next) => {
-//   res.sendFile(path.join(__dirname, "/../build/index.html"))
-// })
+const path = require("path")
+app.get("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "/../build/index.html"))
+})
 
 // STRIPE
 const SERVER_CONFIGS = require("./constants/server");
