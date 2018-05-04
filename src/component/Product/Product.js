@@ -34,7 +34,6 @@ class Product extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { parts } = this.props;
     let estDate = new Date();
     const partList = parts
