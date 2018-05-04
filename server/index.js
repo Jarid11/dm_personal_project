@@ -11,10 +11,7 @@ const app = express();
 
 app.use(express.static(`${__dirname}/../build`))
 
-const path = require("path")
-app.get("*", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "/../build/index.html"))
-})
+
 
 // STRIPE
 const SERVER_CONFIGS = require("./constants/server");
@@ -188,6 +185,10 @@ app.put("/api/changePartPrice", changePartPrice);
 app.put("/api/changePartModel", changePartModel);
 app.put("/api/changePartSpecial", changePartSpecial);
 
+const path = require("path")
+app.get("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "/../build/index.html"))
+})
 
 app.listen(SERVER_CONFIGS.PORT, error => {
   if (error) throw error;
