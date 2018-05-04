@@ -151,11 +151,12 @@ passport.deserializeUser((user, done) => {
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/",
-    failureRedirect: "http://localhost:3000/#/account"
+    // successRedirect: "http://localhost:3000/#/",
+    // failureRedirect: "http://localhost:3000/#/account"
+    successRedirect: "/",
+    failureRedirect: "/account"
   })
 );
-
 
 //Auth Endpoints
 app.get("/api/user", getUser);
