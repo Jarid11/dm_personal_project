@@ -53,8 +53,13 @@
   width: 260px;
 }
 
+.shopCategoriesWrapper {
+  display: none;
+}
+
 @media (min-width: 637px) {
   .shopCategoriesWrapper {
+    display: block;
     width: 200px;
     background: lightgray;
     margin-top: 97px;

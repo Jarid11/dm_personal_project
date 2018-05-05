@@ -4,7 +4,7 @@ import "./App.css";
 import routes from "./routes";
 
 import Header from "./component/Header/Header"
-import Footer from "./component/Footer/Footer";
+// import Footer from "./component/Footer/Footer";
 
 class App extends Component {
 
@@ -13,7 +13,7 @@ class App extends Component {
     <div>
       <Header />
       {routes}
-      <Footer />
+      {/* <Footer /> */}
     </div>
     );
   }

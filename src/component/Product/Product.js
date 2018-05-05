@@ -13,6 +13,8 @@ import { getHamburgerMenu } from '../../ducks/viewReducer';
 import { getCart } from "../../ducks/cartReducer";
 import { getPartCategories } from "../../ducks/partReducer";
 
+import Footer from "../Footer/Footer";
+
 class Product extends Component {
   constructor(props) {
     super();
@@ -49,24 +51,27 @@ class Product extends Component {
         )
       })
     return (
-      <div className="shopCategoriesAndPartsContainer">
-        <div className="shopCategoriesWrapper">
-          <h3>Part Categories</h3>
-          {this.props.categories.map((e, i) => {
-                        return (
-                          <Link to={`/product/${e.category}`} className="list-lis" key={i} onClick={this.handleBurgers}>
-                            <div className="shopList">{e.category}</div>
-                          </Link>
-                        )
-          })}
+      <div>
+        <div className="shopCategoriesAndPartsContainer">
+          <div className="shopCategoriesWrapper">
+            <h3>Part Categories</h3>
+            {this.props.categories.map((e, i) => {
+                          return (
+                            <Link to={`/product/${e.category}`} className="list-lis" key={i} onClick={this.handleBurgers}>
+                              <div className="shopList">{e.category}</div>
+                            </Link>
+                          )
+            })}
+          </div>
+          <div className="shopContainer"  onClick={this.handleBurgers}>
+            {this.props.location.pathname === "/product" ? <h2 className="monthlySaleText">{estDate.toString()
+            .split(" ")
+            .splice(1, 1)
+            .join(" ")} Specials</h2> : null}
+            {partList}
+          </div>
         </div>
-        <div className="shopContainer"  onClick={this.handleBurgers}>
-          {this.props.location.pathname === "/product" ? <h2 className="monthlySaleText">{estDate.toString()
-          .split(" ")
-          .splice(1, 1)
-          .join(" ")} Specials</h2> : null}
-          {partList}
-        </div>
+        <Footer />
       </div>
     );
   }

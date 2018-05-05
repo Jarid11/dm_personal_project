@@ -10,6 +10,8 @@ import Manufacturers from "../Manufacturers/Manufacturers";
 import Contact from "../Contact/Contact";
 import QuickLinks from "../QuickLinks/QuickLinks";
 
+import Footer from "../Footer/Footer";
+
 class Home extends Component {
 
   componentDidMount() {
@@ -29,6 +31,7 @@ class Home extends Component {
         <Manufacturers />
         <Contact />
         <QuickLinks />
+        <Footer />
       </div>
     );
   }

@@ -31,6 +31,7 @@ class Cart extends Component {
             button: "Login"
           }).then(login => {
             if (login) {
+              // window.location.replace("http://www.bugstuff.online/#/auth");
               window.location.replace("http://localhost:3001/auth");
             }
           });
