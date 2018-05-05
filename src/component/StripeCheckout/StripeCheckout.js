@@ -22,8 +22,8 @@ const successPayment = (firstName, lastName, streetAddress, extraAddressInfo, ci
         title: 'Your order has been placed',
         showConfirmButton: false,
         timer: 2500
-      // }).then(() => (window.location.href="http://www.bugstuff.online/#/"))
-     }).then(() => (window.location.href="http://localhost:3000"))
+      }).then(() => (window.location.href="http://www.bugstuff.online/#/"))
+    //  }).then(() => (window.location.href="http://localhost:3000"))
       axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
 };
 
@@ -44,8 +44,8 @@ const errorPayment = (firstName, lastName, streetAddress, extraAddressInfo, city
      title: 'Your order has been placed',
      showConfirmButton: false,
      timer: 2500
-  //  }).then(() => (window.location.href="http://www.bugstuff.online/#/"))
-  }).then(() => (window.location.href="http://localhost:3000"))
+   }).then(() => (window.location.href="http://www.bugstuff.online/#/"))
+  // }).then(() => (window.location.href="http://localhost:3000"))
    axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
 };
 
