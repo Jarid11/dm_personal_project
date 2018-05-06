@@ -24,30 +24,26 @@ class Cart extends Component {
       .then(response => {
         if(response.value.data === "Unauthorized") {
           this.props.history.push("/");
-          return Swal({
-            title: "User Unauthorized",
-            text: "Please login",
-            icon: "warning",
-            button: "Login"
-          }).then(login => {
-            if (login) {
-              window.location.replace("http://www.bugstuff.online/#/auth");
-              // window.location.replace("http://localhost:3001/auth");
+        return Swal({
+            title: 'Must Login to go to Cart',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Login'
+          }).then((result) => {
+            if (result.value) {
+              window.location.replace("http://localhost:3001/auth"); 
             }
-          });
-          
-        }else{
-          console.log(response)
-          this.props.getCart();
-          this.props.getGrandTotal();   
-        }
-        
+          })
       }
-      );
+    })
+    this.props.getCart();
+    this.props.getGrandTotal();  
   }
   
-
   render() {
+    console.log(this.props.cart)
     const { cart, grandTotal } = this.props;
     return (
       <div className="positionCartView">

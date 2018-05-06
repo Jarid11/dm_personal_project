@@ -38,7 +38,7 @@ app.post('/api/email', function (req, res) {
       pass: process.env.GMAIL_PASS
     }
   });
-
+console.log('EMAIL: ', req.body.email)
   const mailOptions = {
     from: process.env.GMAIL_EMAIL, // sender address
     to: req.body.email,
@@ -148,10 +148,10 @@ passport.deserializeUser((user, done) => {
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    // successRedirect: "http://localhost:3000/#/",
-    // failureRedirect: "http://localhost:3000/#/account"
-    successRedirect: "/",
-    failureRedirect: "/account"
+    successRedirect: "http://localhost:3000/#/",
+    failureRedirect: "http://localhost:3000/#/account"
+    // successRedirect: "/",
+    // failureRedirect: "/account"
   })
 );
 

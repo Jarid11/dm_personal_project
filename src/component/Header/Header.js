@@ -67,16 +67,18 @@ class Header extends Component {
                 />
               </button>
               <div className="logoBox">
-              <img
-                className="car-image"
-                src="http://freepngimages.com/wp-content/uploads/2015/05/volkswagon-beetle-png-image.png"
-                alt="car"
-              />
-              <img
-                className="logo"
-                src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
-                alt="logo"
-              />
+              <Link to="/" className="logoBox">
+                <img
+                  className="car-image"
+                  src="http://freepngimages.com/wp-content/uploads/2015/05/volkswagon-beetle-png-image.png"
+                  alt="car"
+                />
+                <img
+                  className="logo"
+                  src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
+                  alt="logo"
+                />
+              </Link>
               </div>
               <div className="headerLinksWrapper">
                 <Link to="/" className="links headerLinks">
@@ -129,16 +131,18 @@ class Header extends Component {
                       alt="hamburger button"
                     />
                   </button>
-                  <img
-                    className="car-image"
-                    src="http://freepngimages.com/wp-content/uploads/2015/05/volkswagon-beetle-png-image.png"
-                    alt="car"
-                  />
-                  <img
-                    className="logo"
-                    src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
-                    alt="logo"
-                  />
+                  <Link to="/" className="logoBox">
+                    <img
+                      className="car-image"
+                      src="http://freepngimages.com/wp-content/uploads/2015/05/volkswagon-beetle-png-image.png"
+                      alt="car"
+                    />
+                    <img
+                      className="logo"
+                      src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
+                      alt="logo"
+                    />
+                  </Link>
                   <div>
                     <Link to="/cart" className="links cartContainer" onClick={this.handleBurgers}>
                       <img className="cart" src={cartIcon} alt="cart button" />

@@ -16,6 +16,7 @@
 .productImg {
   width: 250px;
   height: 250px;
+  mix-blend-mode: multiply;
 }
 
 .regPriceText {

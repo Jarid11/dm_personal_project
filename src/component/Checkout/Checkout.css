@@ -5,10 +5,19 @@
   padding: 10px;
 }
 
+.disabledStep3Container4Step2Box, .disabledStep2ContainerBox, .disabledStep3ContainerBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .checkoutContainer {
   /* height: 92vh; */
-  background: #eaeaea;
-  margin-top: 97px;
+  /* background: #eaeaea; */
+  margin: 97px auto 0;
+  max-width: 750px;
+  /* border: 2px solid lightgray; */
 }
 
 .step1Box,
@@ -18,6 +27,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.step2InputBoxes {
+  max-width: 750px;
+  /* margin: 97px auto 0; */
+  background: #eaeaea;
+  /* border: 2px solid lightgray; */
+}
+
+.step2FormWrapper, .disabledStep3Container4Step2Wrapper, .disabledStep2ContainerWrapper, .disabledStep3ContainerWrapper {
+  max-width: 750px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
 }
 
 .stepNumBox {
@@ -41,6 +66,7 @@
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .shippingBtns {
@@ -65,7 +91,7 @@
   /* height: 15vh; */
   width: 95%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   flex-wrap: wrap;
   justify-content: space-around;
 }
@@ -81,14 +107,14 @@
   border-radius: 5px;
 }
 
-.test {
+.step1Container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.test2 {
+.step2ContainerWrapper {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -108,7 +134,9 @@
   width: 95%; */
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .arrivalWrapper {
@@ -160,7 +188,7 @@
 
 .disabledStep2Container,
 .disabledStep3Container {
-  height: 10vh;
+  min-height: 13vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -177,11 +205,10 @@
 }
 
 .disabledStep3Container4Step2 {
-  height: 10vh;
+  min-height: 10vh;
+  /* width: 100%; */
   display: flex;
-  -ms-flex-align: center;
   align-items: center;
-  -ms-flex-pack: distribute;
   justify-content: space-around;
   border-top: 2px solid #e9e9e9;
   padding: 5px;
@@ -208,8 +235,18 @@
   color: white;
 }
 
-.shrinkedStepContainer {
+.shrinkedStepWrapper {
+  /* height: 30vh; */
   margin-top: 97px;
+  display: flex;
+}
+
+.shrinkedStepContainer {
+  /* margin-top: 97px; */
+  max-width: 750px;
+  margin: auto;
+  width: 100%;
+  min-height: 30vh
 }
 
 .checkMarkContainer {
@@ -289,7 +326,7 @@
 }
 
 .step2Container {
-  background-color: #eaeaea;
+  /* background-color: #eaeaea; */
   border-top: 2px solid lightgray;
 }
 
@@ -410,13 +447,14 @@
     display: block;
   }
 
-  .itemImgContainer {
+  /* .itemImgContainer {
     height: 120px;
     width: 120px;
-  }
+  } */
   .shippingOptsContainer {
     width: 510px;
-    height: 200px
+    height: 200px;
+    max-width: 250px;
   }
   .shippingBtns {
     width: 250px;
@@ -473,7 +511,30 @@
 
   .disabledStep3Container4Step2 {
     margin-bottom: 0;
+    /* margin-top: 50px; */
   }
+
+  .checkoutContainerWrapper {
+    padding: 30px;
+  }
+
+  .checkoutContainer {
+    background: #eaeaea;
+    border: 2px solid lightgray;
+  }
+
+  .shrinkedStepContainer {
+    min-height: 34vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .step2InputBoxes {
+    margin: 100px auto;
+    border: 2px solid lightgray;
+  }
+
 }
 
 @media (min-width: 1000px) {

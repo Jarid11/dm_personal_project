@@ -148,6 +148,9 @@
 .list {
   list-style-type: none;
   padding: 15px;
+  font-size: 18px;
+  letter-spacing: .06em;
+  line-height: 1.5em;
 }
 
 .list-lis {
@@ -156,12 +159,19 @@
   text-decoration: none;
 }
 
+.list-lis:hover {
+  color: #B5001A;
+}
+
 .aboutStyle {
   color: #000;
 }
 
 .shopList {
   margin-bottom: 5px;
+  font-size: 18px;
+  letter-spacing: .06em;
+  line-height: 1.5em;
 }
 
 .categoryBtn,
@@ -191,6 +201,7 @@
   font-family: sans-serif;
   width: 20px;
   padding: 0;
+  margin-top: 5px;
 }
 
 .boldShop {
@@ -233,6 +244,9 @@
     padding: 2px;
   }
 
+  .headerLinks:hover {
+    color: red;
+  }
 
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Parts.css"
 import "font-awesome/css/font-awesome.min.css"
+import Swal from 'sweetalert2'
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -31,7 +32,20 @@ class Parts extends Component {
 
 
     addToCart(id, qty) {
-        if (!this.props.user.name) return alert("Login to add to Cart");
+        if (!this.props.user.name) return Swal({
+            title: 'Must Login to add to Cart',
+            width: 600,
+            padding: '3em',
+            imageUrl: 'https://78.media.tumblr.com/d8ec873ce66956d8fbb5ac132b45d1a0/tumblr_o4yshbZXp41tqj6sio1_1280.gif',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Login'
+          }).then((result) => {
+        if (result.value) {
+            window.location.replace("http://localhost:3001/auth"); 
+        }
+        })
         if (!this.props.cart.length) {
             return this.handleAdd(id, qty);
         } else {
@@ -65,6 +79,19 @@ class Parts extends Component {
         this.props
             .updateCart(id, parseInt(selected, 10))
             .then(() => {
+            (this.state.selected > 1) ? (
+                Swal({
+                    type: 'success',
+                    title: 'Added Parts to Cart',
+                    allowOutsideClick: false
+                    })
+            ) : (
+                Swal({
+                    type: 'success',
+                    title: 'Added Part to Cart',
+                    allowOutsideClick: false
+                    })
+            )
                 this.props.getCart();
                 this.props.getTotalItems();
             })
@@ -73,6 +100,19 @@ class Parts extends Component {
 
     handleAdd(id, qty) {
         this.props.addToCart(id, qty).then(() => {
+            (this.state.selected > 1) ? (
+                Swal({
+                    type: 'success',
+                    title: 'Added Parts to Cart',
+                    allowOutsideClick: false
+                    })
+            ) : (
+                Swal({
+                    type: 'success',
+                    title: 'Added Part to Cart',
+                    allowOutsideClick: false
+                    })
+            )
             this.props.getCart();
             this.props.getTotalItems();
         })
@@ -242,11 +282,10 @@ class Parts extends Component {
                                         <h4>{selected}</h4>
                                         <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                                     </div>
-                                    <button
-                                        onClick={() => this.addToCart(partId, selected)}
-                                    >
-                                        Add to Cart
-                                    </button>
+                                    <button onClick={() => this.addToCart(partId, selected)}
+                                >
+                                    Add to Cart
+                                </button>
                                 </div>
                             </div>)}
                     </div>) : (
@@ -262,8 +301,7 @@ class Parts extends Component {
                                     <h4>{selected}</h4>
                                     <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                                 </div>
-                                <button
-                                    onClick={() => this.addToCart(partId, selected)}
+                                <button onClick={() => this.addToCart(partId, selected)}
                                 >
                                     Add to Cart
                                 </button>

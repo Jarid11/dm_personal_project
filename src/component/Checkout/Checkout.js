@@ -146,43 +146,56 @@ class Checkout extends Component {
       <div>
         {step1 ? (
           <div>
-            <div className="checkoutContainer">
-              <div className="step1Box">
-                <div className="stepNumBox">
-                  <p>1</p>
+            <div className="checkoutContainerWrapper"> 
+              <div className="checkoutContainer">
+                <div className="step1Box">
+                  <div className="stepNumBox">
+                    <p>1</p>
+                  </div>
+                  <h3>Shipping Cost</h3>
                 </div>
-                <h3>Shipping Cost</h3>
-              </div>
-              <div className="test">
-                <div className="arrivalContainer">
-                  <div className="shippingOptsContainer">
-                    <button
-                      className="shippingBtns"
-                      onClick={this.handleStandardShip}
-                    >
-                      Standard Shipping
-                    </button>
-                    <button
-                      className="shippingBtns"
-                      onClick={this.handleExpressShip}
-                    >
-                      Express Shipping
-                    </button>
-                    <div className="arrivalWrapperForWideView">
-                      <h4>Arrive by</h4>
-                      <div className="arrivalBox">
-                        <h5>
-                          {`${new Date().getMonth() + 1} /
-                        ${new Date().getDate() + shipDate} /
-                        ${new Date().getYear() - 100}`}
-                        </h5>
-                        <h5>${shipCost}</h5>
+                <div className="step1Container">
+                  <div className="arrivalContainer">
+                    <div className="shippingOptsContainer">
+                      <button
+                        className="shippingBtns"
+                        onClick={this.handleStandardShip}
+                      >
+                        Standard Shipping
+                      </button>
+                      <button
+                        className="shippingBtns"
+                        onClick={this.handleExpressShip}
+                      >
+                        Express Shipping
+                      </button>
+                      <div className="arrivalWrapper">
+                        <h4>Arrive by</h4>
+                        <div className="arrivalBox">
+                          <h5>
+                            {`${new Date().getMonth() + 1} /
+                          ${new Date().getDate() + shipDate} /
+                          ${new Date().getYear() - 100}`}
+                          </h5>
+                          <h5>${shipCost}</h5>
+                        </div>
                       </div>
+                      <div className="arrivalWrapperForWideView">
+                        <h4>Arrive by</h4>
+                        <div className="arrivalBox">
+                          <h5>
+                            {`${new Date().getMonth() + 1} /
+                          ${new Date().getDate() + shipDate} /
+                          ${new Date().getYear() - 100}`}
+                          </h5>
+                          <h5>${shipCost}</h5>
+                        </div>
+                    </div>
+                    </div>
+                    <div className="cartImgContainer mobileViewPositioning">{cartImgList}</div>
                   </div>
-                  </div>
-                  <div className="cartImgContainer mobileViewPositioning">{cartImgList}</div>
 
-                  {/* <div className="test2 wideViewPositioning">
+                  <div className="step2ContainerWrapper mobileViewPositioning">
                     <div className="totalContainer">
                       <div className="subtotalBox">
                         <h5>Subtotal ({totalItems} items )</h5>
@@ -204,86 +217,60 @@ class Checkout extends Component {
                         <h5>See item details +</h5>
                       </div>
                     </div>
-                    <button className="contBtn wideViewBtn wideViewPositioning" onClick={() => this.handleSteps()}>
+                    <button className="contBtn wideViewBtn" onClick={() => this.handleSteps()}>
                           Continue
                     </button>
                   </div>
-                  <div className="cartImgContainer wideViewPositioning">{cartImgList}</div> */}
-
-                  <div className="arrivalWrapper">
-                    <h4>Arrive by</h4>
-                    <div className="arrivalBox">
-                      <h5>
-                        {`${new Date().getMonth() + 1} /
-                      ${new Date().getDate() + shipDate} /
-                      ${new Date().getYear() - 100}`}
-                      </h5>
-                      <h5>${shipCost}</h5>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="test2 mobileViewPositioning">
-                  <div className="totalContainer">
-                    <div className="subtotalBox">
-                      <h5>Subtotal ({totalItems} items )</h5>
-                      <h5>${subTotal}</h5>
-                    </div>
-                    <div className="shippingBox">
-                      <h5>Shipping</h5>
-                      <h5>${shipCost}</h5>
-                    </div>
-                    <div className="taxesBox">
-                      <h5>{`Est. Taxes & fees`}</h5>
-                      <h5>${tax}</h5>
-                    </div>
-                    <div className="totalBox">
-                      <h4>Est. total</h4>
-                      <h4>${total.toFixed(2)}</h4>
-                    </div>
-                    <div className="itemDropdown">
-                      <h5>See item details +</h5>
-                    </div>
-                  </div>
-                  <button className="contBtn wideViewBtn" onClick={() => this.handleSteps()}>
-                        Continue
-                  </button>
                 </div>
               </div>
             </div>
+
+
+
+
             <div className="disabledStep2Container">
-              <div className="disabledStepNumBox">
-                <p>2</p>
+              <div className="disabledStep2ContainerWrapper">
+                <div className="disabledStep2ContainerBox">
+                  <div className="disabledStepNumBox">
+                    <p>2</p>
+                  </div>
+                  <h3 className="disabledStepsTitles">Enter shipping address</h3>
+                </div>
               </div>
-              <h3 className="disabledStepsTitles">Enter shipping address</h3>
             </div>
             <div className="disabledStep3Container">
-              <div className="disabledStepNumBox">
-                <p>3</p>
+              <div className="disabledStep3ContainerWrapper">
+                <div className="disabledStep3ContainerBox">
+                  <div className="disabledStepNumBox">
+                    <p>3</p>
+                  </div>
+                  <h3 className="disabledStepsTitles">Enter payment method</h3>
+                </div>
               </div>
-              <h3 className="disabledStepsTitles">Enter payment method</h3>
             </div>
           </div>
         ) : (
-            <div className="shrinkedStepContainer">
-              <div className="checkAndShipContainer">
-                <div className="checkMarkContainer">
-                  <img className="checkMarkIcon" src={checkIcon} alt="check" />
-                  <img className="truckIcon" src={truckIcon} alt="truck" />
-                  <h4>Shipping</h4>
+            <div className="shrinkedStepWrapper">
+              <div className="shrinkedStepContainer">
+                <div className="checkAndShipContainer">
+                  <div className="checkMarkContainer">
+                    <img className="checkMarkIcon" src={checkIcon} alt="check" />
+                    <img className="truckIcon" src={truckIcon} alt="truck" />
+                    <h4>Shipping</h4>
+                  </div>
+                  <div className="shrinkedEditBtnContainer">
+                    <button className="shrinkedEditBtn" onClick={this.handleSteps}>
+                      Edit
+                  </button>
+                  </div>
                 </div>
-                <div className="shrinkedEditBtnContainer">
-                  <button className="shrinkedEditBtn" onClick={this.handleSteps}>
-                    Edit
-                </button>
+                <div className="shrinkedCartImgContainer">{cartImgList}</div>
+                <div className="shrinkedArrivalContainer">
+                  <h5>Arrive by</h5>
+                  <h5 className="shrinkedDate">
+                    {arrivalDate}
+                  </h5>
                 </div>
-              </div>
-              <div className="shrinkedCartImgContainer">{cartImgList}</div>
-              <div className="shrinkedArrivalContainer">
-                <h5>Arrive by</h5>
-                <h5 className="shrinkedDate">
-                  {arrivalDate}
-                </h5>
               </div>
             </div>
           )}
@@ -301,7 +288,7 @@ class Checkout extends Component {
                   </div>
                   <h4>Confirm shipping address</h4>
                 </div>
-                <div>
+                <div className="step2FormWrapper">
                   <div className="inputBoxes">
                     <h5 className="inputTitles">First Name</h5>
                     <input
@@ -487,15 +474,19 @@ class Checkout extends Component {
                 </div>
               </div>
               <div className="disabledStep3Container4Step2">
-                <div className="disabledStepNumBox">
-                  <p>3</p>
+                <div className="disabledStep3ContainerWrapper">
+                  <div className="disabledStep3ContainerBox">
+                    <div className="disabledStepNumBox">
+                      <p>3</p>
+                    </div>
+                    <h3 className="disabledStepsTitles">Enter payment method</h3>
+                  </div>
                 </div>
-                <h3 className="disabledStepsTitles">Enter payment method</h3>
               </div>
             </div>
           ) : (
               <div>
-                <div className="shrinkedStepContainer">
+                <div className="shrinkedStepContainer shrinkedStep2Container">
                   <div className="checkAndShipContainer">
                     <div className="checkMarkContainer2">
                       <img
@@ -523,34 +514,38 @@ class Checkout extends Component {
                   </div>
                 </div>
                 <div className="disabledStep3Container4Step2">
-                  <div className="step3AndStripeWideViewWrapper">
-                    <div className="disabledStepNumBox">
-                      <p>3</p>
-                    </div>
-                    <div onClick={this.handleEmpty} className="disabledStripeWrapper">
-                      <StripeCheckout
-                        name={`Bugstuff`}
-                        description={`${firstName}'s order`}
-                        amount={total}
-                        email={email}
-                        firstName={firstName}
-                        lastName={lastName}
-                        streetAddress={streetAddress}
-                        extraAddressInfo={extraAddressInfo}
-                        city={city}
-                        state={state}
-                        zip={zip}
-                        orderNum={orderNum}
-                        arrivalDate={arrivalDate}
-                        subtotal={subTotal}
-                        shippingCost={shipCost}
-                        tax={tax}
-                        total={total.toFixed(2)}
-                      />
-                    </div>
+                  <div className="disabledStep3Container4Step2Wrapper">
+                    <div className="disabledStep3Container4Step2Box">
+                      <div className="step3AndStripeWideViewWrapper">
+                        <div className="disabledStepNumBox">
+                          <p>3</p>
+                        </div>
+                        <div onClick={this.handleEmpty} className="disabledStripeWrapper">
+                          <StripeCheckout
+                            name={`Bugstuff`}
+                            description={`${firstName}'s order`}
+                            amount={total}
+                            email={email}
+                            firstName={firstName}
+                            lastName={lastName}
+                            streetAddress={streetAddress}
+                            extraAddressInfo={extraAddressInfo}
+                            city={city}
+                            state={state}
+                            zip={zip}
+                            orderNum={orderNum}
+                            arrivalDate={arrivalDate}
+                            subtotal={subTotal}
+                            shippingCost={shipCost}
+                            tax={tax}
+                            total={total.toFixed(2)}
+                          />
+                        </div>
+                      </div>
+                      <h3 className="disabledStepsTitles">Enter payment method</h3>
+                      </div>
                   </div>
 
-                  <h3 className="disabledStepsTitles">Enter payment method</h3>
                 </div>
               </div>
             )}
