@@ -5,5 +5,46 @@
 }
 
 .qtyBtns {
-    color: #239afc !important;
+    color: #5b0c12 !important;
 }
+
+.manageCartContainer {
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.updateBtn, .removeFromCartBtn {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 35px;
+    justify-content: space-around;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.updateBtn {
+    background-color: #a7e8be;
+}
+
+.removeFromCartBtn {
+    background-color: #5b0c12;
+}
+
+.updateBtn:hover {
+    color:  #000;
+}
+
+.removeFromCartBtn:hover {
+    color: #5b0c12;
+}
+
+.updateBtn:hover, .removeFromCartBtn:hover {
+    background-color: lightgray;
+}
+
+

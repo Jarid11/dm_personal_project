@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Product.css";
 
-// import Header from "../Header/Header";
 import Parts from "../Parts/Parts";
 
 import { withRouter } from "react-router-dom";
@@ -19,7 +18,7 @@ class Product extends Component {
   constructor(props) {
     super();
     this.state = {
-
+      // partName: ""
     };
   }
 
@@ -35,15 +34,31 @@ class Product extends Component {
     }
   }
 
+  // handleNameInput(val) {
+  //   this.setState({
+  //     partName: val
+  //   })
+  // }
+
+  // resetNameInput() {
+  //   console.log("hit")
+  //   this.setState({
+  //     partName: ""
+  //   })
+  // }
+
   render() {
     const { parts } = this.props;
+    // const { partName } = this.state
     let estDate = new Date();
     const partList = parts
       .filter(
         e =>
           this.props.location.pathname === "/product"
-            ? e.specials === 1
-            : e.category === this.props.match.params.type
+            ? e.specials === 1 
+            : e.category === this.props.match.params.type 
+            // ? e.specials === 1 && e.name.includes(partName)
+            // : e.category === this.props.match.params.type && e.name.includes(partName)
       )
       .map((e, i) => {
         return (
@@ -55,12 +70,12 @@ class Product extends Component {
         <div className="shopCategoriesAndPartsContainer">
           <div className="shopCategoriesWrapper">
             <h3>Part Categories</h3>
-            {this.props.categories.map((e, i) => {
-                          return (
-                            <Link to={`/product/${e.category}`} className="list-lis" key={i} onClick={this.handleBurgers}>
-                              <div className="shopList">{e.category}</div>
-                            </Link>
-                          )
+            {this.props.categories.map((e, i) => {   
+                            return (
+                              <Link to={`/product/${e.category}`} className="list-lis" key={i} onClick={this.handleBurgers}>
+                                <div className="shopList">{e.category}</div>
+                              </Link>
+                            )              
             })}
           </div>
           <div className="shopContainer"  onClick={this.handleBurgers}>
@@ -68,6 +83,7 @@ class Product extends Component {
             .split(" ")
             .splice(1, 1)
             .join(" ")} Specials</h2> : null}
+            {/* <input type="text" autoComplete='off' onChange={(e) => this.handleNameInput(e.target.value)} /> */}
             {partList}
           </div>
         </div>

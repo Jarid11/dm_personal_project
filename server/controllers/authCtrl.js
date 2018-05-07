@@ -16,6 +16,10 @@ const strat = new Auth0Strategy(
 );
 
 const getUser = (req, res) => {
+
+  console.log("req.user is below V")
+  console.log(req.user);
+
   if (!req.user) {
     res.status(200).json("Unauthorized");
   } else {

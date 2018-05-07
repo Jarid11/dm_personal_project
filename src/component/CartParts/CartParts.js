@@ -3,6 +3,8 @@ import "./CartParts.css"
 
 import "font-awesome/css/font-awesome.min.css"
 
+import updateIcon from "./update.svg"
+
 import { connect } from "react-redux";
 import {
     getCart,
@@ -72,19 +74,24 @@ class CartParts extends Component {
                         <h4>{selected}</h4>
                         <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                     </div>
-                    <button
-                        onClick={() =>
-                            this.handleUpdate(
-                                partid,
-                                parseInt(selected, 10)
-                            )
-                        }
-                    >
-                        Update Qty
-                  </button>
-                    <button onClick={() => this.handleDelete(partid)}>
-                        Delete From Cart
-                  </button>
+                    <div className="manageCartContainer">
+                        <button
+                            className="updateBtn"
+                            onClick={() =>
+                                this.handleUpdate(
+                                    partid,
+                                    parseInt(selected, 10)
+                                )
+                            }
+                        >
+                            Update
+                            <img src={updateIcon} alt="update" />
+                        </button>
+                        <button className="removeFromCartBtn" onClick={() => this.handleDelete(partid)}>
+                            Delete
+                            <i className="fa fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         )

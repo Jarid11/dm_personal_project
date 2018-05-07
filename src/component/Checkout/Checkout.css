@@ -535,6 +535,11 @@
     border: 2px solid lightgray;
   }
 
+  .contBtn:hover {
+    background: #fff;
+    color: #239afc; 
+  }
+
 }
 
 @media (min-width: 1000px) {

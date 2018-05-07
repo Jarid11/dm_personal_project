@@ -42,6 +42,8 @@ module.exports = {
   addToCart: (req, res) => {
     const dbInstance = req.app.set("db");
 
+    console.log(req.user)
+
     dbInstance.cart
       .add_to_cart([req.user.userid, req.body.id, parseInt(req.body.qty)])
       .then(response => res.status(200).json(response))
@@ -50,6 +52,8 @@ module.exports = {
   updateCart: (req, res) => {
     const dbInstance = req.app.set("db");
 
+    console.log(req.user)
+
     dbInstance.cart
       .update_cart([req.user.userid, req.body.id, req.body.qty])
       .then(response => res.status(200).json(response))
@@ -57,6 +61,8 @@ module.exports = {
   },
   deleteFromCart: (req, res) => {
     const dbInstance = req.app.set("db");
+
+    console.log(req.user)
 
     dbInstance.cart
       .delete_from_cart([req.user.userid, req.params.id])

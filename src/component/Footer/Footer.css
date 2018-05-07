@@ -31,6 +31,7 @@
 
 .media:hover, .mobileMedia:hover {
   color: #ece70c;
+  transition: 1s;
 }
 
 .copyrightAndPaymentWrapper {
@@ -139,5 +140,6 @@
 
   .footerLinks:hover {
     color: #ece70c;
+    transition: 1s;
   }
 }

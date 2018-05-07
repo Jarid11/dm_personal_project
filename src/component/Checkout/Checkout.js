@@ -126,7 +126,7 @@ class Checkout extends Component {
     } = this.state;
 
     const { totalItems, grandTotal, cartImgs } = this.props;
-
+    console.log(cartImgs)
     let estDate = new Date();
     estDate.setDate(estDate.getDate() + shipDate);
     let arrivalDate = estDate.toString().split(" ").splice(0, 3).join(" ")

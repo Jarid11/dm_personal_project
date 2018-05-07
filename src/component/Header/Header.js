@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./Header.css";
 // import "font-awesome/css/font-awesome.min.css"
+import Swal from "sweetalert2"
 
 import accountIcon from "./HeaderSvgs/account.svg";
+import accountIconForMobile from "./HeaderSvgs/account.1.svg";
 import hamburgerBtnIcon from "./HeaderSvgs/hamburger-btn.svg";
 import cartIcon from "./HeaderSvgs/shopping-cart.svg";
 import chevronUp from "../Contact/ChevronImgs/chevron-up.svg";
@@ -15,11 +17,13 @@ import { getCart, getTotalItems } from "../../ducks/cartReducer";
 import { getPartCategories } from "../../ducks/partReducer";
 import { getHamburgerMenu } from "../../ducks/viewReducer";
 
+
 class Header extends Component {
   constructor() {
     super();
     this.state = {
-      showCategories: false
+      showCategories: false,
+      showAccount: false
     };
   }
 
@@ -50,10 +54,17 @@ class Header extends Component {
       showCategories: !this.state.showCategories
     });
   }
+  
+  toggleAccount() {
+    this.setState({
+      showAccount: !this.state.showAccount
+    });
+  }
 
   render() {
-    const { showCategories } = this.state;
-    const { totalItems } = this.props;
+    const { showCategories, showAccount } = this.state;
+    const { totalItems, user } = this.props;
+    console.log(this.props.user)
     return (
       <div>
         {!this.props.showHamburger ? (
@@ -96,23 +107,63 @@ class Header extends Component {
               </div>
                 <div className="accountAndCartWrapper">
                   <div className="accountWrapper">
-                    <Link to="/Account">
-                        <div>
-                          <img
-                            className="accountIcon"
-                            src={accountIcon}
-                            alt="account icon"
-                          />
+                    {user.img ? (
+                      <div className="avatarContainer">
+                        <img src={user.img} className="accountAvatarIcon" alt="user" />
+                        <div className="logoutOnHover">
+                          <a className="accLinks" href={process.env.REACT_APP_LOGOUT}>
+                            <p>Logout</p>
+                          </a>
                         </div>
-                      </Link>
+                      </div>
+                    ) : (
+                      <div className="avatarContainer">
+                        <img
+                          className="accountIcon"
+                          src={accountIcon}
+                          alt="account icon"
+                        />
+                        <div className="loginOnHover">
+                        <a className="accLinks" href={process.env.REACT_APP_LOGIN}>
+                          <p>Login</p>
+                        </a>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div id="cartContainer">
-                    <Link to="/cart" className="links cartContainer" onClick={this.handleBurgers}>
+                  {
+                    this.props.user.userid ? (
+                      <Link to="/cart" className="links cartContainer" onClick={this.handleBurgers}>
                       <img className="cart" src={cartIcon} alt="cart button" />
                       <div className="bubble">
                         <p className="cartCountText">{Number(totalItems)}</p>
                       </div>
                     </Link>
+                    ) : (
+                      <div to="/cart" className="links cartContainer" onClick={() => {this.handleBurgers();
+                        Swal({
+                          title: 'Must Login to add to Cart',
+                          width: 600,
+                          padding: '3em',
+                          imageUrl: 'https://78.media.tumblr.com/d8ec873ce66956d8fbb5ac132b45d1a0/tumblr_o4yshbZXp41tqj6sio1_1280.gif',
+                          showCancelButton: true,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: 'Login'
+                        }).then((result) => {
+                      if (result.value) {
+                          window.location.replace("http://localhost:3001/auth"); 
+                      }
+                      })
+                      }}>
+                      <img className="cart" src={cartIcon} alt="cart button" />
+                      <div className="bubble">
+                        <p className="cartCountText">{Number(totalItems)}</p>
+                      </div>
+                    </div>
+                    )
+                  }
                   </div>
               </div>
             </div>
@@ -155,9 +206,9 @@ class Header extends Component {
               </header>
               <div className="menu">
                 <div className="list">
-                  <Link to="/Account" className="links" onClick={this.handleBurgers}>
+                  {/* <Link to="/Account" className="links" onClick={this.handleBurgers}>
                     <div className="list-lis">Account</div>
-                  </Link>
+                  </Link> */}
                   <Link to="/" className="links" onClick={this.handleBurgers}>
                     <div className="list-lis">Home</div>
                   </Link>
@@ -192,6 +243,32 @@ class Header extends Component {
                   <Link to="/about" className="links" onClick={this.handleBurgers}>
                     <div className="aboutStyle">About</div>
                   </Link>
+                  {user.img ? (
+                      <div className="accDivSpacing" onClick={() => this.toggleAccount()}>
+                        <img src={user.img} className="accountAvatarIconForMobile" alt="user" />
+                        {showAccount ? (
+                            <div className="accDiv">
+                              <a className="accLinks" href={process.env.REACT_APP_LOGOUT}>
+                              <p>Logout</p>
+                              </a>
+                            </div> ) : null}
+                      </div>
+                    ) : (
+                      <div className="accDivSpacing" onClick={() => this.toggleAccount()}>
+                        <img
+                          className="accountIcon"
+                          src={accountIconForMobile}
+                          alt="account icon"
+                        />
+                        {showAccount ? (
+                        <div className="accDiv">
+                          <a className="accLinks" href={process.env.REACT_APP_LOGIN}>
+                            <p>Login</p>
+                          </a>
+                        </div>
+                        ) : null }
+                      </div>
+                    )}
                 </div>
               </div>
             </div>

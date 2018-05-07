@@ -13,6 +13,8 @@
   cursor: pointer;
   overflow: hidden;
   outline: none;
+  color: #fff;
+  font-weight: 800;
 }
 
 .checkOutBoxes {
@@ -36,7 +38,7 @@
   flex-direction: column;
   height: 10vh;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 26px;
 }
 
 .links {
@@ -49,4 +51,5 @@
   justify-content: space-around;
   width: 100%;
   margin-top: 110px;
+  min-height: 76vh;
 }

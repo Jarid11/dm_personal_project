@@ -25,7 +25,9 @@ module.exports = {
     dbInstance
       .parts
       .get_part_categories()
-      .then(parts => res.status(200).json(parts))
+      .then(parts => {
+        console.log(parts)
+        res.status(200).json(parts)})
       .catch(err => console.log(err))
   }
 };

@@ -19,6 +19,11 @@ class Cart extends Component {
   }
 
   componentDidMount() {
+    if(this.props.user !== "Unauthorized") {
+      console.log("hit")
+      this.props.getCart();
+      this.props.getGrandTotal();  
+    } else {
     this.props
       .getUser()
       .then(response => {
@@ -34,37 +39,43 @@ class Cart extends Component {
           }).then((result) => {
             if (result.value) {
               window.location.replace("http://localhost:3001/auth"); 
+              // window.location.replace("www.bugstuff.online/auth"); 
             }
           })
       }
     })
-    this.props.getCart();
-    this.props.getGrandTotal();  
   }
+}
   
   render() {
-    console.log(this.props.cart)
     const { cart, grandTotal } = this.props;
+    console.log(this.props)
+    console.log(cart)
     return (
       <div className="positionCartView">
         {cart[0] ? (
+        <div>
           <div className="cartPositionWrapper">
-            {cart.map((e, i) => (
+            {cart.map((e, i) => {
+              return (
               <CartParts key={i} index={i} name={e.name} model={e.model}
-                img={e.img} price={e.price} partid={e.partid} />))}
-            <div className="grandTotalContainer">
-              <div className="checkOutBoxes checkOutTextBox">
-                <h4 className="grandTotalText">
-                  Est. Total: ${grandTotal.toFixed(2)}
-                </h4>
-              </div>
-              <Link to="/checkout" className="links">
-                <div className="checkOutBoxes checkOutBtnBox">
-                  <button className="checkOutBtn">CHECK OUT</button>
-                </div>
-              </Link>
-            </div>
+                img={e.img} price={e.price} partid={e.partid} />
+              )
+            })}
           </div>
+          <div className="grandTotalContainer">
+            <div className="checkOutBoxes checkOutTextBox">
+              <h4 className="grandTotalText">
+                Est. Total: ${grandTotal.toFixed(2)}
+              </h4>
+            </div>
+            <Link to="/checkout" className="links">
+              <div className="checkOutBoxes checkOutBtnBox">
+                <button className="checkOutBtn">CHECK OUT</button>
+              </div>
+            </Link>
+          </div>
+        </div>
         ) : (
             <div>
               <div>Nothing In Cart</div>
@@ -75,7 +86,7 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = state => ({ ...state.cartReducer, ...state.getUser });
+const mapStateToProps = state => ({ ...state.cartReducer, ...state.userReducer });
 
 export default connect(mapStateToProps, {
   getCart,

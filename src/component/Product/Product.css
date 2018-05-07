@@ -39,7 +39,9 @@
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
-  margin-top: 110px;
+  margin-top: 97px;
+  /* background-color: #e9e1d4; */
+  border-top: 2px solid #fff;
 }
 
 .shopCategoriesAndPartsContainer {
@@ -62,8 +64,10 @@
   .shopCategoriesWrapper {
     display: block;
     width: 200px;
-    background: lightgray;
+    background: #5b0c12;
     margin-top: 97px;
     padding: 15px;
+    opacity: .95;
+    border-top: 2px solid #fff;
   }
 }

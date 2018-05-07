@@ -13,6 +13,20 @@
     width: 280px;
 }
 
+.adminEditBtn {
+    color: #000;
+}
+
+.adminBtnColor {
+    background: #a7e8be;
+}
+
+.adminCancelBtn {
+    margin-top: 10px;
+    background: #5b0c12;
+    color: #fff;
+}
+
 .adminCategoryContainer {
     display: flex;
     align-items: center;
@@ -39,7 +53,33 @@
     margin-top: 10px;
 }
 
-.adminCancelBtn {
-    margin-top: 10px;
+.addToCartBtn {
+    width: 135px;
+    height: 35px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: #5b0c12;
+    border: 1px solid lightgray; 
+    background-repeat: no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
 }
 
+.addToCartBtn:hover {
+    background: #a7e8be;
+}
+
+.qtyBtns:hover {
+    color: #a7e8be !important;
+}
+
+.addBtn {
+    color: #fff !important;
+}

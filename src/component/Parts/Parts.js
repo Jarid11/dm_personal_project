@@ -213,7 +213,7 @@ class Parts extends Component {
                             <div>
                                 <h4 className="productName">Name: {name}</h4>
                                 <input type="text" placeholder={name} value={nameVal} onChange={(e) => this.handleNameVal(e.target.value)} />
-                                <button onClick={() => this.handleNameChange(partId, nameVal)}>Submit</button>
+                                <button className="adminBtnColor" onClick={() => this.handleNameChange(partId, nameVal)}>Submit</button>
                             </div>
                             <div>
                                 <h4 className="partCategoryText">Category: {category}</h4>
@@ -225,18 +225,18 @@ class Parts extends Component {
                                             )
                                         })}
                                     </select>
-                                    <button onClick={() => this.handleCategoryChange(partId, this.state.categoryVal)}>Change Category</button>
+                                    <button className="adminBtnColor" onClick={() => this.handleCategoryChange(partId, this.state.categoryVal)}>Change Category</button>
                                 </div>
                             </div>
                             <div>
                                 <h4 className="partNumText">Part Number: {model}</h4>
                                 <input type="text" placeholder={model} value={modelVal} onChange={(e) => this.handleModelVal(e.target.value)} />
-                                <button onClick={() => this.handleModelChange(partId, modelVal)}>Submit</button>
+                                <button className="adminBtnColor" onClick={() => this.handleModelChange(partId, modelVal)}>Submit</button>
                             </div>
                             <div>
                                 {specials ? <h4 className="priceText">Price: ${price}</h4> : <h4>${price}</h4>}
                                 <input type="text" placeholder={price} value={priceVal} onChange={(e) => this.handlePriceVal(e.target.value)} />
-                                <button onClick={() => this.handlePriceChange(partId, priceVal)}>Submit</button>
+                                <button className="adminBtnColor" onClick={() => this.handlePriceChange(partId, priceVal)}>Submit</button>
                             </div>
                             <div>
                                 <h4 className="saleText">Sale Price: ${salePrice}</h4>
@@ -246,7 +246,7 @@ class Parts extends Component {
                                 </select>
 
                                 {specialVal || specials ? <input type="text" placeholder={salePrice} value={salePriceVal} onChange={(e) => this.handleSalePriceVal(e.target.value)} /> : null}
-                                <button onClick={() => this.handleSpecialChange(partId, specialVal, salePriceVal)}>Submit</button>
+                                <button className="adminBtnColor" onClick={() => this.handleSpecialChange(partId, specialVal, salePriceVal)}>Submit</button>
                             </div>
                             <button className="adminCancelBtn" onClick={() => this.handleAdminFlag()}>Cancel</button>
                             <h3 className="productName">{name}</h3>
@@ -256,21 +256,23 @@ class Parts extends Component {
                             {specials ? <h4 className="salePriceText">${salePrice}</h4> : null}
                             <div>
                                 <div className="qtyBtnsContainer">
-                                    <button disabled={selected <= 1 ? true : false} onClick={() => this.handleDecrement()}>-</button>
+                                    <i className="qtyBtns fa fa-minus-circle" onClick={() => this.handleDecrement()}></i>
                                     <h4>{selected}</h4>
-                                    <button onClick={() => this.handleIncrement()}>+</button>
+                                    <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                                 </div>
                                 <button
+                                    className="addToCartBtn"
                                     onClick={() => this.addToCart(partId, selected)}
                                 >
                                     Add to Cart
+                                    <i className="fa fa-cart-plus addBtn"></i>
                                 </button>
                             </div>
                         </div>) :
                             (<div>
                                 <div className="adminEditContainer">
                                     <h3 className="productName">{name}</h3>
-                                    <button onClick={() => this.handleAdminFlag()}>Edit</button>
+                                    <i className="fa fa-edit adminEditBtn" onClick={() => this.handleAdminFlag()}></i>
                                 </div>
                                 <h5 className="productNum">Part Number: {model}</h5>
                                 <img className="productImg" src={img} alt="part" />
@@ -282,9 +284,10 @@ class Parts extends Component {
                                         <h4>{selected}</h4>
                                         <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                                     </div>
-                                    <button onClick={() => this.addToCart(partId, selected)}
+                                    <button className="addToCartBtn" onClick={() => this.addToCart(partId, selected)}
                                 >
                                     Add to Cart
+                                    <i className="fa fa-cart-plus  addBtn"></i>
                                 </button>
                                 </div>
                             </div>)}
@@ -301,9 +304,10 @@ class Parts extends Component {
                                     <h4>{selected}</h4>
                                     <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                                 </div>
-                                <button onClick={() => this.addToCart(partId, selected)}
+                                <button className="addToCartBtn" onClick={() => this.addToCart(partId, selected)}
                                 >
                                     Add to Cart
+                                    <i className="fa fa-cart-plus addBtn"></i>
                                 </button>
                             </div>
                         </div>
