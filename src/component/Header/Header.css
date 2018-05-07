@@ -86,6 +86,11 @@
 
 .accountIcon {
   width: 30px;
+  cursor: pointer;
+}
+
+.cartContainer {
+  cursor: pointer;
 }
 
 .accountAvatarIcon {
@@ -213,13 +218,8 @@
 
 .list-lis {
   margin-top: 10px;
-  color: #fff;
-  text-decoration: none;
-}
-
-.list-lis:hover {
   color: #000;
-  font-weight: 800;
+  text-decoration: none;
 }
 
 .aboutStyle {
@@ -305,9 +305,23 @@
   }
 
   .headerLinks:hover {
+    font-weight: bold;
+  }
+
+  .list-lis {
+    margin-top: 10px;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .list-lis:hover {
+    color: #000;
     font-weight: 800;
   }
 
+  .testWidth {
+    width: 25px;
+  }
 }
 
 /* .menu {

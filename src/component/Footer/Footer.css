@@ -25,6 +25,10 @@
   margin: 1px;
 }
 
+.media {
+  cursor: pointer;
+}
+
 .mobileMedia {
   color: #000;
 }

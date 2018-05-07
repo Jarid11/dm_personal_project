@@ -76,10 +76,21 @@
     background: #a7e8be;
 }
 
+.qtyBtns {
+    cursor: pointer;
+}
+
 .qtyBtns:hover {
     color: #a7e8be !important;
 }
 
 .addBtn {
     color: #fff !important;
+}
+
+.positionPartsWrapper {
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

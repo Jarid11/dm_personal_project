@@ -270,14 +270,14 @@ class Parts extends Component {
                                 </button>
                             </div>
                         </div>) :
-                            (<div>
+                            (<div className="positionPartsWrapper">
                                 <div className="adminEditContainer">
                                     <h3 className="productName">{name}</h3>
                                     <i className="fa fa-edit adminEditBtn" onClick={() => this.handleAdminFlag()}></i>
                                 </div>
                                 <h5 className="productNum">Part Number: {model}</h5>
                                 <img className="productImg" src={img} alt="part" />
-                                {specials ? <h3 className="regPriceText">${price}</h3> : <h3>${price}</h3>}
+                                {specials ? <h3 className="regPriceText">${price}</h3> : <h3 className="priceText">${price}</h3>}
                                 {specials ? <h3 className="salePriceText">${salePrice}</h3> : null}
                                 <div>
                                     <div className="qtyBtnsContainer">
@@ -293,12 +293,12 @@ class Parts extends Component {
                                 </div>
                             </div>)}
                     </div>) : (
-                        <div>
+                        <div className="positionPartsWrapper">
                             <h3 className="productName">{name}</h3>
                             <h5 className="productNum">Part Number: {model}</h5>
                             <img className="productImg" src={img} alt="part" />
-                            {specials ? <h3 className="regPriceText">${price}</h3> : <h3>${price}</h3>}
-                            {specials ? <h3 className="salePriceText">${salePrice}</h3> : null}
+                            {specials ? <h3 className="regPriceText">${price}</h3> : <h3 className="priceText">${price}</h3>}
+                            {specials ? <h3 className="salePriceText">${salePrice}</h3> : <h3 />}
                             <div>
                                 <div className="qtyBtnsContainer">
                                     <i className="qtyBtns fa fa-minus-circle" onClick={() => this.handleDecrement()}></i>

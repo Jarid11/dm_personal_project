@@ -29,10 +29,12 @@
 
 .updateBtn {
     background-color: #a7e8be;
+    cursor: pointer;
 }
 
 .removeFromCartBtn {
     background-color: #5b0c12;
+    cursor: pointer;
 }
 
 .updateBtn:hover {

@@ -92,18 +92,26 @@ class Header extends Component {
               </Link>
               </div>
               <div className="headerLinksWrapper">
-                <Link to="/" className="links headerLinks">
-                  <div>Home</div>
-                </Link>
-                <Link to="/product" className="links headerLinks">
-                  <div>Shop</div>
-                </Link>
-                <Link to="/about" className="links headerLinks">
-                  <div>About</div>
-                </Link>
+                <div className="testWidth">
+                  <Link to="/" className="links headerLinks">
+                    <div>Home</div>
+                  </Link>
+                </div>
+                <div className="testWidth">
+                  <Link to="/product" className="links headerLinks">
+                    <div>Shop</div>
+                  </Link>
+                </div>
+                <div className="testWidth">
+                  <Link to="/about" className="links headerLinks">
+                    <div>About</div>
+                  </Link>
+                </div>
+                <div className="testWidth">
                 <Link to="/privacy" className="links headerLinks">
                   <div>Privacy</div>
                 </Link>
+                </div>
               </div>
                 <div className="accountAndCartWrapper">
                   <div className="accountWrapper">

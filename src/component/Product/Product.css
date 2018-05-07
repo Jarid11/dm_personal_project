@@ -6,11 +6,13 @@
 
 .productName {
   margin-top: 20px;
-  margin-bottom: 0
+  margin-bottom: 0;
+  height: 20px;
 }
 
 .productNum {
   margin-top: 8px;
+  height: 10px;
 }
 
 .productImg {
@@ -22,11 +24,18 @@
 .regPriceText {
   text-decoration: line-through;
   margin-bottom: 0;
+  height: 10px;
+}
+
+.priceText {
+  margin-bottom: 0;
+  height: 10px;
 }
 
 .salePriceText {
   color: red;
   margin-top: 0;
+  height: 10px
 }
 
 .monthlySaleText {
