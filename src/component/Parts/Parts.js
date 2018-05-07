@@ -21,9 +21,9 @@ class Parts extends Component {
             this.state = {
                 selected: 1,
                 adminFlag: false,
-                nameVal: "",
-                modelVal: "",
-                priceVal: "",
+                nameVal: props.name,
+                modelVal: props.model,
+                priceVal: props.price,
                 salePriceVal: props.salePrice,
                 specialVal: props.specials,
                 categoryVal: props.category
@@ -197,6 +197,13 @@ class Parts extends Component {
         })
     }
 
+    handleChanges(partId, name, price, model, category, special, salePrice) {
+        this.handleNameChange(partId, name);
+        this.handlePriceChange(partId, price);
+        this.handleModelChange(partId, model);
+        this.handleCategoryChange(partId, category);
+        this.handleSpecialChange(partId, special, salePrice)
+    }
 
     render() {
         const { index, name, model, category, img, specials, salePrice, price, partId, parts } = this.props;
@@ -205,19 +212,19 @@ class Parts extends Component {
         let categoryList = parts.filter((curr, index) => {
             return parts.findIndex(item => item.category === curr.category) === index
         })
-        // console.log(categoryList)
         return (
             <div className="productContainer" key={index}>
                 {this.props.user.admin ?
-                    (<div>
-                        {adminFlag ? (<div>
+                    (<div className="positionPartsWrapper">
+                        {adminFlag ? (<div className="positionPartsWrapper">
                             <div>
-                                <h4 className="productName">Name: {name}</h4>
-                                <input type="text" placeholder={name} value={nameVal} onChange={(e) => this.handleNameVal(e.target.value)} />
-                                <button className="adminBtnColor" onClick={() => this.handleNameChange(partId, nameVal)}>Submit</button>
+                                <input type="text" placeholder={"Part Name"} value={nameVal} onChange={(e) => this.handleNameVal(e.target.value)} />
                             </div>
                             <div>
-                                <h4 className="partCategoryText">Category: {category}</h4>
+                                <input type="text" placeholder={"Part Number"} value={modelVal} onChange={(e) => this.handleModelVal(e.target.value)} />
+                            </div>
+                            <img className="productImg" src={img} alt="part" />
+                            <div>
                                 <div className="adminCategoryContainer">
                                     <select value={categoryVal} onChange={(e) => this.handleCategoryVal(e.target.value)}>
                                         {categoryList.map((e, i) => {
@@ -226,36 +233,20 @@ class Parts extends Component {
                                             )
                                         })}
                                     </select>
-                                    <button className="adminBtnColor" onClick={() => this.handleCategoryChange(partId, this.state.categoryVal)}>Change Category</button>
                                 </div>
                             </div>
                             <div>
-                                <h4 className="partNumText">Part Number: {model}</h4>
-                                <input type="text" placeholder={model} value={modelVal} onChange={(e) => this.handleModelVal(e.target.value)} />
-                                <button className="adminBtnColor" onClick={() => this.handleModelChange(partId, modelVal)}>Submit</button>
+                                <input type="text" placeholder={"Price"} value={priceVal} onChange={(e) => this.handlePriceVal(e.target.value)} />
                             </div>
                             <div>
-                                {specials ? <h4 className="priceText">Price: ${price}</h4> : <h4>${price}</h4>}
-                                <input type="text" placeholder={price} value={priceVal} onChange={(e) => this.handlePriceVal(e.target.value)} />
-                                <button className="adminBtnColor" onClick={() => this.handlePriceChange(partId, priceVal)}>Submit</button>
-                            </div>
-                            <div>
-                                <h4 className="saleText">Sale Price: ${salePrice}</h4>
                                 <select value={specialVal} onChange={(e) => this.handleSpecialVal(e.target.value)}>
                                     <option value={0}>false</option>
                                     <option value={1}>true</option>
                                 </select>
 
-                                {specialVal || specials ? <input type="text" placeholder={salePrice} value={salePriceVal} onChange={(e) => this.handleSalePriceVal(e.target.value)} /> : null}
-                                <button className="adminBtnColor" onClick={() => this.handleSpecialChange(partId, specialVal, salePriceVal)}>Submit</button>
+                                {specialVal || specials ? <input type="text" placeholder={"Sale Price"} value={salePriceVal} onChange={(e) => this.handleSalePriceVal(e.target.value)} /> : null}
                             </div>
-                            <button className="adminCancelBtn" onClick={() => this.handleAdminFlag()}>Cancel</button>
-                            <h3 className="productName">{name}</h3>
-                            <h5 className="productNum">Part Number: {model}</h5>
-                            <img className="productImg" src={img} alt="part" />
-                            {specials ? <h4 className="regPriceText">${price}</h4> : <h4>${price}</h4>}
-                            {specials ? <h4 className="salePriceText">${salePrice}</h4> : null}
-                            <div>
+                            <div className="adminBtnsContainer">
                                 <div className="qtyBtnsContainer">
                                     <i className="qtyBtns fa fa-minus-circle" onClick={() => this.handleDecrement()}></i>
                                     <h4>{selected}</h4>
@@ -268,6 +259,10 @@ class Parts extends Component {
                                     Add to Cart
                                     <i className="fa fa-cart-plus addBtn"></i>
                                 </button>
+                                <div className="adminCancelSubmitBtnsContainer">
+                                    <button className="adminCancelBtn" onClick={() => this.handleAdminFlag()}>Cancel</button>
+                                    <button className="adminSubmitBtn" onClick={() => this.handleChanges(partId, nameVal, priceVal, modelVal, categoryVal, specialVal, salePriceVal)}>Submit</button>
+                                </div>
                             </div>
                         </div>) :
                             (<div className="positionPartsWrapper">

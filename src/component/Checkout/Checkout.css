@@ -439,6 +439,16 @@
   }
 } */
 
+.billing-shipping-txt {
+  margin: 0;
+  font-size: 11px;
+}
+
+.billing-shipping-input {
+  cursor: pointer;
+}
+
+
 @media (min-width: 637px) {
   .checkoutContBtn, .disabledStripeWrapper {
     display: block;

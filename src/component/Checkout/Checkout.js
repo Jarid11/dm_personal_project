@@ -234,7 +234,7 @@ class Checkout extends Component {
                   <div className="disabledStepNumBox">
                     <p>2</p>
                   </div>
-                  <h3 className="disabledStepsTitles">Enter shipping address</h3>
+                  <h3 className="disabledStepsTitles">Enter billling address</h3>
                 </div>
               </div>
             </div>
@@ -286,7 +286,7 @@ class Checkout extends Component {
                   <div className="stepNumBox">
                     <p>2</p>
                   </div>
-                  <h4>Confirm shipping address</h4>
+                  <h4>Confirm billing address</h4>
                 </div>
                 <div className="step2FormWrapper">
                   <div className="inputBoxes">
@@ -444,6 +444,10 @@ class Checkout extends Component {
                       type="text"
                       required
                     />
+                  </div>
+                  <div className="inputBoxes">
+                    <h5 className="billing-shipping-txt">Billing same as Shipping Address</h5>
+                    <input id="checkBox" type="checkbox" className="billing-shipping-input" />
                   </div>
                 </div>
                 <div className="totalContainerAndReviewOrderWrapper">

@@ -13,18 +13,52 @@
     width: 280px;
 }
 
+.adminCancelSubmitBtnsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+}
+
+.adminBtnsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .adminEditBtn {
     color: #000;
+    cursor: pointer;
 }
 
 .adminBtnColor {
     background: #a7e8be;
 }
 
-.adminCancelBtn {
+.adminCancelBtn, .adminSubmitBtn {
     margin-top: 10px;
-    background: #5b0c12;
+    cursor: pointer;
     color: #fff;
+    border-radius: 5px;
+}
+
+.adminCancelBtn {
+    background: #5b0c12;
+}
+
+.adminSubmitBtn {
+    background: #a7e8be;
+}
+
+.adminCancelBtn:hover {
+    background: lightgray;
+    /* color: #5b0c12; */
+}
+
+.adminSubmitBtn:hover {
+    background: lightgray;
+    /* color: #a7e8be; */
 }
 
 .adminCategoryContainer {
