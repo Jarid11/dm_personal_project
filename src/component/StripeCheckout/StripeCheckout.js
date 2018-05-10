@@ -15,40 +15,28 @@ const CURRENCY = "USD";
 
 const fromUsdToCent = amount => parseInt(amount * 100, 10);
 
-const successPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
-     Swal({
-        position: 'center',
-        type: 'success',
-        title: 'Your order has been placed',
-        showConfirmButton: false,
-        timer: 2500
-      }).then(() =>  { (window.location.href="http://www.bugstuff.online/#/")
-      axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
-     })
-};
-
 // const successPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
-//   Swal({
-//      position: 'center',
-//      type: 'success',
-//      title: 'Your order has been placed',
-//      showConfirmButton: false,
-//      timer: 2500
-//    }).then(() =>  { (window.location.href="http://localhost:3000/#/")
-//    axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
-//   })
+//      Swal({
+//         position: 'center',
+//         type: 'success',
+//         title: 'Your order has been placed',
+//         showConfirmButton: false,
+//         timer: 2500
+//       }).then(() =>  { (window.location.href="http://www.bugstuff.online/#/")
+//       axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
+//      })
 // };
 
-const errorPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
+const successPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
   Swal({
      position: 'center',
      type: 'success',
      title: 'Your order has been placed',
      showConfirmButton: false,
      timer: 2500
-   }).then(() => { (window.location.href="http://www.bugstuff.online/#/")
-    axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
-   })
+   }).then(() =>  { (window.location.href="http://localhost:3000/#/")
+   axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
+  })
 };
 
 // const errorPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
@@ -58,10 +46,22 @@ const errorPayment = (firstName, lastName, streetAddress, extraAddressInfo, city
 //      title: 'Your order has been placed',
 //      showConfirmButton: false,
 //      timer: 2500
-//    }).then(() => { (window.location.href="http://localhost:3000/#/")
+//    }).then(() => { (window.location.href="http://www.bugstuff.online/#/")
 //     axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
 //    })
 // };
+
+const errorPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
+  Swal({
+     position: 'center',
+     type: 'success',
+     title: 'Your order has been placed',
+     showConfirmButton: false,
+     timer: 2500
+   }).then(() => { (window.location.href="http://localhost:3000/#/")
+    axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
+   })
+};
 
 const onToken = (amount, description, firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => token =>
   axios

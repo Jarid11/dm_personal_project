@@ -77,13 +77,7 @@ class CartParts extends Component {
                     <div className="manageCartContainer">
                         <button
                             className="updateBtn"
-                            onClick={() =>
-                                this.handleUpdate(
-                                    partid,
-                                    parseInt(selected, 10)
-                                )
-                            }
-                        >
+                            onClick={() => this.handleUpdate(partid, parseInt(selected, 10))}>
                             Update
                             <img src={updateIcon} alt="update" />
                         </button>

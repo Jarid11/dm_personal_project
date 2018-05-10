@@ -26,8 +26,10 @@ module.exports = {
       .parts
       .get_part_categories()
       .then(parts => {
+        console.log("part.categories are below")
         console.log(parts)
-        res.status(200).json(parts)})
+        res.status(200).json(parts)
+      })
       .catch(err => console.log(err))
   }
 };

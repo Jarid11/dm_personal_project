@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Header.css";
-// import "font-awesome/css/font-awesome.min.css"
 import Swal from "sweetalert2"
 
 import accountIcon from "./HeaderSvgs/account.svg";
@@ -28,12 +27,11 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    this.props.getUser().then(()=>{
-      if (this.props.user !== "Unauthorized" && this.props.user) {
-        this.props.getCart();
-        this.props.getTotalItems();
-      }
-    });
+    if (this.props.user !== "Unauthorized" && this.props.user) {
+      console.log("hit")
+      // this.props.getCart();
+      this.props.getTotalItems();
+    }
     this.props.getPartCategories();
   }
 
@@ -54,7 +52,7 @@ class Header extends Component {
       showCategories: !this.state.showCategories
     });
   }
-  
+
   toggleAccount() {
     this.setState({
       showAccount: !this.state.showAccount
@@ -64,7 +62,7 @@ class Header extends Component {
   render() {
     const { showCategories, showAccount } = this.state;
     const { totalItems, user } = this.props;
-    console.log(this.props.user)
+    console.log(this.props)
     return (
       <div>
         {!this.props.showHamburger ? (
@@ -78,18 +76,18 @@ class Header extends Component {
                 />
               </button>
               <div className="logoBox">
-              <Link to="/" className="logoBox">
-                <img
-                  className="car-image"
-                  src="http://freepngimages.com/wp-content/uploads/2015/05/volkswagon-beetle-png-image.png"
-                  alt="car"
-                />
-                <img
-                  className="logo"
-                  src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
-                  alt="logo"
-                />
-              </Link>
+                <Link to="/" className="logoBox">
+                  <img
+                    className="car-image"
+                    src="http://freepngimages.com/wp-content/uploads/2015/05/volkswagon-beetle-png-image.png"
+                    alt="car"
+                  />
+                  <img
+                    className="logo"
+                    src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"
+                    alt="logo"
+                  />
+                </Link>
               </div>
               <div className="headerLinksWrapper">
                 <div className="testWidth">
@@ -98,7 +96,7 @@ class Header extends Component {
                   </Link>
                 </div>
                 <div className="testWidth">
-                  <Link to="/product" className="links headerLinks">
+                  <Link to="/shop" className="links headerLinks">
                     <div>Shop</div>
                   </Link>
                 </div>
@@ -108,23 +106,23 @@ class Header extends Component {
                   </Link>
                 </div>
                 <div className="testWidth">
-                <Link to="/privacy" className="links headerLinks">
-                  <div>Privacy</div>
-                </Link>
+                  <Link to="/privacy" className="links headerLinks">
+                    <div>Privacy</div>
+                  </Link>
                 </div>
               </div>
-                <div className="accountAndCartWrapper">
-                  <div className="accountWrapper">
-                    {user.img ? (
-                      <div className="avatarContainer">
-                        <img src={user.img} className="accountAvatarIcon" alt="user" />
-                        <div className="logoutOnHover">
-                          <a className="accLinks" href={process.env.REACT_APP_LOGOUT}>
-                            <p>Logout</p>
-                          </a>
-                        </div>
+              <div className="accountAndCartWrapper">
+                <div className="accountWrapper">
+                  {user.img ? (
+                    <div className="avatarContainer">
+                      <img src={user.img} className="accountAvatarIcon" alt="user" />
+                      <div className="logoutOnHover">
+                        <a className="accLinks" href={process.env.REACT_APP_LOGOUT}>
+                          <p>Logout</p>
+                        </a>
                       </div>
-                    ) : (
+                    </div>
+                  ) : (
                       <div className="avatarContainer">
                         <img
                           className="accountIcon"
@@ -132,24 +130,24 @@ class Header extends Component {
                           alt="account icon"
                         />
                         <div className="loginOnHover">
-                        <a className="accLinks" href={process.env.REACT_APP_LOGIN}>
-                          <p>Login</p>
-                        </a>
+                          <a className="accLinks" href={process.env.REACT_APP_LOGIN}>
+                            <p>Login</p>
+                          </a>
                         </div>
                       </div>
                     )}
-                  </div>
-                  <div id="cartContainer">
-                  {
-                    this.props.user.userid ? (
-                      <Link to="/cart" className="links cartContainer" onClick={this.handleBurgers}>
+                </div>
+                <div id="cartContainer">
+                  {this.props.user.userid ? (
+                    <Link to="/cart" className="links cartContainer" onClick={this.handleBurgers}>
                       <img className="cart" src={cartIcon} alt="cart button" />
                       <div className="bubble">
                         <p className="cartCountText">{Number(totalItems)}</p>
                       </div>
                     </Link>
-                    ) : (
-                      <div to="/cart" className="links cartContainer" onClick={() => {this.handleBurgers();
+                  ) : (
+                      <div to="/cart" className="links cartContainer" onClick={() => {
+                        this.handleBurgers();
                         Swal({
                           title: 'Must Login to add to Cart',
                           width: 600,
@@ -160,23 +158,23 @@ class Header extends Component {
                           cancelButtonColor: '#d33',
                           confirmButtonText: 'Login'
                         }).then((result) => {
-                      if (result.value) {
-                          // window.location.replace("http://localhost:3001/auth"); 
-                          window.location.replace("/auth"); 
-                      }
-                      })
+                          if (result.value) {
+                            window.location.replace("http://localhost:3001/auth");
+                            // window.location.replace("/auth"); 
+                          }
+                        })
                       }}>
-                      <img className="cart" src={cartIcon} alt="cart button" />
-                      <div className="bubble">
-                        <p className="cartCountText">{Number(totalItems)}</p>
+                        <img className="cart" src={cartIcon} alt="cart button" />
+                        <div className="bubble">
+                          <p className="cartCountText">{Number(totalItems)}</p>
+                        </div>
                       </div>
-                    </div>
                     )
                   }
-                  </div>
+                </div>
               </div>
             </div>
-        </header>
+          </header>
         ) : (
             <div>
               <header className="header">
@@ -215,32 +213,29 @@ class Header extends Component {
               </header>
               <div className="menu">
                 <div className="list">
-                  {/* <Link to="/Account" className="links" onClick={this.handleBurgers}>
-                    <div className="list-lis">Account</div>
-                  </Link> */}
                   <Link to="/" className="links" onClick={this.handleBurgers}>
                     <div className="list-lis">Home</div>
                   </Link>
                   <div className="links">
                     {!showCategories ? (
                       <div className="centerChevron">
-                        <Link to="/product">
-                            <p className="shopText" onClick={this.handleBurgers}>Shop</p>
-                            <img className="categoryBtn" onClick={() => this.showCategories()} src={chevronUp} alt="chevronUp" />
+                        <Link to="/shop">
+                          <p className="shopText" onClick={this.handleBurgers}>Shop</p>
+                          <img className="categoryBtn" onClick={() => this.showCategories()} src={chevronUp} alt="chevronUp" />
                         </Link>
                       </div>
                     ) : (
                         <div>
                           <div className="centerChevron">
-                          <Link to="/product">
-                            <p className="shopText" onClick={this.handleBurgers}>Shop</p>
-                            <img className="categoryBtn" onClick={() => this.showCategories()} src={chevronDown} alt="chevronUp" />
-                        </Link>
+                            <Link to="/shop">
+                              <p className="shopText" onClick={this.handleBurgers}>Shop</p>
+                              <img className="categoryBtn" onClick={() => this.showCategories()} src={chevronDown} alt="chevronUp" />
+                            </Link>
                           </div>
                           <div className="list">
                             {this.props.categories.map((e, i) => {
                               return (
-                                <Link to={`/product/${e.category}`} className="list-lis" key={i} onClick={this.handleBurgers}>
+                                <Link to={`/shop/${e.category}`} className="list-lis" key={i} onClick={this.handleBurgers}>
                                   <div className="shopList">{e.category}</div>
                                 </Link>
                               )
@@ -253,16 +248,16 @@ class Header extends Component {
                     <div className="aboutStyle">About</div>
                   </Link>
                   {user.img ? (
-                      <div className="accDivSpacing" onClick={() => this.toggleAccount()}>
-                        <img src={user.img} className="accountAvatarIconForMobile" alt="user" />
-                        {showAccount ? (
-                            <div className="accDiv">
-                              <a className="accLinks" href={process.env.REACT_APP_LOGOUT}>
-                              <p>Logout</p>
-                              </a>
-                            </div> ) : null}
-                      </div>
-                    ) : (
+                    <div className="accDivSpacing" onClick={() => this.toggleAccount()}>
+                      <img src={user.img} className="accountAvatarIconForMobile" alt="user" />
+                      {showAccount ? (
+                        <div className="accDiv">
+                          <a className="accLinks" href={process.env.REACT_APP_LOGOUT}>
+                            <p>Logout</p>
+                          </a>
+                        </div>) : null}
+                    </div>
+                  ) : (
                       <div className="accDivSpacing" onClick={() => this.toggleAccount()}>
                         <img
                           className="accountIcon"
@@ -270,12 +265,12 @@ class Header extends Component {
                           alt="account icon"
                         />
                         {showAccount ? (
-                        <div className="accDiv">
-                          <a className="accLinks" href={process.env.REACT_APP_LOGIN}>
-                            <p>Login</p>
-                          </a>
-                        </div>
-                        ) : null }
+                          <div className="accDiv">
+                            <a className="accLinks" href={process.env.REACT_APP_LOGIN}>
+                              <p>Login</p>
+                            </a>
+                          </div>
+                        ) : null}
                       </div>
                     )}
                 </div>

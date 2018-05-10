@@ -9,7 +9,6 @@ import Slides from "../Slides/Slides";
 import Manufacturers from "../Manufacturers/Manufacturers";
 import Contact from "../Contact/Contact";
 import QuickLinks from "../QuickLinks/QuickLinks";
-
 import Footer from "../Footer/Footer";
 
 class Home extends Component {
@@ -25,6 +24,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div onClick={this.handleBurgers}>
         <Slides />

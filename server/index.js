@@ -8,10 +8,7 @@ const passport = require("passport");
 
 const app = express();
 
-
 app.use(express.static(`${__dirname}/../build`))
-
-
 
 // STRIPE
 const SERVER_CONFIGS = require("./constants/server");
@@ -38,6 +35,7 @@ app.post('/api/email', function (req, res) {
       pass: process.env.GMAIL_PASS
     }
   });
+  
 console.log('EMAIL: ', req.body.email)
   const mailOptions = {
     from: process.env.GMAIL_EMAIL, // sender address
@@ -148,10 +146,10 @@ passport.deserializeUser((user, done) => {
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    // successRedirect: "http://localhost:3000/#/",
-    // failureRedirect: "http://localhost:3000/#/account"
-    successRedirect: "/",
-    failureRedirect: "/account"
+    successRedirect: "http://localhost:3000/#/",
+    failureRedirect: "http://localhost:3000/#/account"
+    // successRedirect: "/",
+    // failureRedirect: "/account"
   })
 );
 

@@ -5,10 +5,6 @@ import "./Slides.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// import slide1 from "./slide1.jpg";
-// import slide2 from "./slide2.jpg";
-// import slide3 from "./slide3.jpg";
-
 class Slides extends Component {
   render() {
     const settings = {

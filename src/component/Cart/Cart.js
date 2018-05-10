@@ -4,11 +4,11 @@ import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
-  getCart,
   getGrandTotal
 } from "../../ducks/cartReducer";
 
 import { getUser } from "../../ducks/userReducer";
+import { getCart } from "../../ducks/cartReducer";
 
 import CartParts from "../CartParts/CartParts";
 import "./Cart.css";
@@ -20,15 +20,10 @@ class Cart extends Component {
 
   componentDidMount() {
     if(this.props.user !== "Unauthorized") {
-      console.log("hit")
       this.props.getCart();
       this.props.getGrandTotal();  
     } else {
-    this.props
-      .getUser()
-      .then(response => {
-        if(response.value.data === "Unauthorized") {
-          this.props.history.push("/");
+        this.props.history.push("/");
         return Swal({
             title: 'Must Login to go to Cart',
             type: 'warning',
@@ -38,19 +33,16 @@ class Cart extends Component {
             confirmButtonText: 'Login'
           }).then((result) => {
             if (result.value) {
-              // window.location.replace("http://localhost:3001/auth"); 
-              window.location.replace("www.bugstuff.online/auth"); 
+              window.location.replace("http://localhost:3001/auth"); 
+              // window.location.replace("www.bugstuff.online/auth"); 
             }
           })
-      }
-    })
   }
 }
   
   render() {
     const { cart, grandTotal } = this.props;
     console.log(this.props)
-    console.log(cart)
     return (
       <div className="positionCartView">
         {cart[0] ? (
@@ -89,7 +81,7 @@ class Cart extends Component {
 const mapStateToProps = state => ({ ...state.cartReducer, ...state.userReducer });
 
 export default connect(mapStateToProps, {
-  getCart,
   getGrandTotal,
-  getUser
+  getUser,
+  getCart
 })(Cart);

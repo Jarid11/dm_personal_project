@@ -2,8 +2,7 @@ import axios from "axios";
 
 const initialState = {
   parts: [],
-  categories: [],
-  loading: false
+  categories: []
 };
 
 const GET_PARTS = "GET_PARTS";
@@ -68,11 +67,6 @@ export function changePartSpecial(partId, special, saleprice) {
 
 export default function partReducer(state = initialState, action) {
   switch (action.type) {
-    case `${GET_PARTS}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
     case `${GET_PARTS}_FULFILLED`:
     case `${CHANGE_PART_NAME}_FULFILLED`:
     case `${CHANGE_PART_CATEGORY}_FULFILLED`:
@@ -81,7 +75,6 @@ export default function partReducer(state = initialState, action) {
     case `${CHANGE_PART_SPECIAL}_FULFILLED`:
       return {
         ...state,
-        loading: false,
         parts: action.payload.data
       };
     case `${GET_PART_CATEGORIES}_FULFILLED`:

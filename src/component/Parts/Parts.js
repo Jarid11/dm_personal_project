@@ -206,7 +206,7 @@ class Parts extends Component {
     }
 
     render() {
-        const { index, name, model, category, img, specials, salePrice, price, partId, parts } = this.props;
+        const { index, name, model, img, specials, salePrice, price, partId, parts } = this.props;
         const { selected, adminFlag, nameVal, modelVal, priceVal, salePriceVal, specialVal, categoryVal } = this.state;
         //sort duplicates out of category
         let categoryList = parts.filter((curr, index) => {
