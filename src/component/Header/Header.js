@@ -27,13 +27,14 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    if (this.props.user !== "Unauthorized" && this.props.user) {
-      console.log("hit")
-      // this.props.getCart();
+    this.props.getUser().then(response => {
+      this.props.getPartCategories();
       this.props.getTotalItems();
-    }
-    this.props.getPartCategories();
+    }).catch(err => {
+      err && this.props.getPartCategories();
+    })
   }
+
 
   handleBurgers = () => {
     if (this.props.showHamburger) {
@@ -62,7 +63,6 @@ class Header extends Component {
   render() {
     const { showCategories, showAccount } = this.state;
     const { totalItems, user } = this.props;
-    console.log(this.props)
     return (
       <div>
         {!this.props.showHamburger ? (
@@ -159,8 +159,8 @@ class Header extends Component {
                           confirmButtonText: 'Login'
                         }).then((result) => {
                           if (result.value) {
-                            window.location.replace("http://localhost:3001/auth");
-                            // window.location.replace("/auth"); 
+                            // window.location.replace("http://localhost:3001/auth");
+                            window.location.replace("/auth"); 
                           }
                         })
                       }}>

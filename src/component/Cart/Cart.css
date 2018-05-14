@@ -53,3 +53,10 @@
   margin-top: 110px;
   min-height: 76vh;
 }
+
+.empty-cart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

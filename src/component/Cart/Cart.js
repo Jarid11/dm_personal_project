@@ -19,7 +19,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    if(this.props.user !== "Unauthorized") {
+    if(this.props.user.userid) {
       this.props.getCart();
       this.props.getGrandTotal();  
     } else {
@@ -33,8 +33,8 @@ class Cart extends Component {
             confirmButtonText: 'Login'
           }).then((result) => {
             if (result.value) {
-              window.location.replace("http://localhost:3001/auth"); 
-              // window.location.replace("www.bugstuff.online/auth"); 
+              // window.location.replace("http://localhost:3001/auth"); 
+              window.location.replace("/"); 
             }
           })
   }
@@ -42,7 +42,6 @@ class Cart extends Component {
   
   render() {
     const { cart, grandTotal } = this.props;
-    console.log(this.props)
     return (
       <div className="positionCartView">
         {cart[0] ? (
@@ -69,8 +68,8 @@ class Cart extends Component {
           </div>
         </div>
         ) : (
-            <div>
-              <div>Nothing In Cart</div>
+            <div className="empty-cart-container">
+              <h2>Nothing In Cart</h2>
             </div>
           )}
       </div>

@@ -8,7 +8,6 @@ const corsOptions = {
     CORS_WHITELIST.indexOf(origin) !== -1
       ? callback(null, true)
       : callback(null, true)
-  //   : (console.log(origin), callback(new Error("Not allowed by CORS")))
 };
 
 const configureServer = app => {

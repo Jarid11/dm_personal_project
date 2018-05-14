@@ -7,7 +7,7 @@ import truckIcon from "./truck.svg";
 import StripeCheckout from "../StripeCheckout/StripeCheckout";
 
 import { connect } from "react-redux";
-import { getUser, getShippingInfo, addShippingInfo } from "../../ducks/userReducer";
+import { getShippingInfo, addShippingInfo, getUser } from "../../ducks/userReducer";
 import {
   getCart,
   getTotalItems,
@@ -45,23 +45,18 @@ class Checkout extends Component {
   }
 
   componentDidMount() {
-    // this.props.getCart();
-
-    // figure out way to prevent none user to go to checkout via URL
-    if (this.props.user !== "Unauthorized") {
+    if (this.props.user.userid) {
       this.props.getTotalItems();
       this.props.getGrandTotal();
       this.props.getCartImgs();
     } else {
-      window.location.replace("http://localhost:3000/");
+      // window.location.replace("http://localhost:3000/");
+      window.location.replace("/"); 
     }
   }
 
   handleSteps() {
-    this.props.getShippingInfo()
-    // .then(() => {
-    //   this.props.getUser();
-    // })
+    this.props.getShippingInfo().then(() => this.props.getUser())
     this.setState({
       step1: !this.state.step1,
       step2: !this.state.step2
@@ -90,7 +85,7 @@ class Checkout extends Component {
 
   handleAddInfo(fn, ln, pn, e, sa, eai, c, s, z) {
     const { firstName, lastName, phoneNumber, email, streetAddress, extraAddressInfo, city, state, zip } = this.state
-    if ((firstName === this.props.user.firstname) && (lastName === this.props.user.lastname) && phoneNumber && email && streetAddress && extraAddressInfo && city && state && zip) {
+    if ((firstName === this.props.user.firstname) && (lastName === this.props.user.lastname) && (phoneNumber === this.props.user.phonenumber) && (email === this.props.user.email) && (streetAddress === this.props.user.streetaddress) && (extraAddressInfo === this.props.user.extraaddressinfo) && (city === this.props.user.city) && (state === this.props.user.state) && (zip === this.state.zip)) {
       this.handleStep2();
     } else {
       this.props
@@ -131,8 +126,6 @@ class Checkout extends Component {
     } = this.state;
 
     const { totalItems, grandTotal, cartImgs } = this.props;
-    console.log("hello")
-    console.log(this.props)
 
     let estDate = new Date();
     estDate.setDate(estDate.getDate() + shipDate);
@@ -612,12 +605,12 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  getUser,
   getCart,
   getTotalItems,
   getGrandTotal,
   getCartImgs,
   addShippingInfo,
   getShippingInfo,
+  getUser,
   emptyCart
 })(Checkout);

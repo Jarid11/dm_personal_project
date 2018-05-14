@@ -3,7 +3,7 @@ module.exports = {
     const dbInstance = req.app.set("db");
 
     if(!req.user) {
-        res.status(200).json("Must Login To See Cart");
+        res.status(401).json();
     } else {
       dbInstance.cart
       .get_cart(req.user.userid)
@@ -42,8 +42,6 @@ module.exports = {
   addToCart: (req, res) => {
     const dbInstance = req.app.set("db");
 
-    console.log(req.user)
-
     dbInstance.cart
       .add_to_cart([req.user.userid, req.body.id, parseInt(req.body.qty)])
       .then(response => res.status(200).json(response))
@@ -52,8 +50,6 @@ module.exports = {
   updateCart: (req, res) => {
     const dbInstance = req.app.set("db");
 
-    console.log(req.user)
-
     dbInstance.cart
       .update_cart([req.user.userid, req.body.id, req.body.qty])
       .then(response => res.status(200).json(response))
@@ -61,8 +57,6 @@ module.exports = {
   },
   deleteFromCart: (req, res) => {
     const dbInstance = req.app.set("db");
-
-    console.log(req.user)
 
     dbInstance.cart
       .delete_from_cart([req.user.userid, req.params.id])

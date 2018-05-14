@@ -13,10 +13,6 @@ import Footer from "../Footer/Footer";
 
 class Home extends Component {
 
-  componentDidMount() {
-    this.props.getUser();
-  }
-
   handleBurgers = () => {
     if (this.props.showHamburger) {
       this.props.getHamburgerMenu()
@@ -24,7 +20,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div onClick={this.handleBurgers}>
         <Slides />

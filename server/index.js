@@ -36,11 +36,10 @@ app.post('/api/email', function (req, res) {
     }
   });
   
-console.log('EMAIL: ', req.body.email)
   const mailOptions = {
-    from: process.env.GMAIL_EMAIL, // sender address
+    from: process.env.GMAIL_EMAIL, 
     to: req.body.email,
-    subject: 'Order Confirmation', // Subject line
+    subject: 'Order Confirmation', 
     html: `<div>
             <div style="display: flex; border-bottom: 1px solid rgb(203,207,212);">
               <img style="width: 150px; height: 80px;" src="http://www.bugstuffonline.com/templates/fallback/images/logo.png"alt="logo"/>
@@ -67,7 +66,6 @@ console.log('EMAIL: ', req.body.email)
           </div>`// plain text body
   };
 
-  // send mail with defined transport object
   transporter.sendMail(mailOptions, function (err, info) {
     if (err)
       console.log(err)
@@ -146,10 +144,10 @@ passport.deserializeUser((user, done) => {
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/",
-    failureRedirect: "http://localhost:3000/#/account"
-    // successRedirect: "/",
-    // failureRedirect: "/account"
+    // successRedirect: "http://localhost:3000/#/",
+    // failureRedirect: "http://localhost:3000/#/account"
+    successRedirect: "/",
+    failureRedirect: "/account"
   })
 );
 

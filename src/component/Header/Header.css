@@ -16,12 +16,10 @@
 .logo-container {
   height: 8vh;
   width: 90%;
-  /* background-image: url(http://www.bugstuffonline.com/templates/fallback/images/tiretracks.jpg); */
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 10px;
-  /* border: 1px solid #ff0000; */
 }
 
 .car-image {

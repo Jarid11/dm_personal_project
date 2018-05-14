@@ -13,11 +13,8 @@
 }
 
 .checkoutContainer {
-  /* height: 92vh; */
-  /* background: #eaeaea; */
   margin: 97px auto 0;
   max-width: 750px;
-  /* border: 2px solid lightgray; */
 }
 
 .step1Box,
@@ -31,9 +28,7 @@
 
 .step2InputBoxes {
   max-width: 750px;
-  /* margin: 97px auto 0; */
   background: #eaeaea;
-  /* border: 2px solid lightgray; */
 }
 
 .step2FormWrapper, .disabledStep3Container4Step2Wrapper, .disabledStep2ContainerWrapper, .disabledStep3ContainerWrapper {
@@ -88,10 +83,8 @@
 }
 
 .arrivalContainer {
-  /* height: 15vh; */
   width: 95%;
   display: flex;
-  /* align-items: center; */
   flex-wrap: wrap;
   justify-content: space-around;
 }
@@ -125,13 +118,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* width: 500px; */
   margin: auto;
 }
 
 .cartImgContainer {
-  /* height: 20vh;
-  width: 95%; */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -168,7 +158,6 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  /* margin-bottom: 80px; */
 }
 
 .subtotalBox,
@@ -206,7 +195,6 @@
 
 .disabledStep3Container4Step2 {
   min-height: 10vh;
-  /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -236,13 +224,11 @@
 }
 
 .shrinkedStepWrapper {
-  /* height: 30vh; */
   margin-top: 97px;
   display: flex;
 }
 
 .shrinkedStepContainer {
-  /* margin-top: 97px; */
   max-width: 750px;
   margin: auto;
   width: 100%;
@@ -302,8 +288,6 @@
 }
 
 .shrinkedCartImgContainer {
-  /* height: 15vh; */
-  /* width: 95%; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -326,7 +310,6 @@
 }
 
 .step2Container {
-  /* background-color: #eaeaea; */
   border-top: 2px solid lightgray;
 }
 
@@ -428,17 +411,6 @@
   margin-top: 20px;
 }
 
-/* @media (max-width: 500px) {
-  .step2InputBoxes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .inputBoxesWrapper {
-    width: 80%;
-  }
-} */
-
 .billing-shipping-txt {
   margin: 0;
   font-size: 11px;
@@ -458,10 +430,6 @@
     display: block;
   }
 
-  /* .itemImgContainer {
-    height: 120px;
-    width: 120px;
-  } */
   .shippingOptsContainer {
     width: 510px;
     height: 200px;
@@ -506,10 +474,6 @@
     display: none;
   }
 
-  /* .mobileViewPositioning {
-    display: none;
-  } */
-
   .disabledStep3Container {
     margin: 0;
   }
@@ -522,7 +486,6 @@
 
   .disabledStep3Container4Step2 {
     margin-bottom: 0;
-    /* margin-top: 50px; */
   }
 
   .checkoutContainerWrapper {

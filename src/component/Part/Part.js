@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Parts.css"
+import "./Part.css"
 import "font-awesome/css/font-awesome.min.css"
 import Swal from 'sweetalert2'
 
@@ -15,7 +15,7 @@ import {
 
 import { getParts, changePartName, changePartCategory, changePartModel, changePartPrice, changePartSpecial } from "../../ducks/partReducer";
 
-class Parts extends Component {
+class Part extends Component {
     constructor(props) {
         super(props)
             this.state = {
@@ -93,7 +93,6 @@ class Parts extends Component {
                     allowOutsideClick: false
                     })
             )
-                this.props.getCart();
                 this.props.getTotalItems();
             })
     }
@@ -114,7 +113,6 @@ class Parts extends Component {
                     allowOutsideClick: false
                     })
             )
-            this.props.getCart();
             this.props.getTotalItems();
         })
     }
@@ -333,5 +331,5 @@ export default withRouter(
         changePartModel,
         changePartPrice,
         changePartSpecial
-    })(Parts)
+    })(Part)
 );
