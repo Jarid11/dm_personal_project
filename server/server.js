@@ -5,7 +5,7 @@ const CORS_WHITELIST = require("./constants/frontend");
 
 const corsOptions = {
   origin: (origin, callback) =>
-    CORS_WHITELIST.indexOf(origin) !== -1
+    (CORS_WHITELIST.indexOf(origin) !== -1)
       ? callback(null, true)
       : callback(null, true)
 };

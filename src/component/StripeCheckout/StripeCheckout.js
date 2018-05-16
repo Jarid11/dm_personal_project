@@ -37,28 +37,24 @@ const successPayment = (firstName, lastName, streetAddress, extraAddressInfo, ci
 //   })
 // };
 
-const errorPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
+const errorPayment = (data) => {
   Swal({
      position: 'center',
-     type: 'success',
-     title: 'Your order has been placed',
+     type: 'error',
+     title: 'Something went wrong',
      showConfirmButton: false,
      timer: 2500
-   }).then(() => { (window.location.href="/")
-    axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
-   })
+   }).then(() =>  (window.location.href="/"))
 };
 
-// const errorPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
+// const errorPayment = (data) => {
 //   Swal({
 //      position: 'center',
-//      type: 'success',
-//      title: 'Your order has been placed',
+//      type: 'error',
+//      title: 'Something went wrong',
 //      showConfirmButton: false,
 //      timer: 2500
-//    }).then(() => { (window.location.href="http://localhost:3000/#/")
-//     axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
-//    })
+//    }).then(() =>  (window.location.href="http://localhost:3000/#/"))
 // };
 
 const onToken = (amount, description, firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => token =>
@@ -70,7 +66,7 @@ const onToken = (amount, description, firstName, lastName, streetAddress, extraA
       amount: fromUsdToCent(amount)
     })
     .then(() => successPayment(firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum))
-    .catch(() => errorPayment(firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum));
+    .catch(errorPayment)
 
 const Checkout = ({ name, description, amount, firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum }) => (
   <StripeCheckout
