@@ -43,8 +43,8 @@ class Part extends Component {
             confirmButtonText: 'Login'
           }).then((result) => {
         if (result.value) {
-            window.location.replace("http://localhost:3001/auth"); 
-            // window.location.replace("/auth"); 
+            // window.location.replace("http://localhost:3001/auth"); 
+            window.location.replace("/auth"); 
         }
         })
         if (!this.props.cart.length) {
