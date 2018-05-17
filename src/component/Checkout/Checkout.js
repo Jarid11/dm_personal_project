@@ -50,8 +50,7 @@ class Checkout extends Component {
       this.props.getGrandTotal();
       this.props.getCartImgs();
     } else {
-      // window.location.replace("http://localhost:3000/");
-      window.location.replace("/"); 
+      window.location.replace(process.env.HOME_URL);
     }
   }
 

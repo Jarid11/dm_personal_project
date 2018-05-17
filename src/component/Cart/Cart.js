@@ -33,8 +33,7 @@ class Cart extends Component {
             confirmButtonText: 'Login'
           }).then((result) => {
             if (result.value) {
-              // window.location.replace("http://localhost:3001/auth"); 
-              window.location.replace("/"); 
+              window.location.replace(process.env.AUTH_URL); 
             }
           })
   }

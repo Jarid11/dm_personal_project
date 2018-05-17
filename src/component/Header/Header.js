@@ -63,6 +63,7 @@ class Header extends Component {
   render() {
     const { showCategories, showAccount } = this.state;
     const { totalItems, user } = this.props;
+    console.log()
     return (
       <div>
         {!this.props.showHamburger ? (
@@ -159,8 +160,8 @@ class Header extends Component {
                           confirmButtonText: 'Login'
                         }).then((result) => {
                           if (result.value) {
-                            // window.location.replace("http://localhost:3001/auth");
-                            window.location.replace("/auth"); 
+                            window.location.replace(process.env.AUTH_URL);
+                            // window.location.replace("/auth"); 
                           }
                         })
                       }}>

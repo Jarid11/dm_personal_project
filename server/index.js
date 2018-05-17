@@ -67,10 +67,13 @@ app.post('/api/email', function (req, res) {
   };
 
   transporter.sendMail(mailOptions, function (err, info) {
-    if (err)
+    if (err) {
+      console.log(`Email Error : ${err}`)
       console.log(err)
-    else
+    } else {
+      console.log(`Email Worked : ${info}`)
       console.log(info);
+    }
   });
 })
 
@@ -144,10 +147,8 @@ passport.deserializeUser((user, done) => {
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    // successRedirect: "http://localhost:3000/#/",
-    // failureRedirect: "http://localhost:3000/#/"
-    successRedirect: "/",
-    failureRedirect: "/"
+    successRedirect: process.env.HOME_URL,
+    failureRedirect: process.env.HOME_URL
   })
 );
 
