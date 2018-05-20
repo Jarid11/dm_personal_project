@@ -42,10 +42,10 @@ class Part extends Component {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Login'
           }).then((result) => {
-        if (result.value) {
-            window.location.replace(process.env.AUTH_URL); 
-            // window.location.replace("/auth"); 
-        }
+              console.log(process.env)
+            if (result.value) {
+                window.location.assign(process.env.REACT_APP_AUTH_URL);
+            }
         })
         if (!this.props.cart.length) {
             return this.handleAdd(id, qty);

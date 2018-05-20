@@ -8,31 +8,31 @@ import "./StripeCheckout.css"
 import STRIPE_PUBLISHABLE from "../../constants/stripe";
 import PAYMENT_SERVER_URL from "../../constants/server";
 
-
 const CURRENCY = "USD";
 
 const fromUsdToCent = amount => parseInt(amount * 100, 10);
 
 const successPayment = (firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => {
   Swal({
-     position: 'center',
-     type: 'success',
-     title: 'Your order has been placed',
-     showConfirmButton: false,
-     timer: 2500
-   }).then(() =>  { (window.location.href=process.env.HOME_URL)
-   axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
+    position: 'center',
+    type: 'success',
+    title: 'Your order has been placed',
+    showConfirmButton: false,
+    timer: 2500
+  }).then(() => {
+    (window.location.replace("/"))
+    axios.post("/api/email", { firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum })
   })
 };
 
 const errorPayment = (data) => {
   Swal({
-     position: 'center',
-     type: 'error',
-     title: 'Something went wrong',
-     showConfirmButton: false,
-     timer: 2500
-   })
+    position: 'center',
+    type: 'error',
+    title: 'Something went wrong',
+    showConfirmButton: false,
+    timer: 2500
+  })
 };
 
 const onToken = (amount, description, firstName, lastName, streetAddress, extraAddressInfo, city, state, zip, email, arrivalDate, subtotal, shippingCost, tax, total, orderNum) => token =>

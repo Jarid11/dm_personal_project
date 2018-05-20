@@ -160,8 +160,7 @@ class Header extends Component {
                           confirmButtonText: 'Login'
                         }).then((result) => {
                           if (result.value) {
-                            window.location.replace(process.env.AUTH_URL);
-                            // window.location.replace("/auth"); 
+                            window.location.replace(process.env.REACT_APP_AUTH_URL);
                           }
                         })
                       }}>

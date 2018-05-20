@@ -575,6 +575,7 @@ class Checkout extends Component {
                 shippingCost={shipCost}
                 tax={tax}
                 total={total.toFixed(2)}
+                
               />
             </div>
 
