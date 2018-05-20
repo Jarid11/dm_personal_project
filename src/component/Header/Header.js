@@ -30,6 +30,7 @@ class Header extends Component {
     this.props.getUser().then(response => {
       this.props.getPartCategories();
       this.props.getTotalItems();
+      this.props.getCart();
     }).catch(err => {
       err && this.props.getPartCategories();
     })
@@ -63,7 +64,6 @@ class Header extends Component {
   render() {
     const { showCategories, showAccount } = this.state;
     const { totalItems, user } = this.props;
-    console.log()
     return (
       <div>
         {!this.props.showHamburger ? (

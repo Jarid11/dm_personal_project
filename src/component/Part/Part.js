@@ -18,16 +18,16 @@ import { getParts, changePartName, changePartCategory, changePartModel, changePa
 class Part extends Component {
     constructor(props) {
         super(props)
-            this.state = {
-                selected: 1,
-                adminFlag: false,
-                nameVal: props.name,
-                modelVal: props.model,
-                priceVal: props.price,
-                salePriceVal: props.salePrice,
-                specialVal: props.specials,
-                categoryVal: props.category
-            }
+        this.state = {
+            selected: 1,
+            adminFlag: false,
+            nameVal: props.name,
+            modelVal: props.model,
+            priceVal: props.price,
+            salePriceVal: props.salePrice,
+            specialVal: props.specials,
+            categoryVal: props.category
+        }
     }
 
 
@@ -41,10 +41,9 @@ class Part extends Component {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Login'
-          }).then((result) => {
-              console.log(process.env)
+        }).then((result) => {
             if (result.value) {
-                window.location.assign(process.env.REACT_APP_AUTH_URL);
+              window.location.assign(process.env.REACT_APP_AUTH_URL);
             }
         })
         if (!this.props.cart.length) {
@@ -62,15 +61,15 @@ class Part extends Component {
     }
 
     handleDecrement() {
-        let {selected} = this.state
+        let { selected } = this.state
         if (selected >= 2) {
-        --selected
-        this.setState({ selected })
+            --selected
+            this.setState({ selected })
         }
     }
 
     handleIncrement() {
-        let {selected} = this.state
+        let { selected } = this.state
         ++selected
         this.setState({ selected })
     }
@@ -78,42 +77,46 @@ class Part extends Component {
 
     handleUpdate(id, selected) {
         this.props
-            .updateCart(id, parseInt(selected, 10))
-            .then(() => {
-            (this.state.selected > 1) ? (
-                Swal({
-                    type: 'success',
-                    title: 'Added Parts to Cart',
-                    allowOutsideClick: false
-                    })
-            ) : (
-                Swal({
-                    type: 'success',
-                    title: 'Added Part to Cart',
-                    allowOutsideClick: false
-                    })
-            )
+            .updateCart(id, parseInt(selected, 10)).then(() => {
+                this.props.getCart();
                 this.props.getTotalItems();
+            })
+            .then(() => {
+                (this.state.selected > 1) ? (
+                    Swal({
+                        type: 'success',
+                        title: 'Added Parts to Cart',
+                        allowOutsideClick: false
+                    })
+                ) : (
+                        Swal({
+                            type: 'success',
+                            title: 'Added Part to Cart',
+                            allowOutsideClick: false
+                        })
+                    )
             })
     }
 
 
     handleAdd(id, qty) {
         this.props.addToCart(id, qty).then(() => {
+            this.props.getCart();
+            this.props.getTotalItems();
+        }).then(() => {
             (this.state.selected > 1) ? (
                 Swal({
                     type: 'success',
                     title: 'Added Parts to Cart',
                     allowOutsideClick: false
-                    })
+                })
             ) : (
-                Swal({
-                    type: 'success',
-                    title: 'Added Part to Cart',
-                    allowOutsideClick: false
+                    Swal({
+                        type: 'success',
+                        title: 'Added Part to Cart',
+                        allowOutsideClick: false
                     })
-            )
-            this.props.getTotalItems();
+                )
         })
     }
 
@@ -279,10 +282,10 @@ class Part extends Component {
                                         <i className="qtyBtns fa fa-plus-circle" onClick={() => this.handleIncrement()}></i>
                                     </div>
                                     <button className="addToCartBtn" onClick={() => this.addToCart(partId, selected)}
-                                >
-                                    Add to Cart
+                                    >
+                                        Add to Cart
                                     <i className="fa fa-cart-plus  addBtn"></i>
-                                </button>
+                                    </button>
                                 </div>
                             </div>)}
                     </div>) : (

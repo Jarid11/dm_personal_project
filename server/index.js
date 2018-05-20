@@ -147,8 +147,8 @@ passport.deserializeUser((user, done) => {
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    successRedirect: process.env.HOME_URL,
-    failureRedirect: process.env.HOME_URL
+    successRedirect: process.env.REACT_APP_HOME_URL,
+    failureRedirect: process.env.REACT_APP_HOME_URL
   })
 );
 

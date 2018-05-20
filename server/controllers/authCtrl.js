@@ -31,7 +31,7 @@ const getUser = (req, res) => {
 
 const logoutUser = (req, res) => {
   req.session.destroy(() => {
-    res.redirect(process.env.HOME_URL);
+    res.redirect(process.env.REACT_APP_HOME_URL);
   });
 };
 
