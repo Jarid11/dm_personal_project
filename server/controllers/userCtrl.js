@@ -10,6 +10,7 @@ module.exports = {
 
   },
   addShippingInfo: (req, res) => {
+    console.log("addShipInfo hit")
     const dbInstance = req.app.set("db");
 
     const {
@@ -37,7 +38,9 @@ module.exports = {
         state,
         zip
       ])
-      .then(response => res.status(200).json(response))
+      .then(response => { 
+        console.log(response)
+        res.status(200).json(response[0])})
       .catch(err => res.status(500).json(err));
   }
 };

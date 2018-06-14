@@ -35,6 +35,15 @@ export function addShippingInfo(
   state,
   zip
 ) {
+  console.log( firstname,
+    lastname,
+    phonenumber,
+    email,
+    streetaddress,
+    extraaddressinfo,
+    city,
+    state,
+    zip)
   return {
     type: ADD_SHIPPING_INFO,
     payload: axios.post("/api/addShipInfo", {
@@ -66,6 +75,7 @@ export default function userReducer(state = initialState, action) {
     case `${GET_USER}_FULFILLED`:
     case `${GET_SHIPPING_INFO}_FULFILLED`:
     case `${ADD_SHIPPING_INFO}_FULFILLED`:
+      console.log(action.payload.data)
       return {
         ...state,
         user: action.payload.data

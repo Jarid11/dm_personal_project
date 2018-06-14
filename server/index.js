@@ -68,10 +68,8 @@ app.post('/api/email', function (req, res) {
 
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
-      console.log(`Email Error : ${err}`)
       console.log(err)
     } else {
-      console.log(`Email Worked : ${info}`)
       console.log(info);
     }
   });

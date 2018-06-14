@@ -45,12 +45,14 @@ class Checkout extends Component {
   }
 
   componentDidMount() {
+    this.props.getUser()
     if (this.props.user.userid) {
       this.props.getTotalItems();
       this.props.getGrandTotal();
       this.props.getCartImgs();
     } else {
-      window.location.replace(process.env.HOME_URL);
+      console.log(this.props)
+      // window.location.replace(process.env.REACT_APP_HOME_URL);
     }
   }
 
@@ -83,16 +85,24 @@ class Checkout extends Component {
   }
 
   handleAddInfo(fn, ln, pn, e, sa, eai, c, s, z) {
+    console.log(fn, ln, pn, e, sa, eai, c, s, z)
     const { firstName, lastName, phoneNumber, email, streetAddress, extraAddressInfo, city, state, zip } = this.state
-    if ((firstName === this.props.user.firstname) && (lastName === this.props.user.lastname) && (phoneNumber === this.props.user.phonenumber) && (email === this.props.user.email) && (streetAddress === this.props.user.streetaddress) && (extraAddressInfo === this.props.user.extraaddressinfo) && (city === this.props.user.city) && (state === this.props.user.state) && (zip === this.state.zip)) {
-      this.handleStep2();
+    if (fn === "" || ln === "" || pn === "" || e === "" || sa === "" || eai === "" || c === "" || s === "" || z === "") {
+      console.log(firstName, lastName, phoneNumber, email, streetAddress, extraAddressInfo, city, state, zip )
+      return console.log("empty strings dont work", fn, ln, pn, e, sa, eai, c, s, z)
     } else {
-      this.props
-        .addShippingInfo(fn, ln, pn, e, sa, eai, c, s, z)
-        .then(() => {
-          this.props.getUser();
-          this.handleStep2();
-        });
+      if ((firstName === fn) && (lastName === ln) && (phoneNumber === pn) && (email === e) && (streetAddress === sa) && (extraAddressInfo === eai) && (city === c) && (state === s) && (zip === z)) {
+        console.log(firstName, lastName, phoneNumber, email, streetAddress, extraAddressInfo, city, state, zip )
+        // this.handleStep2();
+      } else {
+        console.log(fn, ln, pn, e, sa, eai, c, s, z)
+        this.props
+          .addShippingInfo(fn, ln, pn, e, sa, eai, c, s, z)
+          .then(() => {
+            // this.props.getUser();
+            // this.handleStep2();
+          });
+      }
     }
   }
 
@@ -121,7 +131,8 @@ class Checkout extends Component {
       extraAddressInfo,
       city,
       state,
-      zip
+      zip,
+      emailErr
     } = this.state;
 
     const { totalItems, grandTotal, cartImgs } = this.props;
@@ -280,7 +291,7 @@ class Checkout extends Component {
         >
           {step2 ? (
             <div className="inputBoxesWrapper">
-              <div className="step2InputBoxes">
+              <form className="step2InputBoxes">
                 <div className="step2Box">
                   <div className="stepNumBox">
                     <p>2</p>
@@ -321,12 +332,11 @@ class Checkout extends Component {
                       }
                       value={phoneNumber}
                       type="tel"
-                      required
-                      pattern="[0-9]{3}[ -][0-9]{3}[ -][0-9]{4}"
+                      required="required"
                     />
                   </div>
                   <div className="inputBoxes">
-                    <h5 className="inputTitles">
+                    <h5 style={emailErr ? { color: "red" } : null} className="inputTitles">
                       Email address for order notification
                     </h5>
                     <input
@@ -475,7 +485,7 @@ class Checkout extends Component {
                     Review Order
                   </button>
                 </div>
-              </div>
+              </form>
               <div className="disabledStep3Container4Step2">
                 <div className="disabledStep3ContainerWrapper">
                   <div className="disabledStep3ContainerBox">
@@ -575,7 +585,7 @@ class Checkout extends Component {
                 shippingCost={shipCost}
                 tax={tax}
                 total={total.toFixed(2)}
-                
+
               />
             </div>
 
