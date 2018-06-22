@@ -5,7 +5,9 @@
   padding: 10px;
 }
 
-.disabledStep3Container4Step2Box, .disabledStep2ContainerBox, .disabledStep3ContainerBox {
+.disabledStep3Container4Step2Box,
+.disabledStep2ContainerBox,
+.disabledStep3ContainerBox {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -31,7 +33,10 @@
   background: #eaeaea;
 }
 
-.step2FormWrapper, .disabledStep3Container4Step2Wrapper, .disabledStep2ContainerWrapper, .disabledStep3ContainerWrapper {
+.step2FormWrapper,
+.disabledStep3Container4Step2Wrapper,
+.disabledStep2ContainerWrapper,
+.disabledStep3ContainerWrapper {
   max-width: 750px;
   margin: auto;
   display: flex;
@@ -232,7 +237,7 @@
   max-width: 750px;
   margin: auto;
   width: 100%;
-  min-height: 30vh
+  min-height: 30vh;
 }
 
 .checkMarkContainer {
@@ -244,7 +249,6 @@
 
 .checkMarkContainer2 {
   width: 40%;
-  display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
@@ -397,8 +401,8 @@
   padding: 10px;
 }
 
-
-.checkoutContBtn, .wideViewPositioning {
+.checkoutContBtn,
+.wideViewPositioning {
   display: none;
 }
 
@@ -420,9 +424,9 @@
   cursor: pointer;
 }
 
-
 @media (min-width: 637px) {
-  .checkoutContBtn, .disabledStripeWrapper {
+  .checkoutContBtn,
+  .disabledStripeWrapper {
     display: block;
   }
 
@@ -438,7 +442,8 @@
   .shippingBtns {
     width: 250px;
   }
-  .arrivalWrapper, .totalContainerAndReviewOrderWrapper {
+  .arrivalWrapper,
+  .totalContainerAndReviewOrderWrapper {
     width: 500px;
   }
 
@@ -466,11 +471,12 @@
     display: block;
   }
 
-  .checkMarkContainer, .checkMarkContainer2 {
+  .checkMarkContainer,
+  .checkMarkContainer2 {
     width: 200px;
   }
 
-  .checkoutFooter  {
+  .checkoutFooter {
     display: none;
   }
 
@@ -511,9 +517,8 @@
 
   .contBtn:hover {
     background: #fff;
-    color: #239afc; 
+    color: #239afc;
   }
-
 }
 
 @media (min-width: 1000px) {
